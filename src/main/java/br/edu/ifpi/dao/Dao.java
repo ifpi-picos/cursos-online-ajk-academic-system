@@ -2,6 +2,8 @@ package br.edu.ifpi.dao;
 
 import java.util.List;
 
+import java.util.List;
+
 public interface Dao<T> {
     public int insert(T t);
 
@@ -12,8 +14,11 @@ public interface Dao<T> {
     public T select(int id);
 
     public List<T> selectAll();
+    public List<T> selectAll();
 
     public List<T> selectAll(String condition);
+    public List<T> selectAll(String condition);
 
+    public List<T> selectAll(String[] conditions);
     public List<T> selectAll(String[] conditions);
 }
