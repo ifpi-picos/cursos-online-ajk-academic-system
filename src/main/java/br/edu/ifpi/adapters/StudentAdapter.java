@@ -2,15 +2,16 @@ package br.edu.ifpi.adapters;
 
 import java.sql.ResultSet;
 
-import br.edu.ifpi.entities.Teacher;
+import br.edu.ifpi.entities.Student;
 
-public class TeacherAdapter {
-    public static Teacher fromResultSet(ResultSet resultSet) {
+public class StudentAdapter {
+    public static Student fromResultSet(ResultSet resultSet) {
         try {
-            return new Teacher(
+            return new Student(
                 resultSet.getInt("id"),
                 resultSet.getString("name"),
-                resultSet.getString("email")
+                resultSet.getString("email"),
+                CourseAdapter.fromResultSet(resultSet)
             );
         } catch (Exception e) {
             e.printStackTrace();

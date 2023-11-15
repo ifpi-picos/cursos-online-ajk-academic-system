@@ -1,4 +1,4 @@
-CREATE TABLE courses (
+CREATE TABLE Courses (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     status VARCHAR(20) NOT NULL,

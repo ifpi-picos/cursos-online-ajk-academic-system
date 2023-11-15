@@ -11,10 +11,8 @@ public class DatabaseConnection {
 
     public static Connection getConnection() {
         try {
-            // Carrega o driver JDBC
             Class.forName("org.postgresql.Driver");
 
-            // Estabelece a conexão com o banco de dados
             return DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace(); 
