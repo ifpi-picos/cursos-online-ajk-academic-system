@@ -1,11 +1,11 @@
 package br.edu.ifpi;
 
-/**
- * Hello world!
- *
- */
+import br.edu.ifpi.dao.DatabaseConnection;
+
+import java.sql.Connection;
+
 public class App {
     public static void main(String[] args) {
-        System.out.println("Sistema de cursos online!");
+        Connection connection = DatabaseConnection.getConnection();
     }
 }
