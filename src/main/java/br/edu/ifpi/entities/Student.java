@@ -11,11 +11,10 @@ public class Student {
         this.email = email;
     }
 
-    public Student(int id, String name, String email, Course courses) {
+    public Student(int id, String name, String email) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.courses = courses;
     }
 
     public int getId() {
