@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 import br.edu.ifpi.data.adapters.StudentCourseAdapter;
 import br.edu.ifpi.entities.StudentCourse;
-import br.edu.ifpi.entities.enums.StatusCourse;
 
 public class StudentCourseDao {
 
@@ -44,22 +43,6 @@ public class StudentCourseDao {
             preparedStatement.setString(2, studentCourse.getStatus().toString());
             preparedStatement.setInt(3, studentCourse.getStudentId());
             preparedStatement.setInt(4, studentCourse.getCourseId());
-            return preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return 0;
-    }
-
-    public int cancel(StudentCourse studentCourse) {
-        final String SQL = "UPDATE Student_courses SET status = ? WHERE student_id = ? AND course_id = ?";
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
-            preparedStatement.setString(1, StatusCourse.CANCELED.toString());
-            preparedStatement.setInt(2, studentCourse.getStudentId());
-            preparedStatement.setInt(3, studentCourse.getCourseId());
             return preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
