@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class SceneNavigator {
 
-    public static void navigateTo(URL fxmlPath, Button button, Object controller) {
+    public static void navigateTo(URL fxmlPath, Button button, Object controller, Boolean fullScreen) {
         FXMLLoader loader = new FXMLLoader(fxmlPath);
         loader.setController(controller);
 
@@ -20,6 +20,10 @@ public class SceneNavigator {
             Scene scene = new Scene(root);
             Stage stage = (Stage) button.getScene().getWindow();
             stage.setScene(scene);
+            if (fullScreen) {
+                stage.setMaximized(true);
+                stage.setResizable(true);
+            }
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

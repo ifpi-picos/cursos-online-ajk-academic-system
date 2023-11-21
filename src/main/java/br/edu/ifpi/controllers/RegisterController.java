@@ -56,7 +56,7 @@ public class RegisterController implements Initializable {
         try {
             URL login = getClass().getResource(Routes.login);
             LoginController loginController = new LoginController(this.connection);
-            SceneNavigator.navigateTo(login, back, loginController);
+            SceneNavigator.navigateTo(login, back, loginController, false);
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }

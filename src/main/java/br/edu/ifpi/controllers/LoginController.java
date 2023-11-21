@@ -2,8 +2,6 @@ package br.edu.ifpi.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
@@ -20,6 +18,7 @@ import br.edu.ifpi.config.Routes;
 import br.edu.ifpi.data.dao.StudentDao;
 import br.edu.ifpi.entities.Student;
 import br.edu.ifpi.util.AlertMessage;
+import br.edu.ifpi.util.SceneNavigator;
 
 public class LoginController implements Initializable {
 
@@ -61,7 +60,13 @@ public class LoginController implements Initializable {
             Student student = studentDao.login(username, password);
 
             if (student != null) {
-                System.out.println("Login realizado com sucesso");
+                try {
+                    URL studentHome = getClass().getResource(Routes.studentHome);
+                    StudentHomeController studentController = new StudentHomeController(connection, student);
+                    SceneNavigator.navigateTo(studentHome, login, studentController, true);
+                } catch (Exception e) {
+                    System.err.println(e.getMessage());
+                }
             } else {
                 AlertMessage.show("Erro", "Usuário ou senha incorretos", AlertType.WARNING);
             }
@@ -71,10 +76,9 @@ public class LoginController implements Initializable {
     @FXML
     void newAccount(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(Routes.register));
-            loader.setController(new RegisterController(connection));
-            Parent root = loader.load();
-            this.createAccount.getScene().setRoot(root);
+            URL register = getClass().getResource(Routes.register);
+            RegisterController registerController = new RegisterController(this.connection);
+            SceneNavigator.navigateTo(register, login, registerController, false);
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
