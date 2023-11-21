@@ -80,14 +80,6 @@ public class LoginController implements Initializable {
         }
     }
 
-    public void redirectTeacher() {
-        System.out.println("Redirecionar para a tela do professor");
-    }
-
-    public void redirectStudent() {
-        System.out.println("Redirecionar para a tela do aluno");
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.student.setSelected(true);

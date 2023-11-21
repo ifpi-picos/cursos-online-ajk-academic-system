@@ -30,54 +30,42 @@ public class DatabaseConnection {
 
     public static Boolean createTable(Connection connection) {
         try (Statement statement = connection.createStatement()) {
-            // Criação da tabela courses
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS courses ("
+
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS Teacher ("
+                    + "id SERIAL PRIMARY KEY,"
+                    + "name VARCHAR(255) NOT NULL,"
+                    + "email VARCHAR(255) NOT NULL,"
+                    + "password VARCHAR(255) NOT NULL"
+                    + ")");
+
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS Student ("
+                    + "id SERIAL PRIMARY KEY,"
+                    + "name VARCHAR(255) NOT NULL,"
+                    + "email VARCHAR(255) NOT NULL,"
+                    + "password VARCHAR(255) NOT NULL"
+                    + ")");
+
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS Course ("
                     + "id SERIAL PRIMARY KEY,"
                     + "name VARCHAR(255) NOT NULL,"
                     + "status VARCHAR(20) NOT NULL,"
-                    + "workload INT NOT NULL"
+                    + "workload INT NOT NULL,"
+                    + "teacher_id INT NOT NULL,"
+                    + "FOREIGN KEY (teacher_id) REFERENCES Teacher(id)"
                     + ")");
 
-            // Criação da tabela student
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS student ("
-                    + "id SERIAL PRIMARY KEY,"
-                    + "name VARCHAR(255) NOT NULL,"
-                    + "email VARCHAR(255) NOT NULL,"
-                    + "password VARCHAR(255) NOT NULL"
-                    + ")");
-
-            // Criação da tabela teacher
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS teacher ("
-                    + "id SERIAL PRIMARY KEY,"
-                    + "name VARCHAR(255) NOT NULL,"
-                    + "email VARCHAR(255) NOT NULL,"
-                    + "password VARCHAR(255) NOT NULL"
-                    + ")");
-
-            // Criação da tabela grades
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS grades ("
-                    + "id SERIAL PRIMARY KEY,"
-                    + "student_id INT REFERENCES student(id),"
-                    + "course_id INT REFERENCES courses(id),"
-                    + "grade FLOAT NOT NULL"
-                    + ")");
-
-            // Criação da tabela student_courses
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS student_courses ("
-                    + "student_id INT REFERENCES student(id),"
-                    + "course_id INT REFERENCES courses(id),"
-                    + "PRIMARY KEY (student_id, course_id)"
-                    + ")");
-
-            // Criação da tabela teacher_courses
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS teacher_courses ("
-                    + "teacher_id INT REFERENCES teacher(id),"
-                    + "course_id INT REFERENCES courses(id),"
-                    + "PRIMARY KEY (teacher_id, course_id)"
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS Student_course ("
+                    + "student_id INT,"
+                    + "course_id INT,"
+                    + "final_grade DECIMAL(4, 2),"
+                    + "status VARCHAR(255), "
+                    + "PRIMARY KEY (student_id, course_id),"
+                    + "FOREIGN KEY (student_id) REFERENCES Student(id),"
+                    + "FOREIGN KEY (course_id) REFERENCES Course(id)"
                     + ")");
 
             return true;
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
