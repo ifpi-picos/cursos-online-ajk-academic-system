@@ -7,10 +7,10 @@ import java.util.ResourceBundle;
 import br.edu.ifpi.entities.Student;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 
 public class StudentHomeController implements Initializable {
 
@@ -26,19 +26,19 @@ public class StudentHomeController implements Initializable {
     private Hyperlink openCourses;
 
     @FXML
-    private Button studentInfo;
+    private TextFlow usernameButton;
 
     @FXML
-    private Text username;
+    private Text usernameText;
 
     @FXML
-    void usernameInfo(MouseEvent event) {
-        System.out.println(this.student.getName());
+    void usernameButtonClick(MouseEvent event) {
+        System.out.println("username button clicked");
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.username.setText("Bem-vindo, " + this.student.getName());
+        this.usernameText.setText(this.student.getName());
     }
 
 }

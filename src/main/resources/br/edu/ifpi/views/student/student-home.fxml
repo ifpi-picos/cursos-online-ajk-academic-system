@@ -46,10 +46,6 @@
                   <Font size="14.0" />
                </font>
             </Hyperlink>
-            <Text fx:id="username" layoutX="76.0" layoutY="46.0" onMouseClicked="#usernameInfo" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="143.7366943359375">
-               <font>
-                  <Font size="14.0" />
-               </font></Text>
             <TextFlow fx:id="usernameButton" layoutX="70.0" layoutY="34.0" onMouseClicked="#usernameButtonClick" prefHeight="16.0" prefWidth="156.0" style="-fx-background-color: #2f3940; -fx-background-radius: 5;" textAlignment="CENTER">
                <children>
                   <Text fx:id="usernameText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="133.71014404296875">
