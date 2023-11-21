@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.util.ResourceBundle;
 
 import br.edu.ifpi.entities.Student;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Hyperlink;
@@ -23,17 +24,35 @@ public class StudentHomeController implements Initializable {
     }
 
     @FXML
-    private Hyperlink openCourses;
-
-    @FXML
     private TextFlow usernameButton;
 
     @FXML
     private Text usernameText;
 
     @FXML
+    void completedCourses(ActionEvent event) {
+
+    }
+
+    @FXML
+    void exit(ActionEvent event) {
+        System.out.println("Botão sair");
+
+    }
+
+    @FXML
+    void ongoingCourses(ActionEvent event) {
+
+    }
+
+    @FXML
+    void register(ActionEvent event) {
+
+    }
+
+    @FXML
     void usernameButtonClick(MouseEvent event) {
-        System.out.println("username button clicked");
+
     }
 
     @Override

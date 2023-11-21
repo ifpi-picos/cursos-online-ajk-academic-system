@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
@@ -34,19 +35,14 @@
       </ImageView>
    </center>
    <left>
-      <AnchorPane accessibleRole="HYPERLINK" focusTraversable="true" prefHeight="465.0" prefWidth="241.0" style="-fx-background-color: #eee;" BorderPane.alignment="CENTER">
+      <AnchorPane accessibleRole="HYPERLINK" focusTraversable="true" prefHeight="347.0" prefWidth="242.0" style="-fx-background-color: #eee;" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="39.0" fitWidth="44.0" layoutX="23.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../img/fotor-20231120234150.png" />
                </image>
             </ImageView>
-            <Hyperlink fx:id="openCourses" layoutX="33.0" layoutY="133.0" prefHeight="23.0" prefWidth="196.0" text="Cursos em andamento">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Hyperlink>
-            <TextFlow fx:id="usernameButton" layoutX="70.0" layoutY="34.0" onMouseClicked="#usernameButtonClick" prefHeight="16.0" prefWidth="156.0" style="-fx-background-color: #2f3940; -fx-background-radius: 5;" textAlignment="CENTER">
+            <TextFlow fx:id="usernameButton" layoutX="70.0" layoutY="34.0" onMouseClicked="#usernameButtonClick" prefHeight="16.0" prefWidth="156.0" style="-fx-background-color: #2f3941; -fx-background-radius: 5;" textAlignment="CENTER">
                <children>
                   <Text fx:id="usernameText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="133.71014404296875">
                      <font>
@@ -55,6 +51,11 @@
                   </Text>
                </children>
             </TextFlow>
+            <Line endX="140.0" layoutX="101.0" layoutY="82.0" startX="-100.0" strokeWidth="0.5" />
+            <Button layoutX="25.0" layoutY="128.0" mnemonicParsing="false" onAction="#register" prefHeight="25.0" prefWidth="195.0" text="Realizar matrícula" />
+            <Button layoutX="25.0" layoutY="169.0" mnemonicParsing="false" onAction="#completedCourses" prefHeight="25.0" prefWidth="195.0" text="Cursos concluídos " />
+            <Button layoutX="25.0" layoutY="208.0" mnemonicParsing="false" onAction="#ongoingCourses" prefHeight="25.0" prefWidth="195.0" text="Cursos em andamento" />
+            <Button layoutX="25.0" layoutY="247.0" mnemonicParsing="false" onAction="#exit" prefHeight="25.0" prefWidth="195.0" text="Sair" />
          </children>
       </AnchorPane>
    </left>
