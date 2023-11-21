@@ -4,17 +4,19 @@ public class Student {
     private int id;
     private String name;
     private String email;
-    private Course courses;
+    private String password;
 
-    public Student(String name, String email) {
+    public Student(String name, String email, String password) {
         this.name = name;
         this.email = email;
+        this.password = password;
     }
 
-    public Student(int id, String name, String email) {
+    public Student(int id, String name, String email, String password) {
         this.id = id;
         this.name = name;
         this.email = email;
+        this.password = password;
     }
 
     public int getId() {
@@ -41,11 +43,11 @@ public class Student {
         this.email = email;
     }
 
-    public Course getCourse() {
-        return courses;
+    public String getPassword() { 
+        return password; 
     }
 
-    public void setCourses(Course courses) {
-        this.courses = courses;
+    public void setPassword(String password) { 
+        this.password = password; 
     }
 }

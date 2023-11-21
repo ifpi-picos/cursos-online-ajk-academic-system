@@ -10,7 +10,8 @@ public class StudentAdapter {
             return new Student(
                 resultSet.getInt("id"),
                 resultSet.getString("name"),
-                resultSet.getString("email")
+                resultSet.getString("email"),
+                resultSet.getString("password")
             );
         } catch (Exception e) {
             e.printStackTrace();

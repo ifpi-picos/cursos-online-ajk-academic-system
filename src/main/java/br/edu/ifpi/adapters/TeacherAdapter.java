@@ -10,7 +10,8 @@ public class TeacherAdapter {
             return new Teacher(
                 resultSet.getInt("id"),
                 resultSet.getString("name"),
-                resultSet.getString("email")
+                resultSet.getString("email"),
+                resultSet.getString("password")
             );
         } catch (Exception e) {
             e.printStackTrace();
