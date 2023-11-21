@@ -20,7 +20,7 @@
             </Text>
             <ImageView fitHeight="49.0" fitWidth="59.0" layoutX="14.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../../image-removebg-preview.png" />
+                  <Image url="@../../img/image-removebg-preview.png" />
                </image>
             </ImageView>
          </children>
@@ -29,7 +29,7 @@
    <center>
       <ImageView fitHeight="515.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
          <image>
-            <Image url="@../../../../../../../../../../../../Downloads/undraw-control-panel/undraw-control-panel.png" />
+            <Image url="@../../img/undraw-control-panel.png" />
          </image>
       </ImageView>
    </center>
@@ -38,7 +38,7 @@
          <children>
             <ImageView fitHeight="39.0" fitWidth="44.0" layoutX="23.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../../../../../Downloads/fotor-20231120234150.png" />
+                  <Image url="@../../img/fotor-20231120234150.png" />
                </image>
             </ImageView>
             <Button layoutX="71.0" layoutY="27.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="156.0" style="-fx-background-color: #3F528C;" text="Aluno" textFill="WHITE">
