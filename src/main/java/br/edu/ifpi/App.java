@@ -1,4 +1,4 @@
-package br.edu.ifpi.ui;
+package br.edu.ifpi;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +13,7 @@ import br.edu.ifpi.data.dao.DatabaseConnection;
 
 public class App extends Application {
 
-    private static final Connection connection = DatabaseConnection.getConnection();
+    private Connection connection;
 
     public static void main(String[] args) {
         launch(args);
@@ -21,17 +21,18 @@ public class App extends Application {
 
     @Override
     public void init() {
+        connection = DatabaseConnection.getConnection();
         boolean createdTables = DatabaseConnection.createTable(connection);
-        System.out.println(connection != null ? "Conexão estabelecida!" : "Erro ao conectar ao bd.");
-        System.out.println(createdTables ? "Tabelas criadas com sucesso!" : "Erro ao criar tabelas.");
+
+        // log
+        System.out.println(connection != null ? "-conexão estabelecida" : "-erro ao conectar ao bd");
+        System.out.println(createdTables ? "-tabelas criadas com sucesso" : "-erro ao criar tabelas");
     }
 
     @Override
     public void start(Stage primaryStage) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(Routes.login));
-
-            // Defina o controlador para o FXMLLoader
             loader.setController(new LoginController(connection));
 
             Parent root = loader.load();
@@ -48,7 +49,7 @@ public class App extends Application {
 
     @Override
     public void stop() {
-        System.out.println("Fechando conexão com o banco de dados...");
         DatabaseConnection.closeConnection();
+        System.out.println("-fechando conexão com o banco de dados...");
     }
 }
