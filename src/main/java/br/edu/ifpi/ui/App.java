@@ -1,4 +1,4 @@
-package br.edu.ifpi;
+package br.edu.ifpi.ui;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
