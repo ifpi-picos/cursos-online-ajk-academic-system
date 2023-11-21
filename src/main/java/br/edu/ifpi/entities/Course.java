@@ -1,6 +1,6 @@
 package br.edu.ifpi.entities;
 
-import br.edu.ifpi.enums.StatusCourse;
+import br.edu.ifpi.entities.enums.StatusCourse;
 
 public class Course {
 

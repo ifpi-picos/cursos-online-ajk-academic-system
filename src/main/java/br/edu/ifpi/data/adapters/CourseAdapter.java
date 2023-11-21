@@ -1,9 +1,9 @@
-package br.edu.ifpi.adapters;
+package br.edu.ifpi.data.adapters;
 
 import java.sql.ResultSet;
 
 import br.edu.ifpi.entities.Course;
-import br.edu.ifpi.enums.StatusCourse;
+import br.edu.ifpi.entities.enums.StatusCourse;
 
 public class CourseAdapter {
     public static Course fromResultSet(ResultSet resultSet) {

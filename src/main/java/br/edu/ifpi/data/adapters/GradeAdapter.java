@@ -1,4 +1,4 @@
-package br.edu.ifpi.adapters;
+package br.edu.ifpi.data.adapters;
 
 import java.sql.ResultSet;
 

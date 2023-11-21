@@ -1,4 +1,4 @@
-package br.edu.ifpi.dao;
+package br.edu.ifpi.data.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.edu.ifpi.adapters.GradeAdapter;
+import br.edu.ifpi.data.adapters.GradeAdapter;
 import br.edu.ifpi.entities.Grade;
 
 public class GradeDao implements Dao<Grade> {

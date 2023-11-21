@@ -1,6 +1,6 @@
-package br.edu.ifpi.dao;
+package br.edu.ifpi.data.dao;
 
-import br.edu.ifpi.adapters.CourseAdapter;
+import br.edu.ifpi.data.adapters.CourseAdapter;
 import br.edu.ifpi.entities.Course;
 
 import java.sql.Connection;

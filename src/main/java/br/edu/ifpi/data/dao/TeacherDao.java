@@ -1,11 +1,11 @@
-package br.edu.ifpi.dao;
+package br.edu.ifpi.data.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 
-import br.edu.ifpi.adapters.TeacherAdapter;
+import br.edu.ifpi.data.adapters.TeacherAdapter;
 import br.edu.ifpi.entities.Teacher;
 
 import java.util.ArrayList;

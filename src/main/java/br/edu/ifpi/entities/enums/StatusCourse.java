@@ -1,4 +1,4 @@
-package br.edu.ifpi.enums;
+package br.edu.ifpi.entities.enums;
 
 public enum StatusCourse {
   ABERTO, FECHADO

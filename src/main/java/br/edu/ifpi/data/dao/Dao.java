@@ -1,4 +1,4 @@
-package br.edu.ifpi.dao;
+package br.edu.ifpi.data.dao;
 
 import java.util.List;
 

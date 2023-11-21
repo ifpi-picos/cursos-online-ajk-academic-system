@@ -1,4 +1,4 @@
-package br.edu.ifpi.adapters;
+package br.edu.ifpi.data.adapters;
 
 import java.sql.ResultSet;
 
@@ -8,10 +8,10 @@ public class StudentAdapter {
     public static Student fromResultSet(ResultSet resultSet) {
         try {
             return new Student(
-                resultSet.getInt("id"),
-                resultSet.getString("name"),
-                resultSet.getString("email")
-            );
+                    resultSet.getInt("id"),
+                    resultSet.getString("name"),
+                    resultSet.getString("email"),
+                    resultSet.getString("password"));
         } catch (Exception e) {
             e.printStackTrace();
         }

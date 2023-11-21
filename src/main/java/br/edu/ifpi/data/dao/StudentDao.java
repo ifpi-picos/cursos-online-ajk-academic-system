@@ -1,11 +1,11 @@
-package br.edu.ifpi.dao;
+package br.edu.ifpi.data.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 
-import br.edu.ifpi.adapters.StudentAdapter;
+import br.edu.ifpi.data.adapters.StudentAdapter;
 import br.edu.ifpi.entities.Student;
 
 import java.util.ArrayList;
@@ -18,13 +18,35 @@ public class StudentDao implements Dao<Student> {
         this.connection = connection;
     }
 
+    public Student login(String username, String password) {
+        final String sql = "SELECT * FROM student WHERE (email = ? OR name = ?) AND password = ?";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, username);
+            preparedStatement.setString(3, password);
+            final ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return StudentAdapter.fromResultSet(resultSet);
+            }
+        } catch (SQLException e) {
+            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+        
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     @Override
     public int insert(Student student) {
-        final String sql = "INSERT INTO student (name, email) VALUES (?, ?)";
+        final String sql = "INSERT INTO student (name, email, password) VALUES (?, ?, ?)";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, student.getName());
             preparedStatement.setString(2, student.getEmail());
+            preparedStatement.setString(3, student.getPassword());
             return preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
@@ -36,12 +58,13 @@ public class StudentDao implements Dao<Student> {
 
     @Override
     public int update(Student student) {
-        final String sql = "UPDATE student SET name = ?, email = ? WHERE id = ?";
+        final String sql = "UPDATE student SET name = ?, email = ?, password = ? WHERE id = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, student.getName());
             preparedStatement.setString(2, student.getEmail());
-            preparedStatement.setInt(3, student.getId());
+            preparedStatement.setString(3, student.getPassword());
+            preparedStatement.setInt(4, student.getId());
             return preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
