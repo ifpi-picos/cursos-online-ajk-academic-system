@@ -8,18 +8,21 @@ public class Course {
     private String name;
     private StatusCourse status;
     private int workload;
+    private int teacherId;
 
-    public Course(String name, StatusCourse status, int workload) {
+    public Course(String name, StatusCourse status, int workload, int teacherId) {
         this.name = name;
         this.status = status;
         this.workload = workload;
+        this.teacherId = teacherId;
     }
 
-    public Course(int id, String name, StatusCourse status, int workload) {
+    public Course(int id, String name, StatusCourse status, int workload, int teacherId) {
         this.id = id;
         this.name = name;
         this.status = status;
         this.workload = workload;
+        this.teacherId = teacherId;
     }
 
     public int getId() {
@@ -36,5 +39,9 @@ public class Course {
 
     public int getWorkload() {
         return workload;
+    }
+
+    public int getTeacherId() {
+        return teacherId;
     }
 }

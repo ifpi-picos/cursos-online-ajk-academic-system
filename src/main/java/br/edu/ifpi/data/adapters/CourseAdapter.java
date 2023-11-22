@@ -9,10 +9,12 @@ public class CourseAdapter {
     public static Course fromResultSet(ResultSet resultSet) {
         try {
             return new Course(
-                    resultSet.getInt("id"),
-                    resultSet.getString("name"),
-                    StatusCourse.valueOf(resultSet.getString("status")),
-                    resultSet.getInt("workload"));
+                resultSet.getInt("id"),
+                resultSet.getString("name"),
+                StatusCourse.valueOf(resultSet.getString("status")),
+                resultSet.getInt("workload"),
+                resultSet.getInt("teacher_id")
+            );
         } catch (Exception e) {
             e.printStackTrace();
         }

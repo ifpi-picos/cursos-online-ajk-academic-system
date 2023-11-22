@@ -20,12 +20,13 @@ public class CourseDao implements Dao<Course> {
 
     @Override
     public int insert(Course course) {
-        final String SQL = "INSERT INTO courses (name, status, workload) VALUES (?,?,?)";
+        final String SQL = "INSERT INTO Course (name, status, workload, teacher_id) VALUES (?,?,?,?)";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             preparedStatement.setString(1, course.getName());
             preparedStatement.setString(2, course.getStatus().toString());
             preparedStatement.setInt(3, course.getWorkload());
+            preparedStatement.setInt(4, course.getTeacherId());
             int row = preparedStatement.executeUpdate();
             return row;
         } catch (SQLException e) {
@@ -38,13 +39,14 @@ public class CourseDao implements Dao<Course> {
 
     @Override
     public int update(Course course) {
-        final String SQL = "UPDATE courses SET name = ?, status = ?, workload = ? WHERE id = ?";
+        final String SQL = "UPDATE Course SET name = ?, status = ?, workload = ?, teacher_id = ? WHERE id = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             preparedStatement.setString(1, course.getName());
             preparedStatement.setString(2, course.getStatus().toString());
             preparedStatement.setInt(3, course.getWorkload());
             preparedStatement.setInt(4, course.getId());
+            preparedStatement.setInt(5, course.getTeacherId());
             int row = preparedStatement.executeUpdate();
             return row;
         } catch (SQLException e) {
@@ -57,7 +59,7 @@ public class CourseDao implements Dao<Course> {
 
     @Override
     public int delete(int id) {
-        final String SQL = "DELETE FROM courses WHERE id = ?";
+        final String SQL = "DELETE FROM Course WHERE id = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             preparedStatement.setInt(1, id);
@@ -73,7 +75,7 @@ public class CourseDao implements Dao<Course> {
 
     @Override
     public Course select(int id) {
-        final String SQL = "SELECT * FROM courses WHERE id = ?";
+        final String SQL = "SELECT * FROM Course WHERE id = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             preparedStatement.setInt(1, id);
@@ -88,7 +90,7 @@ public class CourseDao implements Dao<Course> {
 
     @Override
     public List<Course> selectAll() {
-        final String SQL = "SELECT * FROM courses";
+        final String SQL = "SELECT * FROM Course";
         List<Course> courses = new ArrayList<>();
 
         try {
@@ -111,7 +113,7 @@ public class CourseDao implements Dao<Course> {
 
     @Override
     public List<Course> selectAll(String condition) {
-        final String SQL = "SELECT * FROM courses WHERE " + condition;
+        final String SQL = "SELECT * FROM Course WHERE " + condition;
         List<Course> courses = new ArrayList<>();
 
         try {
@@ -134,7 +136,7 @@ public class CourseDao implements Dao<Course> {
 
     @Override
     public List<Course> selectAll(String[] conditions) {
-        final String SQL = "SELECT * FROM courses WHERE " + String.join(" AND ", conditions);
+        final String SQL = "SELECT * FROM Course WHERE " + String.join(" AND ", conditions);
         List<Course> courses = new ArrayList<>();
 
         try {
