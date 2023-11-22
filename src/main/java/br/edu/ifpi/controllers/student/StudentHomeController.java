@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.util.ResourceBundle;
 
 import br.edu.ifpi.config.Routes;
-import br.edu.ifpi.controllers.RegisterController;
 import br.edu.ifpi.entities.Student;
 import br.edu.ifpi.util.SceneNavigator;
 import javafx.event.ActionEvent;
