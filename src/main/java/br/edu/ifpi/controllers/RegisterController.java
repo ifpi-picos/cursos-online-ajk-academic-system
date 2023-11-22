@@ -24,9 +24,13 @@ import javafx.fxml.Initializable;
 public class RegisterController implements Initializable {
 
     private final Connection connection;
+    private SceneNavigator sceneNavigator;
+    private Stage stage;
 
-    public RegisterController(Connection connection) {
+    public RegisterController(Connection connection, Stage stage, SceneNavigator sceneNavigator) {
         this.connection = connection;
+        this.stage = stage;
+        this.sceneNavigator = sceneNavigator;
     }
 
     @FXML
@@ -56,9 +60,8 @@ public class RegisterController implements Initializable {
     @FXML
     void backToLogin(ActionEvent event) {
         try {
-            SceneNavigator sceneNavigator = new SceneNavigator();
-            Stage stage = (Stage) back.getScene().getWindow();
-            sceneNavigator.navigateTo(Routes.login, stage, new LoginController(this.connection), false);
+            LoginController loginController = new LoginController(this.connection, this.stage, this.sceneNavigator);
+            sceneNavigator.navigateTo(Routes.login, this.stage, loginController, false);
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
@@ -92,6 +95,6 @@ public class RegisterController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
+
     }
 }
