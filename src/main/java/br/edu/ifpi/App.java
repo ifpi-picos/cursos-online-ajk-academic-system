@@ -38,7 +38,7 @@ public class App extends Application {
     public void start(Stage primaryStage) {
         this.stage = primaryStage;
         try {
-            Image icon = new Image(getClass().getResourceAsStream("/br/edu/ifpi/img/logo-sistema.png"));
+            Image icon = new Image(getClass().getResourceAsStream(Routes.icon));
             primaryStage.getIcons().add(icon);
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource(Routes.login));
