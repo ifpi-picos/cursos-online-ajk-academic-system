@@ -12,4 +12,5 @@ module br.edu.ifpi {
     exports br.edu.ifpi.controllers;
     exports br.edu.ifpi.entities;
     exports br.edu.ifpi.entities.enums;
+    exports br.edu.ifpi.util;
 }

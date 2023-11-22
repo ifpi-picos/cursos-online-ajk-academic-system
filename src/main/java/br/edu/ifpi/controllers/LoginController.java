@@ -25,9 +25,13 @@ import br.edu.ifpi.util.SceneNavigator;
 public class LoginController implements Initializable {
 
     private final Connection connection;
+    private SceneNavigator sceneNavigator;
+    private Stage stage;
 
-    public LoginController(Connection connection) {
+    public LoginController(Connection connection, Stage stage, SceneNavigator sceneNavigator) {
         this.connection = connection;
+        this.stage = stage;
+        this.sceneNavigator = sceneNavigator;
     }
 
     @FXML
@@ -63,10 +67,12 @@ public class LoginController implements Initializable {
 
             if (student != null) {
                 try {
-                    SceneNavigator sceneNavigator = new SceneNavigator();
-                    Stage stage = (Stage) login.getScene().getWindow();
-                    StudentHomeController studentHomeController = new StudentHomeController(this.connection, student);
-                    sceneNavigator.navigateTo(Routes.studentHome, stage, studentHomeController, true);
+                    StudentHomeController studentHomeController = new StudentHomeController(
+                            this.connection,
+                            this.sceneNavigator,
+                            this.stage,
+                            student);
+                    sceneNavigator.navigateTo(Routes.studentHome, this.stage, studentHomeController, true);
                 } catch (Exception e) {
                     Alert alert = new Alert(AlertType.ERROR);
                     alert.setTitle("Erro");
@@ -87,10 +93,12 @@ public class LoginController implements Initializable {
     @FXML
     void newAccount(ActionEvent event) {
         try {
-            SceneNavigator sceneNavigator = new SceneNavigator();
-            Stage stage = (Stage) createAccount.getScene().getWindow();
-            RegisterController registerController = new RegisterController(this.connection);
-            sceneNavigator.navigateTo(Routes.register, stage, registerController, false);
+            RegisterController registerController = new RegisterController(
+                    this.connection,
+                    this.stage,
+                    this.sceneNavigator);
+
+            sceneNavigator.navigateTo(Routes.register, this.stage, registerController, false);
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }

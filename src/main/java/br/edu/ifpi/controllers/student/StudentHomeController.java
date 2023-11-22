@@ -18,10 +18,14 @@ import javafx.stage.Stage;
 public class StudentHomeController implements Initializable {
 
     protected Connection connection;
+    private SceneNavigator sceneNavigator;
+    private Stage stage;
     private Student student;
 
-    public StudentHomeController(Connection connection, Student student) {
+    public StudentHomeController(Connection connection, SceneNavigator sceneNavigator, Stage stage, Student student) {
         this.connection = connection;
+        this.sceneNavigator = sceneNavigator;
+        this.stage = stage;
         this.student = student;
     }
 
@@ -30,10 +34,12 @@ public class StudentHomeController implements Initializable {
 
     @FXML
     void home(ActionEvent event) {
-        SceneNavigator sceneNavigator = new SceneNavigator();
-        Stage stage = (Stage) username.getScene().getWindow();
-        StudentHomeController studentHomeController = new StudentHomeController(connection, student);
-        sceneNavigator.navigateTo(Routes.studentHome, stage, studentHomeController, true);
+        StudentHomeController studentHomeController = new StudentHomeController(
+                connection,
+                sceneNavigator,
+                stage,
+                student);
+        sceneNavigator.navigateTo(Routes.studentHome, this.stage, studentHomeController, true);
     }
 
     @FXML
@@ -53,10 +59,12 @@ public class StudentHomeController implements Initializable {
 
     @FXML
     void register(ActionEvent event) {
-        SceneNavigator sceneNavigator = new SceneNavigator();
-        Stage stage = (Stage) username.getScene().getWindow();
-        RegisterCourseController registerController = new RegisterCourseController(connection, student);
-        sceneNavigator.navigateTo(Routes.registerCourse, stage, registerController, true);
+        RegisterCourseController registerCourseController = new RegisterCourseController(
+                connection,
+                sceneNavigator,
+                stage,
+                student);
+        sceneNavigator.navigateTo(Routes.registerCourse, this.stage, registerCourseController, true);
     }
 
     @FXML
