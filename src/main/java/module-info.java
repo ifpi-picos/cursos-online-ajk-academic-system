@@ -4,6 +4,7 @@ module br.edu.ifpi {
     requires javafx.fxml;
     requires javafx.web;
 
+    opens br.edu.ifpi.controllers.student to javafx.fxml;
     opens br.edu.ifpi to javafx.fxml;
     opens br.edu.ifpi.controllers to javafx.fxml;
 

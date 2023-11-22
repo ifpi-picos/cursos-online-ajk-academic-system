@@ -16,11 +16,9 @@ public class SceneNavigator {
         try {
             Parent root = loader.load();
             Scene scene = new Scene(root);
+            stage.close();
             stage.setScene(scene);
-            if (fullScreen) {
-                stage.setMaximized(true);
-                stage.setResizable(true);
-            }
+            stage.setMaximized(fullScreen);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
