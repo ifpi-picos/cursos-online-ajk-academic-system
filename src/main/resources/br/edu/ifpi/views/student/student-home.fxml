@@ -2,8 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -30,42 +28,6 @@
          </children>
       </AnchorPane>
    </top>
-   <center>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <center>
-            <TableView prefHeight="392.0" prefWidth="531.0" BorderPane.alignment="CENTER">
-              <columns>
-                <TableColumn prefWidth="75.0" text="ID" />
-                <TableColumn prefWidth="75.0" text="Nome" />
-                  <TableColumn prefWidth="105.0" text="Carga Horária" />
-                  <TableColumn prefWidth="105.0" text="Professor " />
-              </columns>
-            </TableView>
-         </center>
-         <top>
-            <BorderPane prefHeight="68.0" prefWidth="531.0" BorderPane.alignment="CENTER">
-               <center>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cursos Disponíveis" BorderPane.alignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Text>
-               </center>
-            </BorderPane>
-         </top>
-         <bottom>
-            <BorderPane prefHeight="67.0" prefWidth="531.0" BorderPane.alignment="CENTER">
-               <right>
-                  <Button fx:id="registerCourse" mnemonicParsing="false" onAction="#registerCourse" prefHeight="25.0" prefWidth="210.0" text="Realizar matrícula" BorderPane.alignment="CENTER">
-                     <BorderPane.margin>
-                        <Insets right="20.0" />
-                     </BorderPane.margin>
-                  </Button>
-               </right>
-            </BorderPane>
-         </bottom>
-      </BorderPane>
-   </center>
    <left>
       <BorderPane prefHeight="465.0" prefWidth="240.0" BorderPane.alignment="CENTER">
          <bottom>
@@ -124,4 +86,11 @@
          </center>
       </BorderPane>
    </left>
+   <center>
+      <ImageView fitHeight="472.0" fitWidth="599.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+         <image>
+            <Image url="@../../img/undraw-control-panel.png" />
+         </image>
+      </ImageView>
+   </center>
 </BorderPane>

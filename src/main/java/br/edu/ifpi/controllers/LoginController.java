@@ -2,12 +2,14 @@ package br.edu.ifpi.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Stage;
 import javafx.scene.control.Hyperlink;
 import javafx.fxml.Initializable;
 import java.net.URL;
@@ -17,7 +19,6 @@ import java.util.ResourceBundle;
 import br.edu.ifpi.config.Routes;
 import br.edu.ifpi.data.dao.StudentDao;
 import br.edu.ifpi.entities.Student;
-import br.edu.ifpi.util.AlertMessage;
 import br.edu.ifpi.util.SceneNavigator;
 
 public class LoginController implements Initializable {
@@ -61,14 +62,23 @@ public class LoginController implements Initializable {
 
             if (student != null) {
                 try {
-                    URL studentHome = getClass().getResource(Routes.studentHome);
-                    StudentHomeController studentController = new StudentHomeController(connection, student);
-                    SceneNavigator.navigateTo(studentHome, login, studentController, true);
+                    SceneNavigator sceneNavigator = new SceneNavigator();
+                    Stage stage = (Stage) login.getScene().getWindow();
+                    StudentHomeController studentHomeController = new StudentHomeController(this.connection, student);
+                    sceneNavigator.navigateTo(Routes.studentHome, stage, studentHomeController, true);
                 } catch (Exception e) {
-                    System.err.println(e.getMessage());
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("Erro");
+                    alert.setHeaderText("Erro ao fazer login");
+                    alert.setContentText("Não foi possível fazer login");
+                    alert.showAndWait();
                 }
             } else {
-                AlertMessage.show("Erro", "Usuário ou senha incorretos", AlertType.WARNING);
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Erro");
+                alert.setHeaderText("Erro ao fazer login");
+                alert.setContentText("Usuário ou senha incorretos");
+                alert.showAndWait();
             }
         }
     }
@@ -76,9 +86,10 @@ public class LoginController implements Initializable {
     @FXML
     void newAccount(ActionEvent event) {
         try {
-            URL register = getClass().getResource(Routes.register);
+            SceneNavigator sceneNavigator = new SceneNavigator();
+            Stage stage = (Stage) createAccount.getScene().getWindow();
             RegisterController registerController = new RegisterController(this.connection);
-            SceneNavigator.navigateTo(register, login, registerController, false);
+            sceneNavigator.navigateTo(Routes.register, stage, registerController, false);
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
@@ -86,7 +97,7 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-      
+
     }
 
 }

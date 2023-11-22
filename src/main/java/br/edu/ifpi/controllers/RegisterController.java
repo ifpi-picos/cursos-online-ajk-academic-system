@@ -7,6 +7,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.stage.Stage;
+
 import java.net.URL;
 import java.sql.Connection;
 import java.util.ResourceBundle;
@@ -54,9 +56,9 @@ public class RegisterController implements Initializable {
     @FXML
     void backToLogin(ActionEvent event) {
         try {
-            URL login = getClass().getResource(Routes.login);
-            LoginController loginController = new LoginController(this.connection);
-            SceneNavigator.navigateTo(login, back, loginController, false);
+            SceneNavigator sceneNavigator = new SceneNavigator();
+            Stage stage = (Stage) back.getScene().getWindow();
+            sceneNavigator.navigateTo(Routes.login, stage, new LoginController(this.connection), false);
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
@@ -90,9 +92,6 @@ public class RegisterController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // limpar o texto dos campos
-        this.name.setText("");
         
     }
-
 }
