@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.gluonhq.charm.glisten.control.AutoCompleteTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -30,42 +32,6 @@
          </children>
       </AnchorPane>
    </top>
-   <center>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <center>
-            <TableView prefHeight="392.0" prefWidth="531.0" BorderPane.alignment="CENTER">
-              <columns>
-                <TableColumn prefWidth="75.0" text="ID" />
-                <TableColumn prefWidth="75.0" text="Nome" />
-                  <TableColumn prefWidth="105.0" text="Carga Horária" />
-                  <TableColumn prefWidth="105.0" text="Professor " />
-              </columns>
-            </TableView>
-         </center>
-         <top>
-            <BorderPane prefHeight="68.0" prefWidth="531.0" BorderPane.alignment="CENTER">
-               <center>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cursos Disponíveis" BorderPane.alignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Text>
-               </center>
-            </BorderPane>
-         </top>
-         <bottom>
-            <BorderPane prefHeight="67.0" prefWidth="531.0" BorderPane.alignment="CENTER">
-               <right>
-                  <Button fx:id="registerCourse" mnemonicParsing="false" onAction="#registerCourse" prefHeight="25.0" prefWidth="210.0" text="Realizar matrícula" BorderPane.alignment="CENTER">
-                     <BorderPane.margin>
-                        <Insets right="20.0" />
-                     </BorderPane.margin>
-                  </Button>
-               </right>
-            </BorderPane>
-         </bottom>
-      </BorderPane>
-   </center>
    <left>
       <BorderPane prefHeight="465.0" prefWidth="240.0" BorderPane.alignment="CENTER">
          <bottom>
@@ -116,13 +82,31 @@
          <center>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button layoutX="7.0" layoutY="47.0" mnemonicParsing="false" onAction="#register" prefHeight="25.0" prefWidth="210.0" text="Realizar matrícula" />
-                  <Button layoutX="7.0" layoutY="84.0" mnemonicParsing="false" onAction="#ongoingCourses" prefHeight="25.0" prefWidth="210.0" text="Cursos em andamento" />
-                  <Button layoutX="7.0" layoutY="121.0" mnemonicParsing="false" onAction="#completedCourses" prefHeight="25.0" prefWidth="210.0" text="Cursos concluídos" />
-                  <Button layoutX="9.0" layoutY="11.0" mnemonicParsing="false" onAction="#home" prefHeight="25.0" prefWidth="210.0" text="Tela inicial" />
+                  <Button layoutX="7.0" layoutY="47.0" mnemonicParsing="false" onAction="#registerCourse" prefHeight="30.0" prefWidth="210.0" text="Adicionar Curso" />
+                  <Button layoutX="7.0" layoutY="84.0" mnemonicParsing="false" onAction="#seeCourses" prefHeight="30.0" prefWidth="210.0" text="Ver Cursos" />
+                  <Button layoutX="7.0" layoutY="121.0" mnemonicParsing="false" onAction="#closeCourse" prefHeight="30.0" prefWidth="210.0" text="Trancar Cursos" />
+                  <Button layoutX="9.0" layoutY="11.0" mnemonicParsing="false" onAction="#homeScreen" prefHeight="30.0" prefWidth="210.0" text="Tela inicial" />
                </children>
             </AnchorPane>
          </center>
       </BorderPane>
    </left>
+   <center>
+      <AnchorPane prefHeight="334.0" prefWidth="531.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField layoutX="30.0" layoutY="35.0" prefHeight="30.0" prefWidth="475.0" style="-fx-background-color: #f2f2f2; -fx-border-color: #3F528C; -fx-border-radius: 3;" />
+            <Text layoutX="30.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Título do Curso: *" />
+            <TextField layoutX="30.0" layoutY="100.0" prefHeight="70.0" prefWidth="475.0" style="-fx-background-color: #f2f2f2; -fx-border-color: #3F528C; -fx-border-radius: 3;" />
+            <Text layoutX="30.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descrição do Curso:" />
+            <Text layoutX="30.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modalidade: *" />
+            <ChoiceBox layoutX="30.0" layoutY="198.0" prefHeight="30.0" prefWidth="204.0" style="-fx-background-color: #f2f2f2; -fx-border-color: #3F528C; -fx-border-radius: 3;" />
+            <Text layoutX="30.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Professor do curso: *" />
+            <AutoCompleteTextField layoutX="30.0" layoutY="264.0" prefHeight="22.0" prefWidth="475.0" style="-fx-background-color: #f2f2f2; -fx-border-color: #3F528C; -fx-border-radius: 3;" />
+            <RadioButton layoutX="268.0" layoutY="205.0" mnemonicParsing="false" text="Certificado" />
+                            <Button fx:id="login" layoutX="328.0" layoutY="367.0" mnemonicParsing="false" onAction="#toLogin" prefHeight="27.0" prefWidth="177.0" style="-fx-border-radius: 15; -fx-background-color: #3F528C;" text="Adicionar" textFill="#f2f2f2" />
+            <TextField layoutX="30.0" layoutY="323.0" prefHeight="30.0" prefWidth="475.0" style="-fx-background-color: #f2f2f2; -fx-border-color: #3F528C; -fx-border-radius: 3;" />
+            <Text layoutX="30.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Área do Curso: *" />
+         </children>
+      </AnchorPane>
+   </center>
 </BorderPane>
