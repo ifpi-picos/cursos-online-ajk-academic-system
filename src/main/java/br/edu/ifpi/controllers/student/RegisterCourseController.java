@@ -21,6 +21,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -54,7 +55,7 @@ public class RegisterCourseController extends StudentHomeController {
     private TableView<Course> tableRegister;
 
     @FXML
-    private TableColumn<Course, Integer> teacher;
+    private TableColumn<Course, String> teacher;
 
     @FXML
     private Text username;
@@ -93,7 +94,7 @@ public class RegisterCourseController extends StudentHomeController {
 
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
-        teacher.setCellValueFactory(new PropertyValueFactory<>("teacher"));
+        teacher.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTeacher().getName()));
         workload.setCellValueFactory(new PropertyValueFactory<>("workload"));
         observableListCourse = FXCollections.observableArrayList(courses);
     }
