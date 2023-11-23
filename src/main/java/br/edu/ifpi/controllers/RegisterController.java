@@ -61,7 +61,7 @@ public class RegisterController implements Initializable {
     void backToLogin(ActionEvent event) {
         try {
             LoginController loginController = new LoginController(this.connection, this.stage, this.sceneNavigator);
-            sceneNavigator.navigateTo(Routes.login, this.stage, loginController, false);
+            sceneNavigator.navigateTo(Routes.login, this.stage, loginController);
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }

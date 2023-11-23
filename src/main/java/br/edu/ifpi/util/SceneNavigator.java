@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class SceneNavigator {
 
-    public void navigateTo(String route, Stage stage, Object controller, Boolean fullScreen) {
+    public void navigateTo(String route, Stage stage, Object controller) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(route));
         loader.setController(controller);
 

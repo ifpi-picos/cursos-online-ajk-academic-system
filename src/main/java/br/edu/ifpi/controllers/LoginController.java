@@ -68,11 +68,11 @@ public class LoginController implements Initializable {
             if (student != null) {
                 try {
                     StudentHomeController studentHomeController = new StudentHomeController(
-                            this.connection,
-                            this.sceneNavigator,
-                            this.stage,
-                            student);
-                    sceneNavigator.navigateTo(Routes.studentHome, this.stage, studentHomeController, true);
+                            connection,
+                            sceneNavigator,
+                            student,
+                            stage);
+                    sceneNavigator.navigateTo(Routes.studentHome, this.stage, studentHomeController);
                 } catch (Exception e) {
                     Alert alert = new Alert(AlertType.ERROR);
                     alert.setTitle("Erro");
@@ -98,7 +98,7 @@ public class LoginController implements Initializable {
                     this.stage,
                     this.sceneNavigator);
 
-            sceneNavigator.navigateTo(Routes.register, this.stage, registerController, false);
+            sceneNavigator.navigateTo(Routes.register, this.stage, registerController);
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }

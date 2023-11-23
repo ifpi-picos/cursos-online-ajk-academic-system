@@ -2,13 +2,17 @@ package br.edu.ifpi.controllers.student;
 
 import java.net.URL;
 import java.sql.Connection;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import br.edu.ifpi.config.Routes;
 import br.edu.ifpi.data.dao.CourseDao;
+import br.edu.ifpi.data.dao.StudentCourseDao;
 import br.edu.ifpi.entities.Course;
 import br.edu.ifpi.entities.Student;
+import br.edu.ifpi.entities.StudentCourse;
+import br.edu.ifpi.entities.enums.StatusCourse;
+import br.edu.ifpi.util.AlertMessage;
 import br.edu.ifpi.util.SceneNavigator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,6 +32,7 @@ import javafx.collections.ObservableList;
 public class RegisterCourseController extends StudentHomeController {
 
     private final CourseDao coursesDao;
+    private final StudentCourseDao studentCourseDao;
     private ObservableList<Course> observableListCourse;
 
     public RegisterCourseController(
@@ -35,8 +40,9 @@ public class RegisterCourseController extends StudentHomeController {
             SceneNavigator sceneNavigator,
             Stage stage,
             Student student) {
-        super(connection, sceneNavigator, stage, student);
+        super(connection, sceneNavigator, student, stage);
         this.coursesDao = new CourseDao(connection);
+        this.studentCourseDao = new StudentCourseDao(connection);
     }
 
     @FXML
@@ -72,13 +78,24 @@ public class RegisterCourseController extends StudentHomeController {
     void registerCourse(ActionEvent event) {
         Course selectedItem = tableRegister.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
-            System.out.println("Curso selecionado: " + selectedItem.getName());
+            StudentCourse studentCourse = new StudentCourse(
+                    super.student,
+                    selectedItem,
+                    null,
+                    selectedItem.getStatus());
+
+            studentCourseDao.insert(studentCourse);
+            AlertMessage.show("Sucesso", "Sucesso", "Matrícula realizada com sucesso", AlertType.INFORMATION);
+
+            // atualiza a tabela de cursos disponíveis
+            RegisterCourseController registerCourseController = new RegisterCourseController(
+                    connection,
+                    sceneNavigator,
+                    stage,
+                    student);
+            sceneNavigator.navigateTo(Routes.registerCourse, this.stage, registerCourseController);
         } else {
-            Alert alert = new Alert(AlertType.WARNING);
-            alert.setTitle("Aviso");
-            alert.setHeaderText("Nenhum curso selecionado");
-            alert.setContentText("Selecione um curso para se matricular");
-            alert.showAndWait();
+            AlertMessage.show("Erro", "Erro", "Selecione um curso para se matricular", AlertType.ERROR);
         }
 
     }
@@ -89,9 +106,15 @@ public class RegisterCourseController extends StudentHomeController {
     }
 
     public void loadTableCourse() {
+        // cursos disponíveis para matrícula
+        List<Course> courses = coursesDao.selectAll("status = '" + StatusCourse.OPEN + "'");
+        // cursos que o aluno já está matriculado
+        List<StudentCourse> coursesStudent = studentCourseDao.selectAll("student_id = " + super.student.getId());
+        // remove os cursos que o aluno já está matriculado
+        courses.removeIf(course -> coursesStudent.stream()
+                .anyMatch(studentCourse -> studentCourse.getCourse().getId() == course.getId()));
 
-        List<Course> courses = coursesDao.selectAll("status = 'OPEN'");
-
+        // define as colunas da tabela e os dados que serão exibidos
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
         teacher.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTeacher().getName()));
@@ -102,10 +125,10 @@ public class RegisterCourseController extends StudentHomeController {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadTableCourse();
-        tableRegister.setItems(observableListCourse);
 
-        tableRegister.getSelectionModel().selectedItemProperty()
-                .addListener((observable, oldValue, newValue) -> selectCourseTableItem(newValue));
+        tableRegister.setItems(observableListCourse);
+        tableRegister.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> selectCourseTableItem(newValue));
 
     }
 }
