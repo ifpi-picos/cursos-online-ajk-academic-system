@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.BottomNavigation?>
-<?import com.gluonhq.charm.glisten.control.BottomNavigationButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -93,10 +92,27 @@
       </BorderPane>
    </left>
    <center>
-      <ImageView fitHeight="472.0" fitWidth="599.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-         <image>
-            <Image url="@../../img/undraw-control-panel.png" />
-         </image>
-      </ImageView>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <center>
+            <TableView prefHeight="322.0" prefWidth="531.0" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn prefWidth="75.0" text="ID" />
+                <TableColumn prefWidth="252.0" text="Nome" />
+                  <TableColumn prefWidth="203.0" text="Email" />
+              </columns>
+            </TableView>
+         </center>
+         <top>
+            <BorderPane prefHeight="79.0" prefWidth="531.0" BorderPane.alignment="CENTER">
+               <center>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Professores" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Text>
+               </center>
+            </BorderPane>
+         </top>
+      </BorderPane>
    </center>
 </BorderPane>

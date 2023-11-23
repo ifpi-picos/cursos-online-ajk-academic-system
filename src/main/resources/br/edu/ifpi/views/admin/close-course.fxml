@@ -92,11 +92,5 @@
          </center>
       </BorderPane>
    </left>
-   <center>
-      <ImageView fitHeight="472.0" fitWidth="599.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-         <image>
-            <Image url="@../../img/undraw-control-panel.png" />
-         </image>
-      </ImageView>
-   </center>
+   
 </BorderPane>
