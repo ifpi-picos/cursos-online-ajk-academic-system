@@ -4,24 +4,24 @@ import br.edu.ifpi.entities.enums.StatusCourse;
 
 public class StudentCourse {
 
-    private Integer studentId;
-    private Integer courseId;
+    private Student student;
+    private Course course;
     private Double finalGrade;
     private StatusCourse status;
 
-    public StudentCourse(Integer studentId, Integer courseId, Double finalGrade, StatusCourse status) {
-        this.studentId = studentId;
-        this.courseId = courseId;
+    public StudentCourse(Student student, Course course, Double finalGrade, StatusCourse status) {
+        this.student = student;
+        this.course = course;
         this.finalGrade = finalGrade;
         this.status = status;
     }
 
-    public Integer getStudentId() {
-        return studentId;
+    public Student getStudent() {
+        return student;
     }
 
-    public Integer getCourseId() {
-        return courseId;
+    public Course getCourse() {
+        return course;
     }
 
     public Double getFinalGrade() {
@@ -31,7 +31,7 @@ public class StudentCourse {
     public StatusCourse getStatus() {
         return status;
     }
-
+    
     public void setFinalGrade(Double finalGrade) {
         this.finalGrade = finalGrade;
     }
