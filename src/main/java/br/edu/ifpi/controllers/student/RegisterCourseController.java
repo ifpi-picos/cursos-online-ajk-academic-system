@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import br.edu.ifpi.data.dao.CourseDao;
 import br.edu.ifpi.entities.Course;
 import br.edu.ifpi.entities.Student;
 import br.edu.ifpi.util.SceneNavigator;
@@ -25,9 +26,16 @@ import javafx.collections.ObservableList;
 
 public class RegisterCourseController extends StudentHomeController {
 
-    public RegisterCourseController(Connection connection, SceneNavigator sceneNavigator, Stage stage,
+    private final CourseDao coursesDao;
+    private ObservableList<Course> observableListCourse;
+
+    public RegisterCourseController(
+            Connection connection,
+            SceneNavigator sceneNavigator,
+            Stage stage,
             Student student) {
         super(connection, sceneNavigator, stage, student);
+        this.coursesDao = new CourseDao(connection);
     }
 
     @FXML
@@ -46,7 +54,7 @@ public class RegisterCourseController extends StudentHomeController {
     private TableView<Course> tableRegister;
 
     @FXML
-    private TableColumn<Course, Integer> teacher_id;
+    private TableColumn<Course, Integer> teacher;
 
     @FXML
     private Text username;
@@ -74,9 +82,21 @@ public class RegisterCourseController extends StudentHomeController {
 
     }
 
-    private List<Course> courses = new ArrayList<>();
+    public void selectCourseTableItem(Course course) {
+        System.out.println("Curso selecionado: " + course.getName());
 
-    private ObservableList<Course> observableListCourse;
+    }
+
+    public void loadTableCourse() {
+
+        List<Course> courses = coursesDao.selectAll("status = 'OPEN'");
+
+        id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        teacher.setCellValueFactory(new PropertyValueFactory<>("teacher"));
+        workload.setCellValueFactory(new PropertyValueFactory<>("workload"));
+        observableListCourse = FXCollections.observableArrayList(courses);
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -87,25 +107,4 @@ public class RegisterCourseController extends StudentHomeController {
                 .addListener((observable, oldValue, newValue) -> selectCourseTableItem(newValue));
 
     }
-
-    public void loadTableCourse() {
-
-        Course c1 = new Course(1, "Informática", null, 40, 1);
-        Course c2 = new Course(2, "Informática", null, 40, 1);
-
-        courses.add(c1);
-        courses.add(c2);
-
-        id.setCellValueFactory(new PropertyValueFactory<>("id"));
-        name.setCellValueFactory(new PropertyValueFactory<>("name"));
-        teacher_id.setCellValueFactory(new PropertyValueFactory<>("teacherId"));
-        workload.setCellValueFactory(new PropertyValueFactory<>("workload"));
-        observableListCourse = FXCollections.observableArrayList(courses);
-    }
-
-    public void selectCourseTableItem(Course course) {
-        System.out.println("Curso selecionado: " + course.getName());
-
-    }
-
 }
