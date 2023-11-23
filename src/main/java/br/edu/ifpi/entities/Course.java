@@ -10,13 +10,6 @@ public class Course {
     private int workload;
     private int teacherId;
 
-    public Course(String name, StatusCourse status, int workload, int teacherId) {
-        this.name = name;
-        this.status = status;
-        this.workload = workload;
-        this.teacherId = teacherId;
-    }
-
     public Course(int id, String name, StatusCourse status, int workload, int teacherId) {
         this.id = id;
         this.name = name;
