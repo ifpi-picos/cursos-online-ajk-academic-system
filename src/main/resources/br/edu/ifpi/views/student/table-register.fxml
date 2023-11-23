@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="773.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="773.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tableRegister">
    <top>
       <AnchorPane prefHeight="85.0" prefWidth="600.0" style="-fx-background-color: #2f3941;" BorderPane.alignment="CENTER">
          <children>
@@ -35,10 +35,10 @@
          <center>
             <TableView fx:id="tableRegister" prefHeight="392.0" prefWidth="531.0" BorderPane.alignment="CENTER">
               <columns>
-                <TableColumn fx:id="id" prefWidth="75.0" text="ID" />
-                <TableColumn fx:id="name" prefWidth="75.0" text="Nome" />
-                  <TableColumn fx:id="workload" prefWidth="105.0" text="Carga Horária" />
-                  <TableColumn fx:id="teacher_id" prefWidth="105.0" text="Professor " />
+                <TableColumn prefWidth="75.0" text="ID" />
+                <TableColumn prefWidth="75.0" text="Nome" />
+                  <TableColumn prefWidth="105.0" text="Carga Horária" />
+                  <TableColumn prefWidth="105.0" text="Professor " />
               </columns>
             </TableView>
          </center>
