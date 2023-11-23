@@ -31,7 +31,7 @@
    <left>
       <BorderPane prefHeight="465.0" prefWidth="240.0" BorderPane.alignment="CENTER">
          <bottom>
-            <Button fx:id="exit" mnemonicParsing="false" onAction="#exit" prefHeight="25.0" prefWidth="210.0" text="Sair" BorderPane.alignment="CENTER">
+            <Button fx:id="exit" mnemonicParsing="false" onAction="#exit" prefHeight="30.0" prefWidth="210.0" style="-fx-border-color: #3F528C; -fx-border-radius: 2;" text="Sair" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="15.0" />
                </BorderPane.margin>

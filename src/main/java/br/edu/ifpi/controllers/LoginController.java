@@ -20,6 +20,7 @@ import br.edu.ifpi.config.Routes;
 import br.edu.ifpi.controllers.student.StudentHomeController;
 import br.edu.ifpi.data.dao.StudentDao;
 import br.edu.ifpi.entities.Student;
+import br.edu.ifpi.util.AlertMessage;
 import br.edu.ifpi.util.SceneNavigator;
 
 public class LoginController implements Initializable {
@@ -41,9 +42,6 @@ public class LoginController implements Initializable {
     private ToggleGroup grupo;
 
     @FXML
-    private Button login;
-
-    @FXML
     private PasswordField password;
 
     @FXML
@@ -53,39 +51,45 @@ public class LoginController implements Initializable {
     private RadioButton teacher;
 
     @FXML
+    private RadioButton admin;
+
+    @FXML
     private TextField username;
 
     @FXML
-    void toLogin(ActionEvent event) {
+    void login(ActionEvent event) {
         String username = this.username.getText();
         String password = this.password.getText();
         Boolean isStudent = this.student.isSelected();
+        Boolean isTeacher = this.teacher.isSelected();
+        Boolean isAdmin = this.admin.isSelected();
 
-        if (isStudent) {
-            StudentDao studentDao = new StudentDao(this.connection);
-            Student student = studentDao.login(username, password);
+        if (username.isEmpty() || password.isEmpty()) {
+            AlertMessage.show("Erro", "Erro ao fazer login", "Preencha todos os campos", AlertType.ERROR);
+        } else {
+            if (isStudent) {
+                StudentDao studentDao = new StudentDao(this.connection);
+                Student student = studentDao.login(username, password);
 
-            if (student != null) {
-                try {
-                    StudentHomeController studentHomeController = new StudentHomeController(
-                            connection,
-                            sceneNavigator,
-                            student,
-                            stage);
-                    sceneNavigator.navigateTo(Routes.studentHome, this.stage, studentHomeController);
-                } catch (Exception e) {
-                    Alert alert = new Alert(AlertType.ERROR);
-                    alert.setTitle("Erro");
-                    alert.setHeaderText("Erro ao fazer login");
-                    alert.setContentText("Não foi possível fazer login");
-                    alert.showAndWait();
+                if (student != null) {
+                    try {
+                        StudentHomeController studentHomeController = new StudentHomeController(
+                                connection,
+                                sceneNavigator,
+                                student,
+                                stage);
+                        sceneNavigator.navigateTo(Routes.studentHome, this.stage, studentHomeController);
+                    } catch (Exception e) {
+                        AlertMessage.show("Erro", "Erro ao fazer login", "Ocorreu um erro ao fazer login",
+                                AlertType.ERROR);
+                    }
+                } else {
+                    AlertMessage.show("Erro", "Erro ao fazer login", "Usuário ou senha incorretos", AlertType.ERROR);
                 }
-            } else {
-                Alert alert = new Alert(AlertType.ERROR);
-                alert.setTitle("Erro");
-                alert.setHeaderText("Erro ao fazer login");
-                alert.setContentText("Usuário ou senha incorretos");
-                alert.showAndWait();
+            } else if (isTeacher) {
+                // TODO: implementar a lógica de login para professores
+            } else if (isAdmin) {
+                // TODO: implementar a lógica de login para administradores
             }
         }
     }

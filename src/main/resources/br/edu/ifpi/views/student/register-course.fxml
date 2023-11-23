@@ -38,7 +38,7 @@
                 <TableColumn fx:id="id" prefWidth="75.0" text="ID" />
                 <TableColumn fx:id="name" prefWidth="400.0" text="Nome" />
                   <TableColumn fx:id="workload" prefWidth="105.0" text="Carga Horária" />
-                  <TableColumn fx:id="teacher" prefWidth="370.0" text="Professor " />
+                  <TableColumn fx:id="teacher" prefWidth="350.0" text="Professor " />
               </columns>
             </TableView>
          </center>
@@ -58,12 +58,15 @@
                <right>
                   <Button fx:id="registerCourse" mnemonicParsing="false" onAction="#registerCourse" prefHeight="25.0" prefWidth="210.0" text="Realizar matrícula" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
-                        <Insets right="20.0" />
+                        <Insets />
                      </BorderPane.margin>
                   </Button>
                </right>
             </BorderPane>
          </bottom>
+         <padding>
+            <Insets right="20.0" />
+         </padding>
       </BorderPane>
    </center>
    <left>

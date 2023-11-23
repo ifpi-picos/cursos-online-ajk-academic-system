@@ -52,11 +52,11 @@
                         <Font name="System Bold" size="20.0" />
                     </font>
                 </Text>
-                <Text layoutX="16.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuário ou e-mail:" wrappingWidth="115.9433822631836">
+                <Text layoutX="16.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuário ou e-mail:" wrappingWidth="115.9433822631836">
                <font>
                   <Font size="13.0" />
                </font></Text>
-                <Text layoutX="17.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Senha:" wrappingWidth="46.939453125">
+                <Text layoutX="17.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Senha:" wrappingWidth="46.939453125">
                <font>
                   <Font size="13.0" />
                </font></Text>
@@ -84,8 +84,8 @@
                         <Font size="13.0" />
                     </font>
                 </Hyperlink>
-                <Button fx:id="login" layoutX="16.0" layoutY="341.0" mnemonicParsing="false" onAction="#toLogin" prefHeight="35.0" prefWidth="290.0" style="-fx-border-radius: 15; -fx-background-color: #3F528C;" text="Acessar" textFill="#f2f2f2" />
-            <RadioButton fx:id="teacher1" layoutX="201.0" layoutY="289.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="106.0" text="Administrador" toggleGroup="$grupo">
+                <Button layoutX="16.0" layoutY="341.0" mnemonicParsing="false" onAction="#login" prefHeight="35.0" prefWidth="290.0" style="-fx-border-radius: 15; -fx-background-color: #3F528C;" text="Acessar" textFill="#f2f2f2" />
+            <RadioButton fx:id="admin" layoutX="201.0" layoutY="289.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="106.0" text="Administrador" toggleGroup="$grupo">
                <font>
                   <Font size="13.0" />
                </font>
