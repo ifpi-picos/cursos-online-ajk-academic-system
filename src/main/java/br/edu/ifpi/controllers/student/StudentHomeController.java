@@ -59,8 +59,12 @@ public class StudentHomeController implements Initializable {
 
     @FXML
     void coursesEnrolled(ActionEvent event) {
-        System.out.println("coursesEnrolled");
-
+        EnrolledCourseController enrolledCourseController = new EnrolledCourseController(
+                connection,
+                sceneNavigator,
+                student,
+                stage);
+        sceneNavigator.navigateTo(Routes.enrolledCourse, this.stage, enrolledCourseController);
     }
 
     @FXML
