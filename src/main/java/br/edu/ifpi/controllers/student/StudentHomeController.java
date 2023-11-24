@@ -58,7 +58,8 @@ public class StudentHomeController implements Initializable {
     }
 
     @FXML
-    void ongoingCourses(ActionEvent event) {
+    void coursesEnrolled(ActionEvent event) {
+        System.out.println("coursesEnrolled");
 
     }
 

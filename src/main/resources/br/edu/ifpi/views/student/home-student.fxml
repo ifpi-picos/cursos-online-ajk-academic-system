@@ -79,7 +79,7 @@
             <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
                   <Button layoutX="7.0" layoutY="47.0" mnemonicParsing="false" onAction="#register" prefHeight="30.0" prefWidth="210.0" text="Realizar matrícula" />
-                  <Button layoutX="7.0" layoutY="83.0" mnemonicParsing="false" onAction="#ongoingCourses" prefHeight="30.0" prefWidth="210.0" text="Cursos em andamento" />
+                  <Button layoutX="7.0" layoutY="83.0" mnemonicParsing="false" onAction="#coursesEnrolled" prefHeight="30.0" prefWidth="210.0" text="Cursos matriculados" />
                   <Button layoutX="7.0" layoutY="119.0" mnemonicParsing="false" onAction="#completedCourses" prefHeight="30.0" prefWidth="210.0" text="Cursos concluídos" />
                   <Button layoutX="9.0" layoutY="11.0" mnemonicParsing="false" onAction="#home" prefHeight="30.0" prefWidth="210.0" text="Tela inicial" />
                </children>
