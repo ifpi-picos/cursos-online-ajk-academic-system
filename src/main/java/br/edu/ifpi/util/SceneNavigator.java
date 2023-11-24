@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class SceneNavigator {
 
-    public void navigateTo(String route, Stage stage, Object controller, Boolean fullScreen) {
+    public void navigateTo(String route, Stage stage, Object controller) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(route));
         loader.setController(controller);
 
@@ -17,11 +17,9 @@ public class SceneNavigator {
             Parent root = loader.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            stage.setMaximized(fullScreen);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 }

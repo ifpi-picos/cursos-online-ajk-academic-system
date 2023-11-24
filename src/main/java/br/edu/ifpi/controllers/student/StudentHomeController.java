@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.util.ResourceBundle;
 
 import br.edu.ifpi.config.Routes;
+import br.edu.ifpi.controllers.LoginController;
 import br.edu.ifpi.entities.Student;
 import br.edu.ifpi.util.SceneNavigator;
 import javafx.event.ActionEvent;
@@ -17,15 +18,15 @@ import javafx.stage.Stage;
 public class StudentHomeController implements Initializable {
 
     protected Connection connection;
-    private SceneNavigator sceneNavigator;
-    private Stage stage;
-    private Student student;
+    protected SceneNavigator sceneNavigator;
+    protected Student student;
+    protected Stage stage;
 
-    public StudentHomeController(Connection connection, SceneNavigator sceneNavigator, Stage stage, Student student) {
+    public StudentHomeController(Connection connection, SceneNavigator sceneNavigator, Student student, Stage stage) {
         this.connection = connection;
         this.sceneNavigator = sceneNavigator;
-        this.stage = stage;
         this.student = student;
+        this.stage = stage;
     }
 
     @FXML
@@ -36,9 +37,9 @@ public class StudentHomeController implements Initializable {
         StudentHomeController studentHomeController = new StudentHomeController(
                 connection,
                 sceneNavigator,
-                stage,
-                student);
-        sceneNavigator.navigateTo(Routes.studentHome, this.stage, studentHomeController, true);
+                student,
+                stage);
+        sceneNavigator.navigateTo(Routes.studentHome, this.stage, studentHomeController);
     }
 
     @FXML
@@ -48,7 +49,12 @@ public class StudentHomeController implements Initializable {
 
     @FXML
     void exit(ActionEvent event) {
-        System.out.println("Saindo...");
+        LoginController loginController = new LoginController(
+                connection,
+                stage,
+                sceneNavigator);
+
+        sceneNavigator.navigateTo(Routes.login, this.stage, loginController);
     }
 
     @FXML
@@ -63,7 +69,7 @@ public class StudentHomeController implements Initializable {
                 sceneNavigator,
                 stage,
                 student);
-        sceneNavigator.navigateTo(Routes.registerCourse, this.stage, registerCourseController, true);
+        sceneNavigator.navigateTo(Routes.registerCourse, this.stage, registerCourseController);
     }
 
     @FXML

@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="773.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <AnchorPane prefHeight="85.0" prefWidth="600.0" style="-fx-background-color: #2f3941;" BorderPane.alignment="CENTER">
          <children>
@@ -33,12 +33,12 @@
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <center>
-            <TableView prefHeight="392.0" prefWidth="531.0" BorderPane.alignment="CENTER">
+            <TableView fx:id="tableRegister" prefHeight="392.0" prefWidth="531.0" BorderPane.alignment="CENTER">
               <columns>
-                <TableColumn prefWidth="75.0" text="ID" />
-                <TableColumn prefWidth="75.0" text="Nome" />
-                  <TableColumn prefWidth="105.0" text="Carga Horária" />
-                  <TableColumn prefWidth="105.0" text="Professor " />
+                <TableColumn fx:id="id" prefWidth="75.0" text="ID" />
+                <TableColumn fx:id="name" prefWidth="400.0" text="Nome" />
+                  <TableColumn fx:id="workload" prefWidth="105.0" text="Carga Horária" />
+                  <TableColumn fx:id="teacher" prefWidth="350.0" text="Professor " />
               </columns>
             </TableView>
          </center>
@@ -58,18 +58,21 @@
                <right>
                   <Button fx:id="registerCourse" mnemonicParsing="false" onAction="#registerCourse" prefHeight="25.0" prefWidth="210.0" text="Realizar matrícula" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
-                        <Insets right="20.0" />
+                        <Insets />
                      </BorderPane.margin>
                   </Button>
                </right>
             </BorderPane>
          </bottom>
+         <padding>
+            <Insets right="20.0" />
+         </padding>
       </BorderPane>
    </center>
    <left>
       <BorderPane prefHeight="465.0" prefWidth="240.0" BorderPane.alignment="CENTER">
          <bottom>
-            <Button fx:id="exit" mnemonicParsing="false" onAction="#exit" prefHeight="30.0" prefWidth="210.0" style="-fx-background-color: #f2f2f2; -fx-border-color: #3F528C; -fx-border-radius: 2;" text="Sair" BorderPane.alignment="CENTER">
+            <Button fx:id="exit" mnemonicParsing="false" onAction="#exit" prefHeight="30.0" prefWidth="210.0" style="-fx-border-color: #3F528C; -fx-border-radius: 2;" text="Sair" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="15.0" />
                </BorderPane.margin>

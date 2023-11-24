@@ -19,7 +19,7 @@ public class StudentDao implements Dao<Student> {
     }
 
     public Student login(String username, String password) {
-        final String sql = "SELECT * FROM student WHERE (email = ? OR name = ?) AND password = ?";
+        final String sql = "SELECT * FROM Student WHERE (email = ? OR name = ?) AND password = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, username);
@@ -41,7 +41,7 @@ public class StudentDao implements Dao<Student> {
 
     @Override
     public int insert(Student student) {
-        final String sql = "INSERT INTO student (name, email, password) VALUES (?, ?, ?)";
+        final String sql = "INSERT INTO Student (name, email, password) VALUES (?, ?, ?)";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, student.getName());
@@ -58,7 +58,7 @@ public class StudentDao implements Dao<Student> {
 
     @Override
     public int update(Student student) {
-        final String sql = "UPDATE student SET name = ?, email = ?, password = ? WHERE id = ?";
+        final String sql = "UPDATE Student SET name = ?, email = ?, password = ? WHERE id = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, student.getName());
@@ -76,7 +76,7 @@ public class StudentDao implements Dao<Student> {
 
     @Override
     public int delete(int id) {
-        final String sql = "DELETE FROM student WHERE id = ?";
+        final String sql = "DELETE FROM Student WHERE id = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, id);
@@ -91,7 +91,7 @@ public class StudentDao implements Dao<Student> {
 
     @Override
     public Student select(int id) {
-        final String sql = "SELECT * FROM student WHERE id = ?";
+        final String sql = "SELECT * FROM Student WHERE id = ?";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, id);
@@ -109,7 +109,7 @@ public class StudentDao implements Dao<Student> {
 
     @Override
     public List<Student> selectAll() {
-        final String sql = "SELECT * FROM student";
+        final String sql = "SELECT * FROM Student";
         List<Student> students = new ArrayList<>();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -130,7 +130,7 @@ public class StudentDao implements Dao<Student> {
 
     @Override
     public List<Student> selectAll(String condition) {
-        final String sql = "SELECT * FROM student WHERE " + condition;
+        final String sql = "SELECT * FROM Student WHERE " + condition;
         List<Student> students = new ArrayList<>();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -150,7 +150,7 @@ public class StudentDao implements Dao<Student> {
 
     @Override
     public List<Student> selectAll(String[] conditions) {
-        final String sql = "SELECT * FROM student WHERE " + String.join(" AND ", conditions);
+        final String sql = "SELECT * FROM Student WHERE " + String.join(" AND ", conditions);
         List<Student> students = new ArrayList<>();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
