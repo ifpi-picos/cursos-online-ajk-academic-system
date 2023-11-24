@@ -9,7 +9,6 @@ import java.util.List;
 import br.edu.ifpi.data.adapters.StudentCourseAdapter;
 import br.edu.ifpi.entities.Student;
 import br.edu.ifpi.entities.StudentCourse;
-import br.edu.ifpi.entities.enums.EnrollmentStatus;
 
 public class StudentCourseDao implements Dao<StudentCourse> {
 
@@ -48,7 +47,11 @@ public class StudentCourseDao implements Dao<StudentCourse> {
     public int update(StudentCourse studentCourse) {
         final String SQL = "UPDATE Student_course SET final_grade = ?, status = ? WHERE student_id = ? AND course_id = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
-            preparedStatement.setDouble(1, studentCourse.getFinalGrade());
+            if (studentCourse.getFinalGrade() == null) {
+                preparedStatement.setNull(1, java.sql.Types.DOUBLE);
+            } else {
+                preparedStatement.setDouble(1, studentCourse.getFinalGrade());
+            }
             preparedStatement.setString(2, studentCourse.getEnrollmentStatus().toString());
             preparedStatement.setInt(3, studentCourse.getStudent().getId());
             preparedStatement.setInt(4, studentCourse.getCourse().getId());
@@ -62,20 +65,8 @@ public class StudentCourseDao implements Dao<StudentCourse> {
     }
 
     @Override
-    public int delete(StudentCourse studentCourse) {
-        // Exclusão lógica, somente setar o status como EnrollmentsStatus.CANCELED
-        final String SQL = "UPDATE Student_course SET status = ? WHERE student_id = ? AND course_id = ?";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
-            preparedStatement.setString(1, EnrollmentStatus.CANCELED.toString());
-            preparedStatement.setInt(2, studentCourse.getStudent().getId());
-            preparedStatement.setInt(3, studentCourse.getCourse().getId());
-            return preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return 0;
+    public int delete(StudentCourse t) {
+        throw new UnsupportedOperationException("Unimplemented method 'delete'");
     }
 
     @Override
