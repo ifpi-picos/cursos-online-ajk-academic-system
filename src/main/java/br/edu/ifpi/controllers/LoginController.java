@@ -17,7 +17,9 @@ import java.util.ResourceBundle;
 import br.edu.ifpi.config.Routes;
 import br.edu.ifpi.controllers.student.StudentHomeController;
 import br.edu.ifpi.data.dao.StudentDao;
+import br.edu.ifpi.data.dao.TeacherDao;
 import br.edu.ifpi.entities.Student;
+import br.edu.ifpi.entities.Teacher;
 import br.edu.ifpi.util.AlertMessage;
 import br.edu.ifpi.util.SceneNavigator;
 
@@ -85,9 +87,27 @@ public class LoginController implements Initializable {
                     AlertMessage.show("Erro", "Erro ao fazer login", "Usuário ou senha incorretos", AlertType.ERROR);
                 }
             } else if (isTeacher) {
-                // TODO: implementar a lógica de login para professores
+                TeacherDao teacherDao = new TeacherDao(this.connection);
+                Teacher teacher = teacherDao.login(username, password);
+
+                if (teacher != null) {
+                    try {
+                        // TeacherHomeController teacherHomeController = new TeacherHomeController(
+                        //         connection,
+                        //         sceneNavigator,
+                        //         teacher,
+                        //         stage);
+                        // sceneNavigator.navigateTo(Routes.teacherHome, this.stage, teacherHomeController);
+                    } catch (Exception e) {
+                        AlertMessage.show("Erro", "Erro ao fazer login", "Ocorreu um erro ao fazer login",
+                                AlertType.ERROR);
+                    }
+                } else {
+                    AlertMessage.show("Erro", "Erro ao fazer login", "Usuário ou senha incorretos", AlertType.ERROR);
+                }
+
             } else if (isAdmin) {
-                // TODO: implementar a lógica de login para administradores
+
             }
         }
     }
