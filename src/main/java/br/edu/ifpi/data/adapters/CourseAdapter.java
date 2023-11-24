@@ -3,7 +3,7 @@ package br.edu.ifpi.data.adapters;
 import br.edu.ifpi.data.dao.TeacherDao;
 import br.edu.ifpi.entities.Course;
 import br.edu.ifpi.entities.Teacher;
-import br.edu.ifpi.entities.enums.StatusCourse;
+import br.edu.ifpi.entities.enums.CourseStatus;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,7 +30,7 @@ public class CourseAdapter {
                 Course course = new Course(
                         resultSet.getInt("id"),
                         resultSet.getString("name"),
-                        StatusCourse.valueOf(resultSet.getString("status")),
+                        CourseStatus.valueOf(resultSet.getString("status")),
                         resultSet.getInt("workload"),
                         teacher);
 

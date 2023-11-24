@@ -11,7 +11,8 @@ import br.edu.ifpi.data.dao.StudentCourseDao;
 import br.edu.ifpi.entities.Course;
 import br.edu.ifpi.entities.Student;
 import br.edu.ifpi.entities.StudentCourse;
-import br.edu.ifpi.entities.enums.StatusCourse;
+import br.edu.ifpi.entities.enums.CourseStatus;
+import br.edu.ifpi.entities.enums.EnrollmentStatus;
 import br.edu.ifpi.util.AlertMessage;
 import br.edu.ifpi.util.SceneNavigator;
 import javafx.event.ActionEvent;
@@ -81,7 +82,7 @@ public class RegisterCourseController extends StudentHomeController {
                     super.student,
                     selectedItem,
                     null,
-                    selectedItem.getStatus());
+                    EnrollmentStatus.PENDING);
 
             studentCourseDao.insert(studentCourse);
             AlertMessage.show("Sucesso", "Sucesso", "Matrícula realizada com sucesso", AlertType.INFORMATION);
@@ -106,7 +107,7 @@ public class RegisterCourseController extends StudentHomeController {
 
     public void loadTableCourse() {
         // cursos disponíveis para matrícula
-        List<Course> courses = coursesDao.selectAll("status = '" + StatusCourse.OPEN + "'");
+        List<Course> courses = coursesDao.selectAll("status = '" + CourseStatus.OPEN + "'");
         // cursos que o aluno já está matriculado
         List<StudentCourse> coursesStudent = studentCourseDao.selectAll("student_id = " + super.student.getId());
         // remove os cursos que o aluno já está matriculado

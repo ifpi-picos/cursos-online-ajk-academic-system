@@ -5,7 +5,7 @@ import br.edu.ifpi.data.dao.StudentDao;
 import br.edu.ifpi.entities.Course;
 import br.edu.ifpi.entities.Student;
 import br.edu.ifpi.entities.StudentCourse;
-import br.edu.ifpi.entities.enums.StatusCourse;
+import br.edu.ifpi.entities.enums.EnrollmentStatus;
 
 import java.sql.ResultSet;
 import java.util.List;
@@ -41,7 +41,7 @@ public class StudentCourseAdapter {
                         student,
                         course,
                         resultSet.getDouble("final_grade"),
-                        StatusCourse.valueOf(resultSet.getString("status")));
+                        EnrollmentStatus.valueOf(resultSet.getString("status")));
 
                 studentCourses.add(studentCourse);
             }

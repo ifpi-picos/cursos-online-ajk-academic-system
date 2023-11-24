@@ -1,19 +1,19 @@
 package br.edu.ifpi.entities;
 
-import br.edu.ifpi.entities.enums.StatusCourse;
+import br.edu.ifpi.entities.enums.EnrollmentStatus;
 
 public class StudentCourse {
 
     private Student student;
     private Course course;
     private Double finalGrade;
-    private StatusCourse status;
+    private EnrollmentStatus enrollmentStatus;
 
-    public StudentCourse(Student student, Course course, Double finalGrade, StatusCourse status) {
+    public StudentCourse(Student student, Course course, Double finalGrade, EnrollmentStatus enrollmentStatus) {
         this.student = student;
         this.course = course;
         this.finalGrade = finalGrade;
-        this.status = status;
+        this.enrollmentStatus = enrollmentStatus;
     }
 
     public Student getStudent() {
@@ -28,15 +28,15 @@ public class StudentCourse {
         return finalGrade;
     }
 
-    public StatusCourse getStatus() {
-        return status;
+    public EnrollmentStatus getEnrollmentStatus() {
+        return enrollmentStatus;
     }
-    
+
     public void setFinalGrade(Double finalGrade) {
         this.finalGrade = finalGrade;
     }
 
-    public void setStatus(StatusCourse status) {
-        this.status = status;
+    public void setEnrollmentStatus(EnrollmentStatus enrollmentStatus) {
+        this.enrollmentStatus = enrollmentStatus;
     }
 }
