@@ -84,7 +84,17 @@ public class RegisterCourseController extends StudentHomeController {
                     null,
                     EnrollmentStatus.PENDING);
 
-            studentCourseDao.insert(studentCourse);
+            // Consultar se o relacionamento já está em Student_course
+            StudentCourse studentCourseExists = studentCourseDao.select(
+                    super.student.getId(),
+                    selectedItem.getId());
+
+            if (studentCourseExists != null) {
+                studentCourseDao.update(studentCourse);
+            } else {
+                studentCourseDao.insert(studentCourse);
+            }
+
             AlertMessage.show("Sucesso", "Sucesso", "Matrícula realizada com sucesso", AlertType.INFORMATION);
 
             // atualiza a tabela de cursos disponíveis
@@ -109,7 +119,8 @@ public class RegisterCourseController extends StudentHomeController {
         // cursos disponíveis para matrícula
         List<Course> courses = coursesDao.selectAll("status = '" + CourseStatus.OPEN + "'");
         // cursos que o aluno já está matriculado
-        List<StudentCourse> coursesStudent = studentCourseDao.selectAll("student_id = " + super.student.getId());
+        List<StudentCourse> coursesStudent = studentCourseDao.selectAll(
+                "student_id = " + super.student.getId() + " AND status = '" + EnrollmentStatus.PENDING + "'");
         // remove os cursos que o aluno já está matriculado
         courses.removeIf(course -> coursesStudent.stream()
                 .anyMatch(studentCourse -> studentCourse.getCourse().getId() == course.getId()));
