@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.edu.ifpi.data.adapters.StudentCourseAdapter;
+import br.edu.ifpi.entities.Student;
 import br.edu.ifpi.entities.StudentCourse;
 
 public class StudentCourseDao {
@@ -113,6 +114,10 @@ public class StudentCourseDao {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
+    }
+
+    public List<StudentCourse> findByStudent(Student student) {
         return null;
     }
 }
