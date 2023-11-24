@@ -71,10 +71,10 @@ public class TeacherDao implements Dao<Teacher> {
     }
 
     @Override
-    public int delete(int id) {
+    public int delete(Teacher teacher) {
         final String sql = "DELETE FROM Teacher WHERE id = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setInt(1, id);
+            preparedStatement.setInt(1, teacher.getId());
             return preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());

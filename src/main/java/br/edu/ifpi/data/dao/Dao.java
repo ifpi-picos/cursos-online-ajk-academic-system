@@ -7,7 +7,7 @@ public interface Dao<T> {
 
     public int update(T t);
     
-    public int delete(int id);
+    public int delete(T t);
 
     public T select(int id);
 

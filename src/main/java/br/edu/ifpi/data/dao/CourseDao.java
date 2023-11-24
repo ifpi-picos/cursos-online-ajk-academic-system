@@ -57,10 +57,10 @@ public class CourseDao implements Dao<Course> {
     }
 
     @Override
-    public int delete(int id) {
+    public int delete(Course course) {
         final String SQL = "DELETE FROM Course WHERE id = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
-            preparedStatement.setInt(1, id);
+            preparedStatement.setInt(1, course.getId());
             int row = preparedStatement.executeUpdate();
             return row;
         } catch (SQLException e) {

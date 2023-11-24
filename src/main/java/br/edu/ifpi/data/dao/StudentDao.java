@@ -20,8 +20,7 @@ public class StudentDao implements Dao<Student> {
 
     public Student login(String username, String password) {
         final String sql = "SELECT * FROM Student WHERE (email = ? OR name = ?) AND password = ?";
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, username);
             preparedStatement.setString(3, password);
@@ -31,7 +30,7 @@ public class StudentDao implements Dao<Student> {
             }
         } catch (SQLException e) {
             System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
-        
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -42,8 +41,7 @@ public class StudentDao implements Dao<Student> {
     @Override
     public int insert(Student student) {
         final String sql = "INSERT INTO Student (name, email, password) VALUES (?, ?, ?)";
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, student.getName());
             preparedStatement.setString(2, student.getEmail());
             preparedStatement.setString(3, student.getPassword());
@@ -59,8 +57,7 @@ public class StudentDao implements Dao<Student> {
     @Override
     public int update(Student student) {
         final String sql = "UPDATE Student SET name = ?, email = ?, password = ? WHERE id = ?";
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, student.getName());
             preparedStatement.setString(2, student.getEmail());
             preparedStatement.setString(3, student.getPassword());
@@ -75,11 +72,10 @@ public class StudentDao implements Dao<Student> {
     }
 
     @Override
-    public int delete(int id) {
+    public int delete(Student student) {
         final String sql = "DELETE FROM Student WHERE id = ?";
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, id);
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, student.getId());
             return preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
@@ -92,8 +88,7 @@ public class StudentDao implements Dao<Student> {
     @Override
     public Student select(int id) {
         final String sql = "SELECT * FROM Student WHERE id = ?";
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setInt(1, id);
             final ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
@@ -111,9 +106,8 @@ public class StudentDao implements Dao<Student> {
     public List<Student> selectAll() {
         final String sql = "SELECT * FROM Student";
         List<Student> students = new ArrayList<>();
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
             final ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
@@ -132,8 +126,8 @@ public class StudentDao implements Dao<Student> {
     public List<Student> selectAll(String condition) {
         final String sql = "SELECT * FROM Student WHERE " + condition;
         List<Student> students = new ArrayList<>();
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
             final ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
@@ -152,8 +146,8 @@ public class StudentDao implements Dao<Student> {
     public List<Student> selectAll(String[] conditions) {
         final String sql = "SELECT * FROM Student WHERE " + String.join(" AND ", conditions);
         List<Student> students = new ArrayList<>();
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
             final ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
