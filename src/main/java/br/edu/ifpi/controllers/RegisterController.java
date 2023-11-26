@@ -76,13 +76,13 @@ public class RegisterController implements Initializable {
 
         // verificar se os campos estão vazios
         if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
-            AlertMessage.show("Erro", "Erro ao cadastrar", "Preencha todos os campos!", AlertType.ERROR);
+            AlertMessage.show("Erro ao cadastra", "", "Preencha todos os campos!", AlertType.ERROR);
         } else {
             if (isStudent) {
                 Student user = new Student(name, email, password, StudentStatus.ACTIVE);
                 studentDao.insert(user);
 
-                AlertMessage.show("Sucesso", "Sucesso", "Usuário criado com sucesso!", AlertType.INFORMATION);
+                AlertMessage.show("Sucesso", "", "Usuário criado com sucesso!", AlertType.INFORMATION);
 
                 LoginController loginController = new LoginController(this.connection, this.stage,
                         this.sceneNavigator);
@@ -92,7 +92,7 @@ public class RegisterController implements Initializable {
                 Teacher user = new Teacher(name, email, password, TeacherStatus.ACTIVE);
                 teacherDao.insert(user);
 
-                AlertMessage.show("Sucesso", "Sucesso", "Usuário criado com sucesso!", AlertType.INFORMATION);
+                AlertMessage.show("Sucesso", "", "Usuário criado com sucesso!", AlertType.INFORMATION);
 
                 LoginController loginController = new LoginController(this.connection, this.stage,
                         this.sceneNavigator);
