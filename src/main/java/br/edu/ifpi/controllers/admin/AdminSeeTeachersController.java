@@ -24,12 +24,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class AdminSeeTeacherController extends AdminHomeController {
+public class AdminSeeTeachersController extends AdminHomeController {
 
     private ObservableList<Teacher> observableListTeacher;
     private final TeacherDao teacherDao;
 
-    public AdminSeeTeacherController(Connection connection, SceneNavigator sceneNavigator, Admin admin, Stage stage) {
+    public AdminSeeTeachersController(Connection connection, SceneNavigator sceneNavigator, Admin admin, Stage stage) {
         super(connection, sceneNavigator, admin, stage);
         teacherDao = new TeacherDao(connection);
     }

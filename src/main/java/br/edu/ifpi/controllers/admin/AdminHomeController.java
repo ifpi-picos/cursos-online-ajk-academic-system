@@ -81,12 +81,17 @@ public class AdminHomeController implements Initializable {
 
     @FXML
     void seeStudents(ActionEvent event) {
-
+        AdminSeeStudentsController adminSeeStudentsController = new AdminSeeStudentsController(
+                connection,
+                sceneNavigator,
+                admin,
+                stage);
+        sceneNavigator.navigateTo(Routes.adminSeeStudents, this.stage, adminSeeStudentsController);
     }
 
     @FXML
     void seeTeatchers(ActionEvent event) {
-        AdminSeeTeacherController adminSeeTeacherController = new AdminSeeTeacherController(
+        AdminSeeTeachersController adminSeeTeacherController = new AdminSeeTeachersController(
                 connection,
                 sceneNavigator,
                 admin,
