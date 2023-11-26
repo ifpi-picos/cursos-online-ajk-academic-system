@@ -25,4 +25,8 @@ public class Routes {
 
     // --- teacher --- //
     public static String teacherHome = "/br/edu/ifpi/views/teacher/home.fxml";
+    public static String teacherCourse = "/br/edu/ifpi/views/teacher/courses.fxml";
+    public static String teacherCourseCompleted = "/br/edu/ifpi/views/teacher/courses-completeds.fxml";
+    public static String teacherCourseCompletedStudent = "/br/edu/ifpi/views/teacher/courses-completeds-students.fxml";
+    public static String teacherOpenCourse = "/br/edu/ifpi/views/teacher/courses-grades.fxml";
 }

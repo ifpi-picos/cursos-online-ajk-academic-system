@@ -82,7 +82,7 @@
                <children>
                     <Button layoutX="7.0" layoutY="47.0" mnemonicParsing="false" onAction="#coursesTaught" prefHeight="30.0" prefWidth="210.0" text="Cursos sob ministério" />
                     <Button layoutX="7.0" layoutY="83.0" mnemonicParsing="false" onAction="#completedCourses" prefHeight="30.0" prefWidth="210.0" text="Cursos ministrados" />
-                    <Button layoutX="9.0" layoutY="11.0" mnemonicParsing="false" onAction="#home" prefHeight="30.0" prefWidth="210.0" text="Tela inicial" />
+                    <Button layoutX="7.0" layoutY="11.0" mnemonicParsing="false" onAction="#home" prefHeight="30.0" prefWidth="210.0" text="Tela inicial" />
                </children>
             </AnchorPane>
          </center>
@@ -91,7 +91,7 @@
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <center>
-            <TableView fx:id="tableCourses" prefHeight="392.0" prefWidth="531.0" BorderPane.alignment="CENTER">
+            <TableView fx:id="tableCourse" prefHeight="392.0" prefWidth="531.0" BorderPane.alignment="CENTER">
                <columns>
                   <TableColumn fx:id="id" prefWidth="75.0" text="ID" />
                   <TableColumn fx:id="name" prefWidth="434.0" text="Nome" />
@@ -115,7 +115,7 @@
                <right>
                   <AnchorPane prefHeight="67.0" prefWidth="689.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Button layoutX="479.0" layoutY="18.0" mnemonicParsing="false" onAction="#activate" prefHeight="30.0" prefWidth="210.0" text="Ver alunos formados" />
+                        <Button layoutX="479.0" layoutY="18.0" mnemonicParsing="false" onAction="#seeStudents" prefHeight="30.0" prefWidth="210.0" text="Ver alunos formados" />
                      </children>
                   </AnchorPane>
                </right>
