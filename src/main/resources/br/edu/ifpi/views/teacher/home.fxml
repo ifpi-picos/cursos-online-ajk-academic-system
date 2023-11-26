@@ -31,7 +31,7 @@
    <left>
       <BorderPane prefHeight="465.0" prefWidth="240.0" BorderPane.alignment="CENTER">
          <bottom>
-            <Button fx:id="exit" mnemonicParsing="false" onAction="#exit" prefHeight="30.0" prefWidth="210.0" style="-fx-border-color: #3F528C; -fx-border-radius: 2;" text="Sair" BorderPane.alignment="CENTER">
+            <Button mnemonicParsing="false" onAction="#exit" prefHeight="30.0" prefWidth="210.0" style="-fx-border-color: #3F528C; -fx-border-radius: 2;" text="Sair" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="15.0" />
                </BorderPane.margin>
@@ -61,7 +61,7 @@
                               </Text>
                            </children>
                            <padding>
-                              <Insets top="2.5" />
+                              <Insets top="4.0" />
                            </padding>
                         </TextFlow>
                      </children>
@@ -81,7 +81,7 @@
                   <Button layoutX="7.0" layoutY="47.0" mnemonicParsing="false" onAction="#coursesTaught" prefHeight="30.0" prefWidth="210.0" text="Cursos sob ministério" />
                   <Button layoutX="7.0" layoutY="83.0" mnemonicParsing="false" onAction="#completedCourses" prefHeight="30.0" prefWidth="210.0" text="Cursos finalizados" />
                   <!-- <Button layoutX="7.0" layoutY="119.0" mnemonicParsing="false" onAction="#completedCourses" prefHeight="30.0" prefWidth="210.0" text="Cursos concluídos" /> -->
-                  <Button layoutX="9.0" layoutY="11.0" mnemonicParsing="false" onAction="#home" prefHeight="30.0" prefWidth="210.0" text="Tela inicial" />
+                  <Button layoutX="7.0" layoutY="11.0" mnemonicParsing="false" onAction="#home" prefHeight="30.0" prefWidth="210.0" text="Tela inicial" />
                </children>
             </AnchorPane>
          </center>
