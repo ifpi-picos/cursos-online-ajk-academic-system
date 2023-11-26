@@ -117,14 +117,14 @@
          <bottom>
             <BorderPane prefHeight="67.0" prefWidth="531.0" BorderPane.alignment="CENTER">
                <right>
-                  <Button mnemonicParsing="false" onAction="#disable" prefHeight="25.0" prefWidth="210.0" text="Desativar curso" BorderPane.alignment="CENTER">
+                  <Button mnemonicParsing="false" onAction="#disable" prefHeight="30.0" prefWidth="210.0" text="Desativar curso" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
                         <Insets />
                      </BorderPane.margin>
                   </Button>
                </right>
                <center>
-                  <Button mnemonicParsing="false" onAction="#activate" prefHeight="25.0" prefWidth="210.0" text="Ativar curso" BorderPane.alignment="CENTER_RIGHT">
+                  <Button mnemonicParsing="false" onAction="#activate" prefHeight="30.0" prefWidth="210.0" text="Ativar curso" BorderPane.alignment="CENTER_RIGHT">
                      <BorderPane.margin>
                         <Insets right="20.0" />
                      </BorderPane.margin>

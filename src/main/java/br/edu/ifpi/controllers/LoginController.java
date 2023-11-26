@@ -17,6 +17,7 @@ import java.util.ResourceBundle;
 import br.edu.ifpi.config.Routes;
 import br.edu.ifpi.controllers.admin.AdminHomeController;
 import br.edu.ifpi.controllers.student.StudentHomeController;
+import br.edu.ifpi.controllers.teacher.TeacherHomeController;
 import br.edu.ifpi.data.dao.AdminDao;
 import br.edu.ifpi.data.dao.StudentDao;
 import br.edu.ifpi.data.dao.TeacherDao;
@@ -95,12 +96,12 @@ public class LoginController implements Initializable {
 
                 if (teacher != null) {
                     try {
-                        // TeacherHomeController teacherHomeController = new TeacherHomeController(
-                        //         connection,
-                        //         sceneNavigator,
-                        //         teacher,
-                        //         stage);
-                        // sceneNavigator.navigateTo(Routes.teacherHome, this.stage, teacherHomeController);
+                        TeacherHomeController teacherHomeController = new TeacherHomeController(
+                                connection,
+                                sceneNavigator,
+                                teacher,
+                                stage);
+                        sceneNavigator.navigateTo(Routes.teacherHome, this.stage, teacherHomeController);
                     } catch (Exception e) {
                         AlertMessage.show("Erro", "Erro ao fazer login", "Ocorreu um erro ao fazer login",
                                 AlertType.ERROR);

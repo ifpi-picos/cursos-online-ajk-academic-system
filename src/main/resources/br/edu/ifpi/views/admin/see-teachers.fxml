@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="773.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <AnchorPane prefHeight="85.0" prefWidth="600.0" style="-fx-background-color: #2f3941;" BorderPane.alignment="CENTER">
          <children>
@@ -33,7 +33,7 @@
    <left>
       <BorderPane prefHeight="465.0" prefWidth="240.0" BorderPane.alignment="CENTER">
          <bottom>
-            <Button fx:id="exit" mnemonicParsing="false" onAction="#exit" prefHeight="30.0" prefWidth="210.0" style="-fx-background-color: #f2f2f2; -fx-border-color: #3F528C; -fx-border-radius: 2;" text="Sair" BorderPane.alignment="CENTER">
+            <Button mnemonicParsing="false" onAction="#exit" prefHeight="30.0" prefWidth="210.0" style="-fx-background-color: #f2f2f2; -fx-border-color: #3F528C; -fx-border-radius: 2;" text="Sair" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="15.0" />
                </BorderPane.margin>
@@ -63,7 +63,7 @@
                               </Text>
                            </children>
                            <padding>
-                              <Insets top="2.5" />
+                              <Insets top="4.0" />
                            </padding>
                         </TextFlow>
                      </children>
@@ -80,12 +80,11 @@
          <center>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button layoutX="9.0" layoutY="11.0" mnemonicParsing="false" onAction="#homeScreen" prefHeight="30.0" prefWidth="210.0" text="Tela inicial" />
+                  <Button layoutX="7.0" layoutY="11.0" mnemonicParsing="false" onAction="#homeScreen" prefHeight="30.0" prefWidth="210.0" text="Tela inicial" />
                   <Button layoutX="7.0" layoutY="47.0" mnemonicParsing="false" onAction="#registerCourse" prefHeight="30.0" prefWidth="210.0" text="Adicionar Curso" />
-                  <Button layoutX="7.0" layoutY="83.0" mnemonicParsing="false" onAction="#seeCourses" prefHeight="30.0" prefWidth="210.0" text="Ver Cursos" />
+                  <Button layoutX="7.0" layoutY="83.0" mnemonicParsing="false" onAction="#seeCourses" prefHeight="30.0" prefWidth="210.0" text="Cursos cadastrados" />
                   <Button layoutX="7.0" layoutY="119.0" mnemonicParsing="false" onAction="#seeTeatchers" prefHeight="30.0" prefWidth="210.0" text="Ver Professores" />
                   <Button layoutX="7.0" layoutY="155.0" mnemonicParsing="false" onAction="#seeStudents" prefHeight="30.0" prefWidth="210.0" text="Ver Alunos" />
-                  <Button layoutX="7.0" layoutY="191.0" mnemonicParsing="false" onAction="#closeCourse" prefHeight="30.0" prefWidth="210.0" text="Desativar Cursos" />
                </children>
             </AnchorPane>
          </center>
@@ -94,18 +93,18 @@
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <center>
-            <TableView prefHeight="322.0" prefWidth="531.0" BorderPane.alignment="CENTER">
-              <columns>
-                <TableColumn prefWidth="75.0" text="ID" />
-                <TableColumn prefWidth="252.0" text="Nome" />
-                  <TableColumn prefWidth="203.0" text="Email" />
-              </columns>
+            <TableView fx:id="tableCourses" prefHeight="392.0" prefWidth="531.0" BorderPane.alignment="CENTER">
+               <columns>
+                  <TableColumn fx:id="id" prefWidth="75.0" text="ID" />
+                  <TableColumn fx:id="name" prefWidth="435.0" text="Nome" />
+                  <TableColumn fx:id="email" prefWidth="427.0" text="Email" />
+               </columns>
             </TableView>
          </center>
          <top>
-            <BorderPane prefHeight="79.0" prefWidth="531.0" BorderPane.alignment="CENTER">
+            <BorderPane prefHeight="68.0" prefWidth="531.0" BorderPane.alignment="CENTER">
                <center>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Alunos" BorderPane.alignment="CENTER">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Professores" BorderPane.alignment="CENTER">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -113,6 +112,27 @@
                </center>
             </BorderPane>
          </top>
+         <bottom>
+            <BorderPane prefHeight="67.0" prefWidth="531.0" BorderPane.alignment="CENTER">
+               <right>
+                  <Button mnemonicParsing="false" onAction="#removeTeacher" prefHeight="30.0" prefWidth="210.0" text="Excluir professor" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets />
+                     </BorderPane.margin>
+                  </Button>
+               </right>
+               <center>
+                  <Button mnemonicParsing="false" onAction="#accessTeacherBlocked" prefHeight="30.0" prefWidth="210.0" text="Bloquear acesso" BorderPane.alignment="CENTER_RIGHT">
+                     <BorderPane.margin>
+                        <Insets right="20.0" />
+                     </BorderPane.margin>
+                  </Button>
+               </center>
+            </BorderPane>
+         </bottom>
+         <padding>
+            <Insets right="20.0" />
+         </padding>
       </BorderPane>
    </center>
 </BorderPane>
