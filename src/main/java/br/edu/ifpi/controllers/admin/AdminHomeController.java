@@ -34,6 +34,11 @@ public class AdminHomeController implements Initializable {
     private Text username;
 
     @FXML
+    void closeCourse(ActionEvent event) {
+
+    }
+
+    @FXML
     void exit(ActionEvent event) {
         LoginController loginController = new LoginController(
                 connection,
@@ -103,4 +108,5 @@ public class AdminHomeController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         username.setText("Olá, " + admin.getName());
     }
+
 }

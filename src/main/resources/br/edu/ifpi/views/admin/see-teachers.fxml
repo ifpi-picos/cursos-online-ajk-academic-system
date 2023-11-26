@@ -116,7 +116,7 @@
          <bottom>
             <BorderPane prefHeight="67.0" prefWidth="531.0" BorderPane.alignment="CENTER">
                <right>
-                  <Button mnemonicParsing="false" onAction="#releaseAccess" prefHeight="30.0" prefWidth="210.0" text="Liberar acesso" BorderPane.alignment="CENTER">
+                  <Button mnemonicParsing="false" onAction="#removeTeacher" prefHeight="30.0" prefWidth="210.0" text="Excluir professor" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
                         <Insets />
                      </BorderPane.margin>

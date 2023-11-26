@@ -69,7 +69,7 @@ public class LoginController implements Initializable {
         Boolean isAdmin = this.admin.isSelected();
 
         if (username.isEmpty() || password.isEmpty()) {
-            AlertMessage.show("Erro", "Erro ao fazer login", "Preencha todos os campos", AlertType.ERROR);
+            AlertMessage.show("Erro ao fazer login", "", "Preencha todos os campos", AlertType.ERROR);
         } else {
             if (isStudent) {
                 StudentDao studentDao = new StudentDao(this.connection);
@@ -84,11 +84,11 @@ public class LoginController implements Initializable {
                                 stage);
                         sceneNavigator.navigateTo(Routes.studentHome, this.stage, studentHomeController);
                     } catch (Exception e) {
-                        AlertMessage.show("Erro", "Erro ao fazer login", "Ocorreu um erro ao fazer login",
+                        AlertMessage.show("Erro ao fazer login", "", "Ocorreu um erro ao fazer login",
                                 AlertType.ERROR);
                     }
                 } else {
-                    AlertMessage.show("Erro", "Erro ao fazer login", "Usuário ou senha incorretos", AlertType.ERROR);
+                    AlertMessage.show("Erro ao fazer login", "", "Usuário ou senha incorretos", AlertType.ERROR);
                 }
             } else if (isTeacher) {
                 TeacherDao teacherDao = new TeacherDao(this.connection);
@@ -103,11 +103,11 @@ public class LoginController implements Initializable {
                                 stage);
                         sceneNavigator.navigateTo(Routes.teacherHome, this.stage, teacherHomeController);
                     } catch (Exception e) {
-                        AlertMessage.show("Erro", "Erro ao fazer login", "Ocorreu um erro ao fazer login",
+                        AlertMessage.show("Erro ao fazer login", "", "Ocorreu um erro ao fazer login",
                                 AlertType.ERROR);
                     }
                 } else {
-                    AlertMessage.show("Erro", "Erro ao fazer login", "Usuário ou senha incorretos", AlertType.ERROR);
+                    AlertMessage.show("Erro ao fazer login", "", "Usuário ou senha incorretos", AlertType.ERROR);
                 }
 
             } else if (isAdmin) {
@@ -123,11 +123,11 @@ public class LoginController implements Initializable {
                                 stage);
                         sceneNavigator.navigateTo(Routes.adminHome, this.stage, adminHomeController);
                     } catch (Exception e) {
-                        AlertMessage.show("Erro", "Erro ao fazer login", "Ocorreu um erro ao fazer login",
+                        AlertMessage.show("Erro ao fazer login", "", "Ocorreu um erro ao fazer login",
                                 AlertType.ERROR);
                     }
                 } else {
-                    AlertMessage.show("Erro", "Erro ao fazer login", "Usuário ou senha incorretos", AlertType.ERROR);
+                    AlertMessage.show("Erro ao fazer login", "", "Usuário ou senha incorretos", AlertType.ERROR);
                 }
             }
         }
