@@ -74,7 +74,7 @@ public class StudentHomeController implements Initializable {
                 sceneNavigator,
                 stage,
                 student);
-        sceneNavigator.navigateTo(Routes.registerCourse, this.stage, registerCourseController);
+        sceneNavigator.navigateTo(Routes.studentRegisterCourse, this.stage, registerCourseController);
     }
 
     @FXML
@@ -89,7 +89,7 @@ public class StudentHomeController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        username.setText("Olá, " + student.getName());
     }
 
 }

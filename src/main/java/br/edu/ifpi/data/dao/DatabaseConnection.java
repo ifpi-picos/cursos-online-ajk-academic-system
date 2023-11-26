@@ -31,6 +31,13 @@ public class DatabaseConnection {
     public static Boolean createTable(Connection connection) {
         try (Statement statement = connection.createStatement()) {
 
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS Admin ("
+                    + "id SERIAL PRIMARY KEY,"
+                    + "name VARCHAR(255) NOT NULL,"
+                    + "email VARCHAR(255) NOT NULL,"
+                    + "password VARCHAR(255) NOT NULL"
+                    + ")");
+
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS Teacher ("
                     + "id SERIAL PRIMARY KEY,"
                     + "name VARCHAR(255) NOT NULL,"

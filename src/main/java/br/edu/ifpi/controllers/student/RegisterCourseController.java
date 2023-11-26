@@ -103,7 +103,7 @@ public class RegisterCourseController extends StudentHomeController {
                     sceneNavigator,
                     stage,
                     student);
-            sceneNavigator.navigateTo(Routes.registerCourse, this.stage, registerCourseController);
+            sceneNavigator.navigateTo(Routes.studentRegisterCourse, this.stage, registerCourseController);
         } else {
             AlertMessage.show("Erro", "Erro", "Selecione um curso para se matricular", AlertType.ERROR);
         }

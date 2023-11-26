@@ -15,9 +15,12 @@ import java.sql.Connection;
 import java.util.ResourceBundle;
 
 import br.edu.ifpi.config.Routes;
+import br.edu.ifpi.controllers.admin.AdminHomeController;
 import br.edu.ifpi.controllers.student.StudentHomeController;
+import br.edu.ifpi.data.dao.AdminDao;
 import br.edu.ifpi.data.dao.StudentDao;
 import br.edu.ifpi.data.dao.TeacherDao;
+import br.edu.ifpi.entities.Admin;
 import br.edu.ifpi.entities.Student;
 import br.edu.ifpi.entities.Teacher;
 import br.edu.ifpi.util.AlertMessage;
@@ -107,7 +110,24 @@ public class LoginController implements Initializable {
                 }
 
             } else if (isAdmin) {
+                AdminDao adminDao = new AdminDao(this.connection);
+                Admin admin = adminDao.login(username, password);
 
+                if (admin != null) {
+                    try {
+                        AdminHomeController adminHomeController = new AdminHomeController(
+                                connection,
+                                sceneNavigator,
+                                admin,
+                                stage);
+                        sceneNavigator.navigateTo(Routes.adminHome, this.stage, adminHomeController);
+                    } catch (Exception e) {
+                        AlertMessage.show("Erro", "Erro ao fazer login", "Ocorreu um erro ao fazer login",
+                                AlertType.ERROR);
+                    }
+                } else {
+                    AlertMessage.show("Erro", "Erro ao fazer login", "Usuário ou senha incorretos", AlertType.ERROR);
+                }
             }
         }
     }
