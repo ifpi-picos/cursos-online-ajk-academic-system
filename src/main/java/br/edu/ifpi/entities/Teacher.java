@@ -9,17 +9,19 @@ public class Teacher {
     private String password;
     private TeacherStatus teacherStatus;
 
-    public Teacher(int id, String name, String email, String password) {
+    public Teacher(int id, String name, String email, String password, TeacherStatus teacherStatus) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
+        this.teacherStatus = teacherStatus;
     }
 
-    public Teacher(String name, String email, String password) {
+    public Teacher(String name, String email, String password, TeacherStatus teacherStatus) {
         this.name = name;
         this.email = email;
         this.password = password;
+        this.teacherStatus = teacherStatus;
     }
 
     public String getName() {

@@ -18,6 +18,8 @@ import br.edu.ifpi.data.dao.StudentDao;
 import br.edu.ifpi.data.dao.TeacherDao;
 import br.edu.ifpi.entities.Student;
 import br.edu.ifpi.entities.Teacher;
+import br.edu.ifpi.entities.enums.StudentStatus;
+import br.edu.ifpi.entities.enums.TeacherStatus;
 import br.edu.ifpi.util.AlertMessage;
 import br.edu.ifpi.util.SceneNavigator;
 import javafx.fxml.Initializable;
@@ -77,7 +79,7 @@ public class RegisterController implements Initializable {
             AlertMessage.show("Erro", "Erro ao cadastrar", "Preencha todos os campos!", AlertType.ERROR);
         } else {
             if (isStudent) {
-                Student user = new Student(name, email, password);
+                Student user = new Student(name, email, password, StudentStatus.ACTIVE);
                 studentDao.insert(user);
 
                 AlertMessage.show("Sucesso", "Sucesso", "Usuário criado com sucesso!", AlertType.INFORMATION);
@@ -87,7 +89,7 @@ public class RegisterController implements Initializable {
                 sceneNavigator.navigateTo(Routes.login, this.stage, loginController);
 
             } else {
-                Teacher user = new Teacher(name, email, password);
+                Teacher user = new Teacher(name, email, password, TeacherStatus.ACTIVE);
                 teacherDao.insert(user);
 
                 AlertMessage.show("Sucesso", "Sucesso", "Usuário criado com sucesso!", AlertType.INFORMATION);

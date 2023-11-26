@@ -39,11 +39,12 @@ public class TeacherDao implements Dao<Teacher> {
 
     @Override
     public int insert(Teacher teacher) {
-        final String sql = "INSERT INTO Teacher (name, email, password) VALUES (?, ?, ?)";
+        final String sql = "INSERT INTO Teacher (name, email, password, status) VALUES (?, ?, ?, ?)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, teacher.getName());
             preparedStatement.setString(2, teacher.getEmail());
             preparedStatement.setString(3, teacher.getPassword());
+            preparedStatement.setString(4, teacher.getTeacherStatus().toString());
             return preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
@@ -55,12 +56,13 @@ public class TeacherDao implements Dao<Teacher> {
 
     @Override
     public int update(Teacher teacher) {
-        final String sql = "UPDATE Teacher SET name = ?, email = ?, password = ? WHERE id = ?";
+        final String sql = "UPDATE Teacher SET name = ?, email = ?, password = ?, status = ? WHERE id = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, teacher.getName());
             preparedStatement.setString(2, teacher.getEmail());
             preparedStatement.setString(3, teacher.getPassword());
-            preparedStatement.setInt(4, teacher.getId());
+            preparedStatement.setString(4, teacher.getTeacherStatus().toString());
+            preparedStatement.setInt(5, teacher.getId());
             return preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
@@ -71,17 +73,8 @@ public class TeacherDao implements Dao<Teacher> {
     }
 
     @Override
-    public int delete(Teacher teacher) {
-        final String sql = "DELETE FROM Teacher WHERE id = ?";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setInt(1, teacher.getId());
-            return preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return 0;
+    public int delete(Teacher t) {
+        throw new UnsupportedOperationException("Unimplemented method 'delete'");
     }
 
     @Override

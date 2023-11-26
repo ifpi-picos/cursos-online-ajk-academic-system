@@ -9,6 +9,7 @@ import br.edu.ifpi.data.dao.TeacherDao;
 import br.edu.ifpi.entities.Admin;
 import br.edu.ifpi.entities.Teacher;
 import br.edu.ifpi.entities.enums.TeacherStatus;
+import br.edu.ifpi.util.AlertMessage;
 import br.edu.ifpi.util.SceneNavigator;
 
 import javafx.beans.property.SimpleStringProperty;
@@ -18,6 +19,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -52,12 +54,52 @@ public class AdminSeeTeacherController extends AdminHomeController {
 
     @FXML
     void blockAccess(ActionEvent event) {
+        Teacher teacher = tableTeacher.getSelectionModel().getSelectedItem();
 
+        if (teacher == null) {
+            AlertMessage.show("Erro", "Selecione um professor", "Selecione um professor para bloquear o acesso",
+                    AlertType.WARNING);
+            return;
+        } else {
+            teacher.setTeacherStatus(TeacherStatus.INACTIVE);
+            int row = teacherDao.update(teacher);
+
+            if (row > 0) {
+                AlertMessage.show("Sucesso", "Professor bloqueado",
+                        "O professor " + teacher.getName() + " foi bloqueado com sucesso", AlertType.INFORMATION);
+
+                loadTableTeacher();
+                tableTeacher.setItems(observableListTeacher);
+            } else {
+                AlertMessage.show("Erro", "Erro ao bloquear professor",
+                        "Ocorreu um erro ao bloquear o professor " + teacher.getName(), AlertType.ERROR);
+            }
+        }
     }
 
     @FXML
     void releaseAccess(ActionEvent event) {
+        Teacher teacher = tableTeacher.getSelectionModel().getSelectedItem();
 
+        if (teacher == null) {
+            AlertMessage.show("Erro", "Selecione um professor", "Selecione um professor para liberar o acesso",
+                    AlertType.WARNING);
+            return;
+        } else {
+            teacher.setTeacherStatus(TeacherStatus.ACTIVE);
+            int row = teacherDao.update(teacher);
+
+            if (row > 0) {
+                AlertMessage.show("Sucesso", "Professor liberado",
+                        "O professor " + teacher.getName() + " foi liberado com sucesso", AlertType.INFORMATION);
+
+                loadTableTeacher();
+                tableTeacher.setItems(observableListTeacher);
+            } else {
+                AlertMessage.show("Erro", "Erro ao liberar professor",
+                        "Ocorreu um erro ao liberar o professor " + teacher.getName(), AlertType.ERROR);
+            }
+        }
     }
 
     public void loadTableTeacher() {
