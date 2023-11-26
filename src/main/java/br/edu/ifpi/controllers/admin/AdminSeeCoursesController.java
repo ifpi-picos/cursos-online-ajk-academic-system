@@ -94,6 +94,11 @@ public class AdminSeeCoursesController extends AdminHomeController {
         }
     }
 
+    @FXML
+    void edit(ActionEvent event) {
+
+    }
+
     public void loadTableCourse() {
         List<Course> courses = courseDao.selectAll();
 

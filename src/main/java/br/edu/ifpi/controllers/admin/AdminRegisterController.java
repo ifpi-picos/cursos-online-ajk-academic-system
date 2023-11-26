@@ -87,7 +87,7 @@ public class AdminRegisterController extends AdminHomeController {
     }
 
     public void loadTeachers() {
-        List<Teacher> teachers = teacherDao.selectAll();
+        List<Teacher> teachers = teacherDao.selectAll("status = 'ACTIVE'");
 
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         teacherName.setCellValueFactory(new PropertyValueFactory<>("name"));

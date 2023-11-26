@@ -78,12 +78,12 @@
             <Insets bottom="8.0" left="8.0" right="8.0" />
          </padding>
          <center>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <AnchorPane BorderPane.alignment="CENTER">
                <children>
                   <Button layoutX="7.0" layoutY="11.0" mnemonicParsing="false" onAction="#homeScreen" prefHeight="30.0" prefWidth="210.0" text="Tela inicial" />
                   <Button layoutX="7.0" layoutY="47.0" mnemonicParsing="false" onAction="#registerCourse" prefHeight="30.0" prefWidth="210.0" text="Adicionar Curso" />
                   <Button layoutX="7.0" layoutY="83.0" mnemonicParsing="false" onAction="#seeCourses" prefHeight="30.0" prefWidth="210.0" text="Cursos cadastrados" />
-                  <Button layoutX="7.0" layoutY="119.0" mnemonicParsing="false" onAction="#seeTeatchers" prefHeight="30.0" prefWidth="210.0" text="Ver Professores" />
+                  <Button layoutX="7.0" layoutY="119.0" mnemonicParsing="false" onAction="#seeTeatchers" prefHeight="30.0" prefWidth="210.0" text="Professores cadastrados" />
                   <Button layoutX="7.0" layoutY="155.0" mnemonicParsing="false" onAction="#seeStudents" prefHeight="30.0" prefWidth="210.0" text="Ver Alunos" />
                </children>
             </AnchorPane>
@@ -117,19 +117,14 @@
          <bottom>
             <BorderPane prefHeight="67.0" prefWidth="531.0" BorderPane.alignment="CENTER">
                <right>
-                  <Button mnemonicParsing="false" onAction="#disable" prefHeight="30.0" prefWidth="210.0" text="Desativar curso" BorderPane.alignment="CENTER">
-                     <BorderPane.margin>
-                        <Insets />
-                     </BorderPane.margin>
-                  </Button>
+                  <AnchorPane prefHeight="67.0" prefWidth="689.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Button layoutX="479.0" layoutY="18.0" mnemonicParsing="false" onAction="#activate" prefHeight="30.0" prefWidth="210.0" text="Ativar curso" />
+                        <Button layoutX="250.0" layoutY="18.0" mnemonicParsing="false" onAction="#disable" prefHeight="30.0" prefWidth="210.0" text="Desativar" />
+                        <Button layoutX="19.0" layoutY="18.0" mnemonicParsing="false" onAction="#edit" prefHeight="30.0" prefWidth="210.0" text="Editar" />
+                     </children>
+                  </AnchorPane>
                </right>
-               <center>
-                  <Button mnemonicParsing="false" onAction="#activate" prefHeight="30.0" prefWidth="210.0" text="Ativar curso" BorderPane.alignment="CENTER_RIGHT">
-                     <BorderPane.margin>
-                        <Insets right="20.0" />
-                     </BorderPane.margin>
-                  </Button>
-               </center>
             </BorderPane>
          </bottom>
          <padding>

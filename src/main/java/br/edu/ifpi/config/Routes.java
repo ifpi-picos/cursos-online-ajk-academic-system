@@ -14,6 +14,7 @@ public class Routes {
     public static String adminHome = "/br/edu/ifpi/views/admin/home.fxml";
     public static String adminRegisterCourse = "/br/edu/ifpi/views/admin/register-course.fxml";
     public static String adminSeeCourses = "/br/edu/ifpi/views/admin/see-courses.fxml";
+    public static String adminSeeTeachers = "/br/edu/ifpi/views/admin/see-teachers.fxml";
 
     // --- student --- //
     public static String studentRegisterCourse = "/br/edu/ifpi/views/student/register-course.fxml";
