@@ -80,8 +80,7 @@
                <children>
                   <Button layoutX="7.0" layoutY="47.0" mnemonicParsing="false" onAction="#coursesTaught" prefHeight="30.0" prefWidth="210.0" text="Cursos sob ministério" />
                   <Button layoutX="7.0" layoutY="83.0" mnemonicParsing="false" onAction="#completedCourses" prefHeight="30.0" prefWidth="210.0" text="Cursos finalizados" />
-                  <!-- <Button layoutX="7.0" layoutY="119.0" mnemonicParsing="false" onAction="#completedCourses" prefHeight="30.0" prefWidth="210.0" text="Cursos concluídos" /> -->
-                  <Button layoutX="9.0" layoutY="11.0" mnemonicParsing="false" onAction="#home" prefHeight="30.0" prefWidth="210.0" text="Tela inicial" />
+                  <Button layoutX="7.0" layoutY="11.0" mnemonicParsing="false" onAction="#home" prefHeight="30.0" prefWidth="210.0" text="Tela inicial" />
                </children>
             </AnchorPane>
          </center>

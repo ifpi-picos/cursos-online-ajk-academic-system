@@ -76,7 +76,7 @@ public class RegisterController implements Initializable {
 
         // verificar se os campos estão vazios
         if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
-            AlertMessage.show("Erro ao cadastra", "", "Preencha todos os campos!", AlertType.ERROR);
+            AlertMessage.show("Erro ao cadastrar", "", "Preencha todos os campos!", AlertType.ERROR);
         } else {
             if (isStudent) {
                 Student user = new Student(name, email, password, StudentStatus.ACTIVE);
