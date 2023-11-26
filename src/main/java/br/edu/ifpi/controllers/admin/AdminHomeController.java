@@ -60,7 +60,8 @@ public class AdminHomeController implements Initializable {
                 connection,
                 sceneNavigator,
                 admin,
-                stage);
+                stage, 
+                null);
         sceneNavigator.navigateTo(Routes.adminRegisterCourse, this.stage, adminRegisterController);
     }
 

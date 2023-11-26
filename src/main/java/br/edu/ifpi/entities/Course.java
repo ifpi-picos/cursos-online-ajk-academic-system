@@ -45,7 +45,19 @@ public class Course {
         return teacher;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void setStatus(CourseStatus status) {
         this.status = status;
+    }
+
+    public void setWorkload(int workload) {
+        this.workload = workload;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
 }

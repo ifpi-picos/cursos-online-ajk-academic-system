@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.net.URL;
 
+import br.edu.ifpi.config.Routes;
 import br.edu.ifpi.data.dao.CourseDao;
 import br.edu.ifpi.entities.Admin;
 import br.edu.ifpi.entities.Course;
@@ -96,7 +97,15 @@ public class AdminSeeCoursesController extends AdminHomeController {
 
     @FXML
     void edit(ActionEvent event) {
+        Course course = tableCourses.getSelectionModel().getSelectedItem();
 
+        if (course != null) {
+            AdminRegisterController adminRegisterController = new AdminRegisterController(connection, sceneNavigator,
+                    admin, stage, course);
+            sceneNavigator.navigateTo(Routes.adminRegisterCourse, this.stage, adminRegisterController);
+        } else {
+            AlertMessage.show("Erro", "Erro!", "Selecione um curso!", AlertType.ERROR);
+        }
     }
 
     public void loadTableCourse() {

@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.net.URL;
 
+import br.edu.ifpi.config.Routes;
+import br.edu.ifpi.controllers.RegisterController;
 import br.edu.ifpi.data.dao.CourseDao;
 import br.edu.ifpi.data.dao.TeacherDao;
 import br.edu.ifpi.entities.Admin;
@@ -33,11 +35,19 @@ public class AdminRegisterController extends AdminHomeController {
     private final CourseDao courseDao;
     private ObservableList<Teacher> observableListTeacher;
 
-    public AdminRegisterController(Connection connection, SceneNavigator sceneNavigator, Admin admin, Stage stage) {
+    // editar curso
+    private Course course;
+
+    public AdminRegisterController(Connection connection, SceneNavigator sceneNavigator, Admin admin, Stage stage,
+            Course course) {
         super(connection, sceneNavigator, admin, stage);
         teacherDao = new TeacherDao(connection);
         courseDao = new CourseDao(connection);
+        this.course = course;
     }
+
+    @FXML
+    private Text title;
 
     @FXML
     private TextField courseName;
@@ -58,7 +68,7 @@ public class AdminRegisterController extends AdminHomeController {
     private TextField workload;
 
     @FXML
-    void addCourse(ActionEvent event) {
+    void confirm(ActionEvent event) {
         String name = courseName.getText();
         int workload = this.workload.getText().isEmpty() ? 0 : Integer.parseInt(this.workload.getText());
         Teacher teacher = tableTeacher.getSelectionModel().getSelectedItem();
@@ -69,15 +79,36 @@ public class AdminRegisterController extends AdminHomeController {
         } else if (teacher == null) {
             AlertMessage.show("Erro", "Erro!", "Selecione um professor!", AlertType.ERROR);
             return;
-        } else {
-            Course course = new Course(name, CourseStatus.OPEN, workload, teacher);
-            int row = courseDao.insert(course);
+        }
+
+        if (this.course != null) {
+            this.course.setName(name);
+            this.course.setWorkload(workload);
+            this.course.setTeacher(teacher);
+
+            int row = courseDao.update(this.course);
 
             if (row > 0) {
-                AlertMessage.show("Sucesso", "Sucesso!", "Curso cadastrado com sucesso!", AlertType.INFORMATION);
+                AlertMessage.show("Sucesso", "Sucesso!", "Curso atualizado com sucesso!", AlertType.INFORMATION);
             } else {
-                AlertMessage.show("Erro", "Erro!", "Erro ao cadastrar curso!", AlertType.ERROR);
+                AlertMessage.show("Erro", "Erro!", "Erro ao atualizar curso!", AlertType.ERROR);
             }
+
+            AdminSeeCoursesController adminSeeCoursesController = new AdminSeeCoursesController(connection,
+                    sceneNavigator, admin, stage);
+
+            sceneNavigator.navigateTo(Routes.adminSeeCourses, stage, adminSeeCoursesController);
+
+            return;
+        }
+
+        Course course = new Course(name, CourseStatus.OPEN, workload, teacher);
+        int row = courseDao.insert(course);
+
+        if (row > 0) {
+            AlertMessage.show("Sucesso", "Sucesso!", "Curso cadastrado com sucesso!", AlertType.INFORMATION);
+        } else {
+            AlertMessage.show("Erro", "Erro!", "Erro ao cadastrar curso!", AlertType.ERROR);
         }
     }
 
@@ -101,5 +132,12 @@ public class AdminRegisterController extends AdminHomeController {
 
         loadTeachers();
         tableTeacher.setItems(observableListTeacher);
+
+        if (course != null) {
+            title.setText("Editar curso");
+            courseName.setText(course.getName());
+            workload.setText(String.valueOf(course.getWorkload()));
+            tableTeacher.getSelectionModel().select(course.getTeacher());
+        }
     }
 }
