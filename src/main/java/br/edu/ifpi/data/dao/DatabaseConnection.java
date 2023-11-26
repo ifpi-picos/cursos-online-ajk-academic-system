@@ -42,14 +42,16 @@ public class DatabaseConnection {
                     + "id SERIAL PRIMARY KEY,"
                     + "name VARCHAR(255) NOT NULL,"
                     + "email VARCHAR(255) NOT NULL,"
-                    + "password VARCHAR(255) NOT NULL"
+                    + "password VARCHAR(255) NOT NULL,"
+                    + "status VARCHAR(20) NOT NULL"
                     + ")");
 
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS Student ("
                     + "id SERIAL PRIMARY KEY,"
                     + "name VARCHAR(255) NOT NULL,"
                     + "email VARCHAR(255) NOT NULL,"
-                    + "password VARCHAR(255) NOT NULL"
+                    + "password VARCHAR(255) NOT NULL,"
+                    + "status VARCHAR(20) NOT NULL"
                     + ")");
 
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS Course ("

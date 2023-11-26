@@ -1,10 +1,13 @@
 package br.edu.ifpi.entities;
 
+import br.edu.ifpi.entities.enums.TeacherStatus;
+
 public class Teacher {
     private String name;
     private int id;
     private String email;
     private String password;
+    private TeacherStatus teacherStatus;
 
     public Teacher(int id, String name, String email, String password) {
         this.id = id;
@@ -39,11 +42,19 @@ public class Teacher {
         this.email = email;
     }
 
-    public String getPassword() { 
-        return password; 
+    public String getPassword() {
+        return password;
     }
 
-    public void setPassword(String password) { 
-        this.password = password; 
+    public TeacherStatus getTeacherStatus() {
+        return teacherStatus;
+    }
+
+    public void setTeacherStatus(TeacherStatus teacherStatus) {
+        this.teacherStatus = teacherStatus;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
