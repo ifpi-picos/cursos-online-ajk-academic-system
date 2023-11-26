@@ -4,14 +4,15 @@ import java.net.URL;
 import java.sql.Connection;
 import java.util.ResourceBundle;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
 import br.edu.ifpi.config.Routes;
 import br.edu.ifpi.controllers.LoginController;
 import br.edu.ifpi.entities.Admin;
 import br.edu.ifpi.util.SceneNavigator;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.fxml.Initializable;
 import javafx.stage.Stage;
 

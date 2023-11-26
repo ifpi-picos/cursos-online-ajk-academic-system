@@ -8,11 +8,10 @@ import java.net.URL;
 import br.edu.ifpi.data.dao.CourseDao;
 import br.edu.ifpi.entities.Admin;
 import br.edu.ifpi.entities.Course;
-import br.edu.ifpi.entities.StudentCourse;
 import br.edu.ifpi.entities.enums.CourseStatus;
-import br.edu.ifpi.entities.enums.EnrollmentStatus;
 import br.edu.ifpi.util.AlertMessage;
 import br.edu.ifpi.util.SceneNavigator;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
