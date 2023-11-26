@@ -19,7 +19,7 @@ public class TeacherDao implements Dao<Teacher> {
     }
 
     public Teacher login(String username, String password) {
-        final String sql = "SELECT * FROM Teacher WHERE (email = ? OR name = ?) AND password = ?";
+        final String sql = "SELECT * FROM Teacher WHERE (email = ? OR name = ?) AND password = ? AND status = 'ACTIVE'";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, username);
