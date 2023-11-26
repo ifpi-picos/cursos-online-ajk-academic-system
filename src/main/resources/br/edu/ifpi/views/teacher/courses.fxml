@@ -115,7 +115,7 @@
                <right>
                   <AnchorPane prefHeight="67.0" prefWidth="689.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Button layoutX="479.0" layoutY="18.0" mnemonicParsing="false" onAction="#activate" prefHeight="30.0" prefWidth="210.0" text="Ver alunos matriculados" />
+                        <Button layoutX="479.0" layoutY="18.0" mnemonicParsing="false" onAction="#activate" prefHeight="30.0" prefWidth="210.0" text="Abrir curso" />
                      </children>
                   </AnchorPane>
                </right>
