@@ -3,6 +3,7 @@ package br.edu.ifpi.config;
 public class Routes {
     // img
     public static String icon = "/br/edu/ifpi/img/logo-sistema.png";
+    public static String iconAlert = "/br/edu/ifpi/img/26a0.png";
 
     // ============= views ============= //
 
