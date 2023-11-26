@@ -44,4 +44,8 @@ public class Course {
     public Teacher getTeacher() {
         return teacher;
     }
+
+    public void setStatus(CourseStatus status) {
+        this.status = status;
+    }
 }

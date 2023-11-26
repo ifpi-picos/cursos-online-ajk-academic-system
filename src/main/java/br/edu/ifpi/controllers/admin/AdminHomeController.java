@@ -4,6 +4,12 @@ import java.net.URL;
 import java.sql.Connection;
 import java.util.ResourceBundle;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
+import br.edu.ifpi.config.Routes;
+import br.edu.ifpi.controllers.LoginController;
 import br.edu.ifpi.entities.Admin;
 import br.edu.ifpi.util.SceneNavigator;
 import javafx.fxml.Initializable;
@@ -23,9 +29,73 @@ public class AdminHomeController implements Initializable {
         this.stage = stage;
     }
 
+    @FXML
+    private Text username;
+
+    @FXML
+    void closeCourse(ActionEvent event) {
+
+    }
+
+    @FXML
+    void exit(ActionEvent event) {
+        LoginController loginController = new LoginController(
+                connection,
+                stage,
+                sceneNavigator);
+
+        sceneNavigator.navigateTo(Routes.login, this.stage, loginController);
+    }
+
+    @FXML
+    void homeScreen(ActionEvent event) {
+        System.out.println("homeScreen");
+        AdminHomeController adminHomeController = new AdminHomeController(
+                connection,
+                sceneNavigator,
+                admin,
+                stage);
+        sceneNavigator.navigateTo(Routes.adminHome, this.stage, adminHomeController);
+    }
+
+    @FXML
+    void registerCourse(ActionEvent event) {
+        AdminRegisterController adminRegisterController = new AdminRegisterController(
+                connection,
+                sceneNavigator,
+                admin,
+                stage);
+        sceneNavigator.navigateTo(Routes.adminRegisterCourse, this.stage, adminRegisterController);
+    }
+
+    @FXML
+    void seeCourses(ActionEvent event) {
+        AdminSeeCoursesController adminSeeCoursesController = new AdminSeeCoursesController(
+                connection,
+                sceneNavigator,
+                admin,
+                stage);
+        sceneNavigator.navigateTo(Routes.adminSeeCourses, this.stage, adminSeeCoursesController);
+    }
+
+    @FXML
+    void seeStudents(ActionEvent event) {
+
+    }
+
+    @FXML
+    void seeTeatchers(ActionEvent event) {
+
+    }
+
+    @FXML
+    void usernameButton(MouseEvent event) {
+
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        username.setText("Olá, " + admin.getName());
     }
 
 }

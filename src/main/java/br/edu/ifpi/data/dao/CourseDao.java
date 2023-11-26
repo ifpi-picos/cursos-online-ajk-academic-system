@@ -44,8 +44,8 @@ public class CourseDao implements Dao<Course> {
             preparedStatement.setString(1, course.getName());
             preparedStatement.setString(2, course.getStatus().toString());
             preparedStatement.setInt(3, course.getWorkload());
-            preparedStatement.setInt(4, course.getId());
-            preparedStatement.setInt(5, course.getTeacher().getId());
+            preparedStatement.setInt(4, course.getTeacher().getId());
+            preparedStatement.setInt(5, course.getId());
             int row = preparedStatement.executeUpdate();
             return row;
         } catch (SQLException e) {

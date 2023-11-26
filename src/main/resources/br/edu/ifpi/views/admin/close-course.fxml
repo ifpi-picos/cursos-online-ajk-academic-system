@@ -78,7 +78,7 @@
          <center>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button layoutX="9.0" layoutY="11.0" mnemonicParsing="false" onAction="#homeScreen" prefHeight="30.0" prefWidth="210.0" text="Tela inicial" />
+                  <Button layoutX="7.0" layoutY="14.0" mnemonicParsing="false" onAction="#homeScreen" prefHeight="30.0" prefWidth="210.0" text="Tela inicial" />
                   <Button layoutX="7.0" layoutY="47.0" mnemonicParsing="false" onAction="#registerCourse" prefHeight="30.0" prefWidth="210.0" text="Adicionar Curso" />
                   <Button layoutX="7.0" layoutY="83.0" mnemonicParsing="false" onAction="#seeCourses" prefHeight="30.0" prefWidth="210.0" text="Ver Cursos" />
                   <Button layoutX="7.0" layoutY="119.0" mnemonicParsing="false" onAction="#seeTeatchers" prefHeight="30.0" prefWidth="210.0" text="Ver Professores" />

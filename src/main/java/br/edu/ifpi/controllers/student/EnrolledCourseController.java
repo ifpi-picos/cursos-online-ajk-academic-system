@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import br.edu.ifpi.config.Routes;
 import br.edu.ifpi.data.dao.StudentCourseDao;
 import br.edu.ifpi.entities.Course;
 import br.edu.ifpi.entities.Student;
@@ -14,6 +13,7 @@ import br.edu.ifpi.entities.StudentCourse;
 import br.edu.ifpi.entities.enums.EnrollmentStatus;
 import br.edu.ifpi.util.AlertMessage;
 import br.edu.ifpi.util.SceneNavigator;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -61,7 +61,8 @@ public class EnrolledCourseController extends StudentHomeController {
         if (row > 0) {
             AlertMessage.show("Sucesso", "Sucesso", "Matrícula cancelada com sucesso", AlertType.INFORMATION);
 
-            sceneNavigator.navigateTo(Routes.enrolledCourse, this.stage, this);
+            loadEnrolledCourses();
+            tableEnrolledCourses.setItems(observableListCourse);
         } else {
             AlertMessage.show("Erro", "Erro", "Erro ao cancelar matrícula", AlertType.ERROR);
         }
