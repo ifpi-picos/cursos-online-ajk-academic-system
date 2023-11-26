@@ -26,7 +26,7 @@ Caso esses problemas persistirem, experimente reiniciar sua `IDE` e tentar novam
 ## Instruções para o Banco de Dados
 A tenologia usada é o `PostgreSQL`. Qundo for criar sua aplicação, de preferência dê o nome a base de dados de `academic_system` para garantir o perfeito funcionamento. Atente-se para modificar o `user` e o `password` na classe `DatabaseConnection` de acordo com a sua base de dados.
 
-O `SQL` das tabelas está situado na pasta `SQL` na raiz do projeto. Porém, o programa automaticamente irá criá-las para você caso consiga conecta r com a base de dados. 
+O `SQL` das tabelas está situado na pasta `SQL` na raiz do projeto. Porém, o programa automaticamente irá criá-las para você caso consiga conectar com a base de dados. 
 
 ## Desenvolvedores
 
