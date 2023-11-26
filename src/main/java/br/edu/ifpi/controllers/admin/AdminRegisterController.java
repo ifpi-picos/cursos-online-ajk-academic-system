@@ -6,7 +6,6 @@ import java.util.ResourceBundle;
 import java.net.URL;
 
 import br.edu.ifpi.config.Routes;
-import br.edu.ifpi.controllers.RegisterController;
 import br.edu.ifpi.data.dao.CourseDao;
 import br.edu.ifpi.data.dao.TeacherDao;
 import br.edu.ifpi.entities.Admin;
@@ -126,6 +125,16 @@ public class AdminRegisterController extends AdminHomeController {
         observableListTeacher = FXCollections.observableArrayList(teachers);
     }
 
+    public int getTeacherRow(Teacher teacher) {
+        for (int i = 0; i < observableListTeacher.size(); i++) {
+            if (observableListTeacher.get(i).getId() == teacher.getId()) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         username.setText("Olá, " + admin.getName());
@@ -137,7 +146,7 @@ public class AdminRegisterController extends AdminHomeController {
             title.setText("Editar curso");
             courseName.setText(course.getName());
             workload.setText(String.valueOf(course.getWorkload()));
-            tableTeacher.getSelectionModel().select(course.getTeacher());
+            tableTeacher.getSelectionModel().select(getTeacherRow(course.getTeacher()));
         }
     }
 }

@@ -81,8 +81,8 @@
                   <Button layoutX="7.0" layoutY="11.0" mnemonicParsing="false" onAction="#homeScreen" prefHeight="30.0" prefWidth="210.0" text="Tela inicial" />
                   <Button layoutX="7.0" layoutY="47.0" mnemonicParsing="false" onAction="#registerCourse" prefHeight="30.0" prefWidth="210.0" text="Adicionar Curso" />
                   <Button layoutX="7.0" layoutY="83.0" mnemonicParsing="false" onAction="#seeCourses" prefHeight="30.0" prefWidth="210.0" text="Cursos cadastrados" />
-                  <Button layoutX="7.0" layoutY="119.0" mnemonicParsing="false" onAction="#seeTeatchers" prefHeight="30.0" prefWidth="210.0" text="Ver Professores" />
-                  <Button layoutX="7.0" layoutY="155.0" mnemonicParsing="false" onAction="#seeStudents" prefHeight="30.0" prefWidth="210.0" text="Ver Alunos" />
+                  <Button layoutX="7.0" layoutY="119.0" mnemonicParsing="false" onAction="#seeTeatchers" prefHeight="30.0" prefWidth="210.0" text="Professores cadastrados" />
+                  <Button layoutX="7.0" layoutY="155.0" mnemonicParsing="false" onAction="#seeStudents" prefHeight="30.0" prefWidth="210.0" text="Alunos cadastrados" />
                </children>
             </AnchorPane>
          </center>
