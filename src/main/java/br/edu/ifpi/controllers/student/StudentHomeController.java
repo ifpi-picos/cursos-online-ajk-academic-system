@@ -44,7 +44,12 @@ public class StudentHomeController implements Initializable {
 
     @FXML
     void completedCourses(ActionEvent event) {
-
+        CompletedCourseController completedCourseController = new CompletedCourseController(
+                connection,
+                sceneNavigator,
+                student,
+                stage);
+        sceneNavigator.navigateTo(Routes.completedCourse, this.stage, completedCourseController);
     }
 
     @FXML

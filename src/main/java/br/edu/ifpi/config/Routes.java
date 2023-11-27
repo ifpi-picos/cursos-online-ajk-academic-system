@@ -22,6 +22,7 @@ public class Routes {
     public static String studentRegisterCourse = "/br/edu/ifpi/views/student/register-course.fxml";
     public static String studentHome = "/br/edu/ifpi/views/student/home-student.fxml";
     public static String enrolledCourse = "/br/edu/ifpi/views/student/enrolled-course.fxml";
+    public static String completedCourse = "/br/edu/ifpi/views/student/completed-course.fxml";
 
     // --- teacher --- //
     public static String teacherHome = "/br/edu/ifpi/views/teacher/home.fxml";

@@ -9,6 +9,7 @@ import java.util.List;
 import br.edu.ifpi.data.adapters.StudentCourseAdapter;
 import br.edu.ifpi.entities.Student;
 import br.edu.ifpi.entities.StudentCourse;
+import br.edu.ifpi.entities.enums.EnrollmentStatus;
 
 public class StudentCourseDao implements Dao<StudentCourse> {
 
@@ -131,6 +132,10 @@ public class StudentCourseDao implements Dao<StudentCourse> {
     }
 
     public List<StudentCourse> findByStudent(Student student) {
+        return null;
+    }
+
+    public List<StudentCourse> findByStudentAndStatus(Student student, EnrollmentStatus approved) {
         return null;
     }
 }
