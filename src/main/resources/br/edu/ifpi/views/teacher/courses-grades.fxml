@@ -92,20 +92,20 @@
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <center>
-            <TableView fx:id="tableCourses" prefHeight="392.0" prefWidth="531.0" BorderPane.alignment="CENTER">
+            <TableView fx:id="tableCourse" prefHeight="392.0" prefWidth="531.0" BorderPane.alignment="CENTER">
                <columns>
                   <TableColumn fx:id="id" prefWidth="75.0" text="ID" />
                   <TableColumn fx:id="name" prefWidth="336.0" text="Nome" />
-                  <TableColumn fx:id="workload" prefWidth="318.0" text="Email" />
-                  <TableColumn prefWidth="102.0" text="Status" />
-                  <TableColumn prefWidth="106.0" text="Nota" />
+                  <TableColumn fx:id="email" prefWidth="318.0" text="Email" />
+                  <TableColumn fx:id="grade" prefWidth="106.0" text="Nota" />
+                  <TableColumn fx:id="status" prefWidth="102.0" text="Status" />
                </columns>
             </TableView>
          </center>
          <top>
             <BorderPane prefHeight="68.0" prefWidth="531.0" BorderPane.alignment="CENTER">
                <center>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Alunos matriculados em &lt;Curso&gt;" BorderPane.alignment="CENTER">
+                  <Text fx:id="nameCourse" strokeType="OUTSIDE" strokeWidth="0.0" BorderPane.alignment="CENTER">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -118,8 +118,8 @@
                <right>
                   <AnchorPane prefHeight="67.0" prefWidth="689.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Button layoutX="522.0" layoutY="25.0" mnemonicParsing="false" onAction="#giveNote" prefHeight="30.0" prefWidth="167.0" text="Lançar" />
-                        <TextField layoutX="360.0" layoutY="27.0" style="-fx-border-color: #3F528C; -fx-background-color: #f2f2f2; -fx-border-radius: 2;" />
+                        <Button layoutX="522.0" layoutY="25.0" mnemonicParsing="false" onAction="#giveGrade" prefHeight="30.0" prefWidth="167.0" text="Lançar" />
+                        <TextField fx:id="gradeValue" layoutX="360.0" layoutY="27.0" style="-fx-border-color: #3F528C; -fx-background-color: #f2f2f2; -fx-border-radius: 2;" />
                      </children>
                   </AnchorPane>
                </right>
