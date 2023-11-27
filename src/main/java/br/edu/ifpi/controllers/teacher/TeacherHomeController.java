@@ -60,12 +60,24 @@ public class TeacherHomeController implements Initializable {
 
     @FXML
     void coursesTaught(ActionEvent event) {
+        TeacherCourseController teacherCourseController = new TeacherCourseController(
+                connection,
+                sceneNavigator,
+                teacher,
+                stage);
 
+        sceneNavigator.navigateTo(Routes.teacherCourse, this.stage, teacherCourseController);
     }
 
     @FXML
     void completedCourses(ActionEvent event) {
+        TeacherCourseCompleted teacherCourseCompleted = new TeacherCourseCompleted(
+                connection,
+                sceneNavigator,
+                teacher,
+                stage);
 
+        sceneNavigator.navigateTo(Routes.teacherCourseCompleted, this.stage, teacherCourseCompleted);
     }
 
     @Override
