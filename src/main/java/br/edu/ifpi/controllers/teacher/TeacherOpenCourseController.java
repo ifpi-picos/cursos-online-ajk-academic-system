@@ -9,7 +9,6 @@ import br.edu.ifpi.controllers.LoginController;
 import br.edu.ifpi.data.dao.CourseDao;
 import br.edu.ifpi.data.dao.StudentCourseDao;
 import br.edu.ifpi.entities.Course;
-import br.edu.ifpi.entities.Student;
 import br.edu.ifpi.entities.StudentCourse;
 import br.edu.ifpi.entities.Teacher;
 import br.edu.ifpi.entities.enums.EnrollmentStatus;
@@ -26,7 +25,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.converter.DoubleStringConverter;
-import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -36,9 +34,15 @@ public class TeacherOpenCourseController extends TeacherController {
     private ObservableList<StudentCourse> observableListStudentCourse;
     private final Course course;
 
-    public TeacherOpenCourseController(Connection connection, SceneNavigator sceneNavigator, Teacher teacher,
+    public TeacherOpenCourseController(
+            Connection connection,
+            SceneNavigator sceneNavigator,
+            Teacher teacher,
             Stage stage,
-            LoginController loginController, CourseDao courseDao, StudentCourseDao studentCourseDao, Course course) {
+            LoginController loginController,
+            CourseDao courseDao,
+            StudentCourseDao studentCourseDao,
+            Course course) {
 
         super(connection, sceneNavigator, teacher, stage, loginController, courseDao, studentCourseDao);
 

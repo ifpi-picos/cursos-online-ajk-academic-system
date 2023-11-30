@@ -35,8 +35,16 @@ public class AdminRegisterController extends AdminController {
     private ObservableList<Teacher> observableListTeacher;
     private Course course;
 
-    public AdminRegisterController(Connection connection, SceneNavigator sceneNavigator, Admin admin, Stage stage,
-            CourseDao courseDao, TeacherDao teacherDao, StudentDao studentDao, LoginController loginController) {
+    public AdminRegisterController(
+            Connection connection,
+            SceneNavigator sceneNavigator,
+            Admin admin,
+            Stage stage,
+            CourseDao courseDao,
+            TeacherDao teacherDao,
+            StudentDao studentDao,
+            LoginController loginController) {
+
         super(connection, sceneNavigator, admin, stage, courseDao, teacherDao, studentDao, loginController);
     }
 

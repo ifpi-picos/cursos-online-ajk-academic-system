@@ -23,9 +23,15 @@ public class TeacherFinishedCoursesController extends TeacherController {
 
     private ObservableList<Course> observableListCourse;
 
-    public TeacherFinishedCoursesController(Connection connection, SceneNavigator sceneNavigator, Teacher teacher, Stage stage,
-            LoginController loginController, CourseDao courseDao, StudentCourseDao studentCourseDao) {
-                
+    public TeacherFinishedCoursesController(
+            Connection connection,
+            SceneNavigator sceneNavigator,
+            Teacher teacher,
+            Stage stage,
+            LoginController loginController,
+            CourseDao courseDao,
+            StudentCourseDao studentCourseDao) {
+
         super(connection, sceneNavigator, teacher, stage, loginController, courseDao, studentCourseDao);
     }
 

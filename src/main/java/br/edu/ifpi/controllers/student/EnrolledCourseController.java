@@ -30,15 +30,20 @@ import javafx.stage.Stage;
 
 public class EnrolledCourseController extends StudentController {
 
-    private final StudentCourseDao studentCourseDao;
     private ObservableList<Course> observableListCourse;
 
-    public EnrolledCourseController(Connection connection, SceneNavigator sceneNavigator, Student student, Stage stage,
-            LoginController loginController, CourseDao courseDao, StudentCourseDao studentCourseDao) {
-        super(connection, sceneNavigator, student, stage, loginController, courseDao, studentCourseDao);
+    public EnrolledCourseController(
+            Connection connection,
+            SceneNavigator sceneNavigator,
+            Student student,
+            Stage stage,
+            LoginController loginController,
+            CourseDao courseDao,
+            StudentCourseDao studentCourseDao) {
 
-        this.studentCourseDao = studentCourseDao;
+        super(connection, sceneNavigator, student, stage, loginController, courseDao, studentCourseDao);
     }
+
     @FXML
     private Text username;
     @FXML
@@ -62,7 +67,7 @@ public class EnrolledCourseController extends StudentController {
         StudentCourse studentCourse = studentCourseDao.select(student.getId(), course.getId());
         studentCourse.setEnrollmentStatus(EnrollmentStatus.CANCELED);
 
-        int row = studentCourseDao.update(studentCourse);
+        int row = super.studentCourseDao.update(studentCourse);
         if (row > 0) {
             AlertMessage.show("Sucesso", "Sucesso", "Matrícula cancelada com sucesso", AlertType.INFORMATION);
 
@@ -76,7 +81,7 @@ public class EnrolledCourseController extends StudentController {
     @FXML
     public void loadEnrolledCourses() {
         String condition = "student_id = " + student.getId() + " AND status = '" + EnrollmentStatus.PENDING + "'";
-        List<StudentCourse> studentCourses = studentCourseDao.selectAll(condition);
+        List<StudentCourse> studentCourses = super.studentCourseDao.selectAll(condition);
         List<Course> courses = new ArrayList<>();
 
         for (StudentCourse studentCourse : studentCourses) {

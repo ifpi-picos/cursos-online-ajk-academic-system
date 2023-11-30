@@ -34,8 +34,14 @@ public class RegisterCourseController extends StudentController {
     private ObservableList<Course> observableListCourse;
 
     public RegisterCourseController(
-            Connection connection, SceneNavigator sceneNavigator, Student student, Stage stage,
-            LoginController loginController, CourseDao courseDao, StudentCourseDao studentCourseDao) {
+            Connection connection,
+            SceneNavigator sceneNavigator,
+            Student student,
+            Stage stage,
+            LoginController loginController,
+            CourseDao courseDao,
+            StudentCourseDao studentCourseDao) {
+
         super(connection, sceneNavigator, student, stage, loginController, courseDao, studentCourseDao);
     }
 
@@ -110,7 +116,7 @@ public class RegisterCourseController extends StudentController {
         List<Course> courses = super.courseDao.selectAll("status = '" + CourseStatus.OPEN + "'");
         List<StudentCourse> coursesStudent = studentCourseDao.selectAll(
                 "student_id = " + super.student.getId() + " AND status = '" + EnrollmentStatus.PENDING + "'");
-                
+
         // remove os cursos que o aluno já está matriculado
         courses.removeIf(course -> coursesStudent.stream()
                 .anyMatch(studentCourse -> studentCourse.getCourse().getId() == course.getId()));

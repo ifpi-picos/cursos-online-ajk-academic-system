@@ -28,8 +28,14 @@ public class TeacherController implements Initializable {
     protected CourseDao courseDao;
     protected StudentCourseDao studentCourseDao;
 
-    public TeacherController(Connection connection, SceneNavigator sceneNavigator, Teacher teacher, Stage stage,
-            LoginController loginController, CourseDao courseDao, StudentCourseDao studentCourseDao) {
+    public TeacherController(
+            Connection connection,
+            SceneNavigator sceneNavigator,
+            Teacher teacher,
+            Stage stage,
+            LoginController loginController,
+            CourseDao courseDao,
+            StudentCourseDao studentCourseDao) {
 
         this.connection = connection;
         this.sceneNavigator = sceneNavigator;
@@ -61,16 +67,16 @@ public class TeacherController implements Initializable {
     @FXML
     void coursesTaught(ActionEvent event) {
         TeacherCourseController teacherCourseController = new TeacherCourseController(
-            this.connection, this.sceneNavigator, this.teacher, this.stage, this.loginController, this.courseDao, this.studentCourseDao
-        );
+                this.connection, this.sceneNavigator, this.teacher, this.stage, this.loginController, this.courseDao,
+                this.studentCourseDao);
         sceneNavigator.navigateTo(Routes.teacherCourse, this.stage, teacherCourseController);
     }
 
     @FXML
     void completedCourses(ActionEvent event) {
         TeacherFinishedCoursesController teacherFinishedCoursesController = new TeacherFinishedCoursesController(
-            this.connection, this.sceneNavigator, this.teacher, this.stage, this.loginController, this.courseDao, this.studentCourseDao
-        );
+                this.connection, this.sceneNavigator, this.teacher, this.stage, this.loginController, this.courseDao,
+                this.studentCourseDao);
         sceneNavigator.navigateTo(Routes.teacherCourseCompleted, this.stage, teacherFinishedCoursesController);
     }
 

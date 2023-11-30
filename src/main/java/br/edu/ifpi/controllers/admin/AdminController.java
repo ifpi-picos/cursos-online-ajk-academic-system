@@ -31,8 +31,16 @@ public class AdminController implements Initializable {
     protected TeacherDao teacherDao;
     protected StudentDao studentDao;
 
-    public AdminController(Connection connection, SceneNavigator sceneNavigator, Admin admin, Stage stage,
-            CourseDao courseDao, TeacherDao teacherDao, StudentDao studentDao, LoginController loginController) {
+    public AdminController(
+            Connection connection,
+            SceneNavigator sceneNavigator,
+            Admin admin,
+            Stage stage,
+            CourseDao courseDao,
+            TeacherDao teacherDao,
+            StudentDao studentDao,
+            LoginController loginController) {
+                
         this.connection = connection;
         this.sceneNavigator = sceneNavigator;
         this.admin = admin;

@@ -29,15 +29,21 @@ public class StudentController implements Initializable {
     protected CourseDao courseDao;
     protected StudentCourseDao studentCourseDao;
 
-    public StudentController(Connection connection, SceneNavigator sceneNavigator, Student student, Stage stage,
-            LoginController loginController, CourseDao courseDao, StudentCourseDao studentCourseDao) {
-                
+    public StudentController(
+            Connection connection,
+            SceneNavigator sceneNavigator,
+            Student student,
+            Stage stage,
+            LoginController loginController,
+            CourseDao courseDao,
+            StudentCourseDao studentCourseDao) {
+
         this.connection = connection;
         this.sceneNavigator = sceneNavigator;
         this.student = student;
         this.stage = stage;
         this.loginController = loginController;
-        
+
         this.courseDao = courseDao;
         this.studentCourseDao = studentCourseDao;
     }
@@ -53,10 +59,8 @@ public class StudentController implements Initializable {
     @FXML
     void completedCourses(ActionEvent event) {
         CompletedCourseController completedCourseController = new CompletedCourseController(
-                connection,
-                sceneNavigator,
-                student,
-                stage);
+                this.connection, this.sceneNavigator, this.student, this.stage, this.loginController, this.courseDao,
+                this.studentCourseDao);
         sceneNavigator.navigateTo(Routes.completedCourse, this.stage, completedCourseController);
     }
 
@@ -68,16 +72,16 @@ public class StudentController implements Initializable {
     @FXML
     void coursesEnrolled(ActionEvent event) {
         EnrolledCourseController enrolledCourseController = new EnrolledCourseController(
-            this.connection, this.sceneNavigator, this.student, this.stage, this.loginController, this.courseDao, this.studentCourseDao
-        );
+                this.connection, this.sceneNavigator, this.student, this.stage, this.loginController, this.courseDao,
+                this.studentCourseDao);
         sceneNavigator.navigateTo(Routes.enrolledCourse, this.stage, enrolledCourseController);
     }
 
     @FXML
     void register(ActionEvent event) {
         RegisterCourseController registerCourseController = new RegisterCourseController(
-            this.connection, this.sceneNavigator, this.student, this.stage, this.loginController, this.courseDao, this.studentCourseDao
-        );
+                this.connection, this.sceneNavigator, this.student, this.stage, this.loginController, this.courseDao,
+                this.studentCourseDao);
         sceneNavigator.navigateTo(Routes.studentRegisterCourse, this.stage, registerCourseController);
     }
 

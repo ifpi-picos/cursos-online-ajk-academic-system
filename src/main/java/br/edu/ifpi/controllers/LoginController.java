@@ -60,8 +60,6 @@ public class LoginController implements Initializable {
         this.studentCourseDao = studentCourseDao;
         this.sceneNavigator = sceneNavigator;
         this.stage = stage;
-
-        System.out.println(stage == null ? "O CARALHO DO STAGE É NULL NESSA PORRA" : "not null");
     }
 
     @FXML

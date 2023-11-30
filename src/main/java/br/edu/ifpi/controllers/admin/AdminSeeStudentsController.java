@@ -31,8 +31,16 @@ public class AdminSeeStudentsController extends AdminController {
 
     private ObservableList<Student> observableListStudent;
 
-    public AdminSeeStudentsController(Connection connection, SceneNavigator sceneNavigator, Admin admin, Stage stage,
-            CourseDao courseDao, TeacherDao teacherDao, StudentDao studentDao, LoginController loginController) {
+    public AdminSeeStudentsController(
+            Connection connection,
+            SceneNavigator sceneNavigator,
+            Admin admin,
+            Stage stage,
+            CourseDao courseDao,
+            TeacherDao teacherDao,
+            StudentDao studentDao,
+            LoginController loginController) {
+
         super(connection, sceneNavigator, admin, stage, courseDao, teacherDao, studentDao, loginController);
     }
 
