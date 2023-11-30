@@ -23,6 +23,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class EnrolledCourseController extends StudentHomeController {
@@ -35,7 +36,8 @@ public class EnrolledCourseController extends StudentHomeController {
         super(connection, sceneNavigator, student, stage);
         this.studentCourseDao = new StudentCourseDao(connection);
     }
-
+    @FXML
+    private Text username;
     @FXML
     private TableView<Course> tableEnrolledCourses;
 
@@ -93,6 +95,7 @@ public class EnrolledCourseController extends StudentHomeController {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        username.setText("Olá, " + student.getName());
         loadEnrolledCourses();
 
         tableEnrolledCourses.setItems(observableListCourse);
