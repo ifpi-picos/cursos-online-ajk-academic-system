@@ -5,7 +5,7 @@ import java.sql.Connection;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import br.edu.ifpi.config.Routes;
+import br.edu.ifpi.controllers.LoginController;
 import br.edu.ifpi.data.dao.CourseDao;
 import br.edu.ifpi.data.dao.StudentCourseDao;
 import br.edu.ifpi.entities.Course;
@@ -15,12 +15,12 @@ import br.edu.ifpi.entities.enums.CourseStatus;
 import br.edu.ifpi.entities.enums.EnrollmentStatus;
 import br.edu.ifpi.util.AlertMessage;
 import br.edu.ifpi.util.SceneNavigator;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.stage.Stage;
-
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -29,20 +29,14 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class RegisterCourseController extends StudentHomeController {
+public class RegisterCourseController extends StudentController {
 
-    private final CourseDao coursesDao;
-    private final StudentCourseDao studentCourseDao;
     private ObservableList<Course> observableListCourse;
 
     public RegisterCourseController(
-            Connection connection,
-            SceneNavigator sceneNavigator,
-            Stage stage,
-            Student student) {
-        super(connection, sceneNavigator, student, stage);
-        this.coursesDao = new CourseDao(connection);
-        this.studentCourseDao = new StudentCourseDao(connection);
+            Connection connection, SceneNavigator sceneNavigator, Student student, Stage stage,
+            LoginController loginController, CourseDao courseDao, StudentCourseDao studentCourseDao) {
+        super(connection, sceneNavigator, student, stage, loginController, courseDao, studentCourseDao);
     }
 
     @FXML
@@ -85,42 +79,38 @@ public class RegisterCourseController extends StudentHomeController {
                     EnrollmentStatus.PENDING);
 
             // Consultar se o relacionamento já está em Student_course
-            StudentCourse studentCourseExists = studentCourseDao.select(
+            StudentCourse studentCourseExists = super.studentCourseDao.select(
                     super.student.getId(),
                     selectedItem.getId());
 
+            int row;
             if (studentCourseExists != null) {
-                studentCourseDao.update(studentCourse);
+                row = super.studentCourseDao.update(studentCourse);
             } else {
-                studentCourseDao.insert(studentCourse);
+                row = super.studentCourseDao.insert(studentCourse);
             }
 
-            AlertMessage.show("Sucesso", "Sucesso", "Matrícula realizada com sucesso", AlertType.INFORMATION);
+            if (row > 0) {
+                AlertMessage.show("Sucesso", "Sucesso", "Matrícula realizada com sucesso", AlertType.INFORMATION);
+            } else {
+                AlertMessage.show("Erro", "Erro", "Erro ao realizar matrícula", AlertType.ERROR);
+            }
 
             // atualiza a tabela de cursos disponíveis
-            RegisterCourseController registerCourseController = new RegisterCourseController(
-                    connection,
-                    sceneNavigator,
-                    stage,
-                    student);
-            sceneNavigator.navigateTo(Routes.studentRegisterCourse, this.stage, registerCourseController);
+            loadTableCourse();
+            tableRegister.setItems(observableListCourse);
         } else {
             AlertMessage.show("Erro", "Erro", "Selecione um curso para se matricular", AlertType.ERROR);
         }
 
     }
 
-    public void selectCourseTableItem(Course course) {
-        System.out.println("Curso selecionado: " + course.getName());
-
-    }
-
     public void loadTableCourse() {
-        // cursos disponíveis para matrícula
-        List<Course> courses = coursesDao.selectAll("status = '" + CourseStatus.OPEN + "'");
-        // cursos que o aluno já está matriculado
+
+        List<Course> courses = super.courseDao.selectAll("status = '" + CourseStatus.OPEN + "'");
         List<StudentCourse> coursesStudent = studentCourseDao.selectAll(
                 "student_id = " + super.student.getId() + " AND status = '" + EnrollmentStatus.PENDING + "'");
+                
         // remove os cursos que o aluno já está matriculado
         courses.removeIf(course -> coursesStudent.stream()
                 .anyMatch(studentCourse -> studentCourse.getCourse().getId() == course.getId()));
@@ -138,8 +128,5 @@ public class RegisterCourseController extends StudentHomeController {
         loadTableCourse();
 
         tableRegister.setItems(observableListCourse);
-        tableRegister.getSelectionModel().selectedItemProperty().addListener(
-                (observable, oldValue, newValue) -> selectCourseTableItem(newValue));
-
     }
 }

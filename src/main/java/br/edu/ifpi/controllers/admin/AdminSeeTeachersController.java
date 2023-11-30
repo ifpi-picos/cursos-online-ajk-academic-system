@@ -5,6 +5,9 @@ import java.sql.Connection;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import br.edu.ifpi.controllers.LoginController;
+import br.edu.ifpi.data.dao.CourseDao;
+import br.edu.ifpi.data.dao.StudentDao;
 import br.edu.ifpi.data.dao.TeacherDao;
 import br.edu.ifpi.entities.Admin;
 import br.edu.ifpi.entities.Teacher;
@@ -24,14 +27,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class AdminSeeTeachersController extends AdminHomeController {
+public class AdminSeeTeachersController extends AdminController {
 
     private ObservableList<Teacher> observableListTeacher;
-    private final TeacherDao teacherDao;
 
-    public AdminSeeTeachersController(Connection connection, SceneNavigator sceneNavigator, Admin admin, Stage stage) {
-        super(connection, sceneNavigator, admin, stage);
-        teacherDao = new TeacherDao(connection);
+    public AdminSeeTeachersController(Connection connection, SceneNavigator sceneNavigator, Admin admin, Stage stage,
+            CourseDao courseDao, TeacherDao teacherDao, StudentDao studentDao, LoginController loginController) {
+        super(connection, sceneNavigator, admin, stage, courseDao, teacherDao, studentDao, loginController);
     }
 
     @FXML
@@ -62,7 +64,7 @@ public class AdminSeeTeachersController extends AdminHomeController {
             return;
         } else {
             teacher.setTeacherStatus(TeacherStatus.INACTIVE);
-            int row = teacherDao.update(teacher);
+            int row = super.teacherDao.update(teacher);
 
             if (row > 0) {
                 AlertMessage.show("Sucesso", "Professor bloqueado",
@@ -87,7 +89,7 @@ public class AdminSeeTeachersController extends AdminHomeController {
             return;
         } else {
             teacher.setTeacherStatus(TeacherStatus.ACTIVE);
-            int row = teacherDao.update(teacher);
+            int row = super.teacherDao.update(teacher);
 
             if (row > 0) {
                 AlertMessage.show("Sucesso", "Professor liberado",
@@ -103,7 +105,7 @@ public class AdminSeeTeachersController extends AdminHomeController {
     }
 
     public void loadTableTeacher() {
-        List<Teacher> teachers = teacherDao.selectAll();
+        List<Teacher> teachers = super.teacherDao.selectAll();
 
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));

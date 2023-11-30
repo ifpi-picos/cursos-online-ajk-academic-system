@@ -5,7 +5,10 @@ import java.sql.Connection;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import br.edu.ifpi.controllers.LoginController;
+import br.edu.ifpi.data.dao.CourseDao;
 import br.edu.ifpi.data.dao.StudentDao;
+import br.edu.ifpi.data.dao.TeacherDao;
 import br.edu.ifpi.entities.Admin;
 import br.edu.ifpi.entities.Student;
 import br.edu.ifpi.entities.enums.StudentStatus;
@@ -24,14 +27,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class AdminSeeStudentsController extends AdminHomeController {
+public class AdminSeeStudentsController extends AdminController {
 
     private ObservableList<Student> observableListStudent;
-    private final StudentDao studentDao;
 
-    public AdminSeeStudentsController(Connection connection, SceneNavigator sceneNavigator, Admin admin, Stage stage) {
-        super(connection, sceneNavigator, admin, stage);
-        studentDao = new StudentDao(connection);
+    public AdminSeeStudentsController(Connection connection, SceneNavigator sceneNavigator, Admin admin, Stage stage,
+            CourseDao courseDao, TeacherDao teacherDao, StudentDao studentDao, LoginController loginController) {
+        super(connection, sceneNavigator, admin, stage, courseDao, teacherDao, studentDao, loginController);
     }
 
     @FXML
@@ -58,7 +60,7 @@ public class AdminSeeStudentsController extends AdminHomeController {
 
         if (student != null) {
             student.setStudentStatus(StudentStatus.INACTIVE);
-            int row = studentDao.update(student);
+            int row = super.studentDao.update(student);
 
             if (row > 0) {
                 AlertMessage.show("Sucesso", "Acesso bloqueado", "O acesso do aluno foi bloqueado com sucesso",
@@ -83,7 +85,7 @@ public class AdminSeeStudentsController extends AdminHomeController {
 
         if (student != null) {
             student.setStudentStatus(StudentStatus.ACTIVE);
-            int row = studentDao.update(student);
+            int row = super.studentDao.update(student);
 
             if (row > 0) {
                 AlertMessage.show("Sucesso", "Acesso liberado", "O acesso do aluno foi liberado com sucesso",
@@ -102,7 +104,7 @@ public class AdminSeeStudentsController extends AdminHomeController {
     }
 
     public void loadTableStudent() {
-        List<Student> students = studentDao.selectAll();
+        List<Student> students = super.studentDao.selectAll();
 
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));

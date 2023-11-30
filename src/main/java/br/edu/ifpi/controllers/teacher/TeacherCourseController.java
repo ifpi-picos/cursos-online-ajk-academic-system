@@ -6,15 +6,15 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import br.edu.ifpi.config.Routes;
+import br.edu.ifpi.controllers.LoginController;
 import br.edu.ifpi.data.dao.CourseDao;
 import br.edu.ifpi.data.dao.StudentCourseDao;
 import br.edu.ifpi.entities.Course;
 import br.edu.ifpi.entities.StudentCourse;
 import br.edu.ifpi.entities.Teacher;
-import br.edu.ifpi.entities.enums.CourseStatus;
 import br.edu.ifpi.util.SceneNavigator;
+
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,16 +25,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class TeacherCourseController extends TeacherHomeController {
+public class TeacherCourseController extends TeacherController {
 
     private ObservableList<Course> observableListCourse;
-    private final CourseDao courseDao;
-    private final StudentCourseDao studentCourseDao;
 
-    public TeacherCourseController(Connection connection, SceneNavigator sceneNavigator, Teacher teacher, Stage stage) {
-        super(connection, sceneNavigator, teacher, stage);
-        courseDao = new CourseDao(connection);
-        studentCourseDao = new StudentCourseDao(connection);
+    public TeacherCourseController(Connection connection, SceneNavigator sceneNavigator, Teacher teacher, Stage stage,
+            LoginController loginController, CourseDao courseDao, StudentCourseDao studentCourseDao) {
+
+        super(connection, sceneNavigator, teacher, stage, loginController, courseDao, studentCourseDao);
     }
 
     @FXML
@@ -61,23 +59,22 @@ public class TeacherCourseController extends TeacherHomeController {
     public void openCourse(ActionEvent event) {
         Course course = tableCourses.getSelectionModel().getSelectedItem();
         TeacherOpenCourseController teacherOpenCourseController = new TeacherOpenCourseController(
-                connection,
-                sceneNavigator,
-                teacher,
-                stage,
-                course);
+                this.connection, this.sceneNavigator, this.teacher, this.stage, this.loginController, this.courseDao,
+                this.studentCourseDao, course);
 
         sceneNavigator.navigateTo(Routes.teacherOpenCourse, this.stage, teacherOpenCourseController);
     }
 
     public void loadTableCourse() {
-        List<Course> courses = courseDao.selectAll();
-        List<StudentCourse> studentCourses = studentCourseDao.selectAll();
+        List<Course> courses = super.courseDao.selectAll();
+        List<StudentCourse> studentCourses = super.studentCourseDao.selectAll();
 
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
         workload.setCellValueFactory(new PropertyValueFactory<>("workload"));
-        numberStudents.setCellValueFactory(cellData -> new SimpleIntegerProperty(studentsByCourse(cellData.getValue(), studentCourses)).asObject());
+        numberStudents.setCellValueFactory(
+                cellData -> new SimpleIntegerProperty(studentsByCourse(cellData.getValue(), studentCourses))
+                        .asObject());
 
         // ordenar por id
         courses.sort((c1, c2) -> c1.getId() - c2.getId());

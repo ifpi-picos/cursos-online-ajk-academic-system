@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import br.edu.ifpi.controllers.LoginController;
+import br.edu.ifpi.data.dao.CourseDao;
 import br.edu.ifpi.data.dao.StudentCourseDao;
 import br.edu.ifpi.entities.Course;
 import br.edu.ifpi.entities.Student;
@@ -25,15 +27,16 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-public class EnrolledCourseController extends StudentHomeController {
+public class EnrolledCourseController extends StudentController {
 
     private final StudentCourseDao studentCourseDao;
     private ObservableList<Course> observableListCourse;
 
-    public EnrolledCourseController(Connection connection, SceneNavigator sceneNavigator, Student student,
-            Stage stage) {
-        super(connection, sceneNavigator, student, stage);
-        this.studentCourseDao = new StudentCourseDao(connection);
+    public EnrolledCourseController(Connection connection, SceneNavigator sceneNavigator, Student student, Stage stage,
+            LoginController loginController, CourseDao courseDao, StudentCourseDao studentCourseDao) {
+        super(connection, sceneNavigator, student, stage, loginController, courseDao, studentCourseDao);
+
+        this.studentCourseDao = studentCourseDao;
     }
 
     @FXML
@@ -86,18 +89,10 @@ public class EnrolledCourseController extends StudentHomeController {
         observableListCourse = FXCollections.observableArrayList(courses);
     }
 
-    public void selectCourseTableItem(Course course) {
-        System.out.println("Curso selecionado: " + course.getName());
-
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadEnrolledCourses();
 
         tableEnrolledCourses.setItems(observableListCourse);
-        tableEnrolledCourses.getSelectionModel().selectedItemProperty().addListener(
-                (observable, oldValue, newValue) -> selectCourseTableItem(newValue));
-
     }
 }

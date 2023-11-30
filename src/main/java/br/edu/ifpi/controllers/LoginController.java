@@ -15,10 +15,12 @@ import java.sql.Connection;
 import java.util.ResourceBundle;
 
 import br.edu.ifpi.config.Routes;
-import br.edu.ifpi.controllers.admin.AdminHomeController;
-import br.edu.ifpi.controllers.student.StudentHomeController;
-import br.edu.ifpi.controllers.teacher.TeacherHomeController;
+import br.edu.ifpi.controllers.admin.AdminController;
+import br.edu.ifpi.controllers.student.StudentController;
+import br.edu.ifpi.controllers.teacher.TeacherController;
 import br.edu.ifpi.data.dao.AdminDao;
+import br.edu.ifpi.data.dao.CourseDao;
+import br.edu.ifpi.data.dao.StudentCourseDao;
 import br.edu.ifpi.data.dao.StudentDao;
 import br.edu.ifpi.data.dao.TeacherDao;
 import br.edu.ifpi.entities.Admin;
@@ -30,13 +32,36 @@ import br.edu.ifpi.util.SceneNavigator;
 public class LoginController implements Initializable {
 
     private final Connection connection;
-    private SceneNavigator sceneNavigator;
+
+    private final AdminDao adminDao;
+    private final TeacherDao teacherDao;
+    private final StudentDao studentDao;
+    private final CourseDao courseDao;
+    private final StudentCourseDao studentCourseDao;
+
+    private final SceneNavigator sceneNavigator;
     private Stage stage;
 
-    public LoginController(Connection connection, Stage stage, SceneNavigator sceneNavigator) {
+    public LoginController(
+            Connection connection,
+            AdminDao adminDao,
+            TeacherDao teacherDao,
+            StudentDao studentDao,
+            CourseDao courseDao,
+            StudentCourseDao studentCourseDao,
+            SceneNavigator sceneNavigator,
+            Stage stage) {
+
         this.connection = connection;
-        this.stage = stage;
+        this.adminDao = adminDao;
+        this.teacherDao = teacherDao;
+        this.studentDao = studentDao;
+        this.courseDao = courseDao;
+        this.studentCourseDao = studentCourseDao;
         this.sceneNavigator = sceneNavigator;
+        this.stage = stage;
+
+        System.out.println(stage == null ? "O CARALHO DO STAGE É NULL NESSA PORRA" : "not null");
     }
 
     @FXML
@@ -64,72 +89,75 @@ public class LoginController implements Initializable {
     void login(ActionEvent event) {
         String username = this.username.getText();
         String password = this.password.getText();
+
         Boolean isStudent = this.student.isSelected();
         Boolean isTeacher = this.teacher.isSelected();
         Boolean isAdmin = this.admin.isSelected();
 
         if (username.isEmpty() || password.isEmpty()) {
             AlertMessage.show("Erro ao fazer login", "", "Preencha todos os campos", AlertType.ERROR);
-        } else {
-            if (isStudent) {
-                StudentDao studentDao = new StudentDao(this.connection);
-                Student student = studentDao.login(username, password);
+            return;
+        }
 
-                if (student != null) {
-                    try {
-                        StudentHomeController studentHomeController = new StudentHomeController(
-                                connection,
-                                sceneNavigator,
-                                student,
-                                stage);
-                        sceneNavigator.navigateTo(Routes.studentHome, this.stage, studentHomeController);
-                    } catch (Exception e) {
-                        AlertMessage.show("Erro ao fazer login", "", "Ocorreu um erro ao fazer login",
-                                AlertType.ERROR);
-                    }
-                } else {
-                    AlertMessage.show("Erro ao fazer login", "", "Usuário ou senha incorretos", AlertType.ERROR);
-                }
-            } else if (isTeacher) {
-                TeacherDao teacherDao = new TeacherDao(this.connection);
-                Teacher teacher = teacherDao.login(username, password);
+        if (isStudent) {
+            loginStudent(username, password);
+        } else if (isTeacher) {
+            loginTeacher(username, password);
+        } else if (isAdmin) {
+            loginAdmin(username, password);
+        }
+    }
 
-                if (teacher != null) {
-                    try {
-                        TeacherHomeController teacherHomeController = new TeacherHomeController(
-                                connection,
-                                sceneNavigator,
-                                teacher,
-                                stage);
-                        sceneNavigator.navigateTo(Routes.teacherHome, this.stage, teacherHomeController);
-                    } catch (Exception e) {
-                        AlertMessage.show("Erro ao fazer login", "", "Ocorreu um erro ao fazer login",
-                                AlertType.ERROR);
-                    }
-                } else {
-                    AlertMessage.show("Erro ao fazer login", "", "Usuário ou senha incorretos", AlertType.ERROR);
-                }
+    private void loginAdmin(String username, String password) {
+        Admin admin = adminDao.login(username, password);
+        System.out.println(stage == null ? "null" : "not null");
 
-            } else if (isAdmin) {
-                AdminDao adminDao = new AdminDao(this.connection);
-                Admin admin = adminDao.login(username, password);
-
-                if (admin != null) {
-                    try {
-                        AdminHomeController adminHomeController = new AdminHomeController(
-                                connection,
-                                sceneNavigator,
-                                admin,
-                                stage);
-                        sceneNavigator.navigateTo(Routes.adminHome, this.stage, adminHomeController);
-                    } catch (Exception e) {
-                        AlertMessage.show("Erro ao fazer login", "", "Ocorreu um erro ao fazer login",
-                                AlertType.ERROR);
-                    }
-                } else {
-                    AlertMessage.show("Erro ao fazer login", "", "Usuário ou senha incorretos", AlertType.ERROR);
-                }
+        if (admin != null) {
+            try {
+                AdminController adminHomeController = new AdminController(
+                        connection, sceneNavigator, admin, stage, courseDao, teacherDao, studentDao, this);
+                sceneNavigator.navigateTo(Routes.adminHome, this.stage, adminHomeController);
+            } catch (Exception e) {
+                AlertMessage.show("Erro ao fazer login", "", "Ocorreu um erro ao fazer login",
+                        AlertType.ERROR);
+                System.err.println(e.getMessage());
             }
+        } else {
+            AlertMessage.show("Erro ao fazer login", "", "Usuário ou senha incorretos", AlertType.ERROR);
+        }
+    }
+
+    private void loginTeacher(String username, String password) {
+        Teacher teacher = teacherDao.login(username, password);
+
+        if (teacher != null) {
+            try {
+                TeacherController teacherHomeController = new TeacherController(
+                        connection, sceneNavigator, teacher, stage, this, courseDao, studentCourseDao);
+                sceneNavigator.navigateTo(Routes.teacherHome, this.stage, teacherHomeController);
+            } catch (Exception e) {
+                AlertMessage.show("Erro ao fazer login", "", "Ocorreu um erro ao fazer login",
+                        AlertType.ERROR);
+            }
+        } else {
+            AlertMessage.show("Erro ao fazer login", "", "Usuário ou senha incorretos", AlertType.ERROR);
+        }
+    }
+
+    private void loginStudent(String username, String password) {
+        Student student = studentDao.login(username, password);
+
+        if (student != null) {
+            try {
+                StudentController studentHomeController = new StudentController(connection, sceneNavigator, student,
+                        stage, this, courseDao, studentCourseDao);
+                sceneNavigator.navigateTo(Routes.studentHome, this.stage, studentHomeController);
+            } catch (Exception e) {
+                AlertMessage.show("Erro ao fazer login", "", "Ocorreu um erro ao fazer login",
+                        AlertType.ERROR);
+            }
+        } else {
+            AlertMessage.show("Erro ao fazer login", "", "Usuário ou senha incorretos", AlertType.ERROR);
         }
     }
 
@@ -137,10 +165,7 @@ public class LoginController implements Initializable {
     void newAccount(ActionEvent event) {
         try {
             RegisterController registerController = new RegisterController(
-                    this.connection,
-                    this.stage,
-                    this.sceneNavigator);
-
+                    connection, stage, sceneNavigator, this);
             sceneNavigator.navigateTo(Routes.register, this.stage, registerController);
         } catch (Exception e) {
             System.err.println(e.getMessage());
@@ -151,5 +176,4 @@ public class LoginController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
     }
-
 }

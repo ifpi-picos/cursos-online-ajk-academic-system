@@ -6,7 +6,10 @@ import java.util.ResourceBundle;
 import java.net.URL;
 
 import br.edu.ifpi.config.Routes;
+import br.edu.ifpi.controllers.LoginController;
 import br.edu.ifpi.data.dao.CourseDao;
+import br.edu.ifpi.data.dao.StudentDao;
+import br.edu.ifpi.data.dao.TeacherDao;
 import br.edu.ifpi.entities.Admin;
 import br.edu.ifpi.entities.Course;
 import br.edu.ifpi.entities.enums.CourseStatus;
@@ -26,14 +29,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class AdminSeeCoursesController extends AdminHomeController {
+public class AdminSeeCoursesController extends AdminController {
 
-    private final CourseDao courseDao;
     private ObservableList<Course> observableListCourse;
 
-    public AdminSeeCoursesController(Connection connection, SceneNavigator sceneNavigator, Admin admin, Stage stage) {
-        super(connection, sceneNavigator, admin, stage);
-        courseDao = new CourseDao(connection);
+    public AdminSeeCoursesController(Connection connection, SceneNavigator sceneNavigator, Admin admin, Stage stage,
+            CourseDao courseDao, TeacherDao teacherDao, StudentDao studentDao, LoginController loginController) {
+        super(connection, sceneNavigator, admin, stage, courseDao, teacherDao, studentDao, loginController);
     }
 
     @FXML
@@ -68,7 +70,7 @@ public class AdminSeeCoursesController extends AdminHomeController {
         Course course = tableCourses.getSelectionModel().getSelectedItem();
         course.setStatus(CourseStatus.OPEN);
 
-        int row = courseDao.update(course);
+        int row = super.courseDao.update(course);
 
         if (row > 0) {
             AlertMessage.show("Sucesso", "Sucesso!", "Curso ativado com sucesso!", AlertType.INFORMATION);
@@ -84,7 +86,7 @@ public class AdminSeeCoursesController extends AdminHomeController {
         Course course = tableCourses.getSelectionModel().getSelectedItem();
         course.setStatus(CourseStatus.CLOSED);
 
-        int row = courseDao.update(course);
+        int row = super.courseDao.update(course);
 
         if (row > 0) {
             AlertMessage.show("Sucesso", "Sucesso!", "Curso desativado com sucesso!", AlertType.INFORMATION);
@@ -100,8 +102,9 @@ public class AdminSeeCoursesController extends AdminHomeController {
         Course course = tableCourses.getSelectionModel().getSelectedItem();
 
         if (course != null) {
-            AdminRegisterController adminRegisterController = new AdminRegisterController(connection, sceneNavigator,
-                    admin, stage, course);
+            AdminRegisterController adminRegisterController = new AdminRegisterController(super.connection,
+                    super.sceneNavigator, super.admin, super.stage, super.courseDao, super.teacherDao,
+                    super.studentDao, super.loginController);
             sceneNavigator.navigateTo(Routes.adminRegisterCourse, this.stage, adminRegisterController);
         } else {
             AlertMessage.show("Erro", "Erro!", "Selecione um curso!", AlertType.ERROR);

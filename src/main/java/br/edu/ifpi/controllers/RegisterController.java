@@ -27,13 +27,19 @@ import javafx.fxml.Initializable;
 public class RegisterController implements Initializable {
 
     private final Connection connection;
+    private final LoginController loginController;
     private SceneNavigator sceneNavigator;
     private Stage stage;
 
-    public RegisterController(Connection connection, Stage stage, SceneNavigator sceneNavigator) {
+    public RegisterController(
+            Connection connection,
+            Stage stage,
+            SceneNavigator sceneNavigator,
+            LoginController loginController) {
         this.connection = connection;
         this.stage = stage;
         this.sceneNavigator = sceneNavigator;
+        this.loginController = loginController;
     }
 
     @FXML
@@ -57,7 +63,6 @@ public class RegisterController implements Initializable {
     @FXML
     void toGoBack(ActionEvent event) {
         try {
-            LoginController loginController = new LoginController(this.connection, this.stage, this.sceneNavigator);
             sceneNavigator.navigateTo(Routes.login, this.stage, loginController);
         } catch (Exception e) {
             System.err.println(e.getMessage());
@@ -74,28 +79,18 @@ public class RegisterController implements Initializable {
         String password = this.password.getText();
         Boolean isStudent = this.student.isSelected();
 
-        // verificar se os campos estão vazios
         if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
             AlertMessage.show("Erro ao cadastrar", "", "Preencha todos os campos!", AlertType.ERROR);
         } else {
             if (isStudent) {
                 Student user = new Student(name, email, password, StudentStatus.ACTIVE);
                 studentDao.insert(user);
-
                 AlertMessage.show("Sucesso", "", "Usuário criado com sucesso!", AlertType.INFORMATION);
-
-                LoginController loginController = new LoginController(this.connection, this.stage,
-                        this.sceneNavigator);
                 sceneNavigator.navigateTo(Routes.login, this.stage, loginController);
-
             } else {
                 Teacher user = new Teacher(name, email, password, TeacherStatus.ACTIVE);
                 teacherDao.insert(user);
-
                 AlertMessage.show("Sucesso", "", "Usuário criado com sucesso!", AlertType.INFORMATION);
-
-                LoginController loginController = new LoginController(this.connection, this.stage,
-                        this.sceneNavigator);
                 sceneNavigator.navigateTo(Routes.login, this.stage, loginController);
             }
         }

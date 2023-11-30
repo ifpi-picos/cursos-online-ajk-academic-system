@@ -6,7 +6,9 @@ import java.util.ResourceBundle;
 import java.net.URL;
 
 import br.edu.ifpi.config.Routes;
+import br.edu.ifpi.controllers.LoginController;
 import br.edu.ifpi.data.dao.CourseDao;
+import br.edu.ifpi.data.dao.StudentDao;
 import br.edu.ifpi.data.dao.TeacherDao;
 import br.edu.ifpi.entities.Admin;
 import br.edu.ifpi.entities.Course;
@@ -28,21 +30,14 @@ import javafx.scene.control.TableView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class AdminRegisterController extends AdminHomeController {
+public class AdminRegisterController extends AdminController {
 
-    private final TeacherDao teacherDao;
-    private final CourseDao courseDao;
     private ObservableList<Teacher> observableListTeacher;
-
-    // editar curso
     private Course course;
 
     public AdminRegisterController(Connection connection, SceneNavigator sceneNavigator, Admin admin, Stage stage,
-            Course course) {
-        super(connection, sceneNavigator, admin, stage);
-        teacherDao = new TeacherDao(connection);
-        courseDao = new CourseDao(connection);
-        this.course = course;
+            CourseDao courseDao, TeacherDao teacherDao, StudentDao studentDao, LoginController loginController) {
+        super(connection, sceneNavigator, admin, stage, courseDao, teacherDao, studentDao, loginController);
     }
 
     @FXML
@@ -85,27 +80,29 @@ public class AdminRegisterController extends AdminHomeController {
             this.course.setWorkload(workload);
             this.course.setTeacher(teacher);
 
-            int row = courseDao.update(this.course);
+            int row = super.courseDao.update(this.course);
 
             if (row > 0) {
                 AlertMessage.show("Sucesso", "Sucesso!", "Curso atualizado com sucesso!", AlertType.INFORMATION);
+                AdminSeeCoursesController adminSeeCoursesController = new AdminSeeCoursesController(super.connection,
+                        super.sceneNavigator, super.admin, super.stage, super.courseDao, super.teacherDao,
+                        super.studentDao, super.loginController);
+                sceneNavigator.navigateTo(Routes.adminSeeCourses, stage, adminSeeCoursesController);
             } else {
                 AlertMessage.show("Erro", "Erro!", "Erro ao atualizar curso!", AlertType.ERROR);
             }
-
-            AdminSeeCoursesController adminSeeCoursesController = new AdminSeeCoursesController(connection,
-                    sceneNavigator, admin, stage);
-
-            sceneNavigator.navigateTo(Routes.adminSeeCourses, stage, adminSeeCoursesController);
-
             return;
         }
 
         Course course = new Course(name, CourseStatus.OPEN, workload, teacher);
-        int row = courseDao.insert(course);
+        int row = super.courseDao.insert(course);
 
         if (row > 0) {
             AlertMessage.show("Sucesso", "Sucesso!", "Curso cadastrado com sucesso!", AlertType.INFORMATION);
+
+            this.courseName.setText("");
+            this.workload.setText("");
+            this.tableTeacher.getSelectionModel().clearSelection();
         } else {
             AlertMessage.show("Erro", "Erro!", "Erro ao cadastrar curso!", AlertType.ERROR);
         }
@@ -117,7 +114,7 @@ public class AdminRegisterController extends AdminHomeController {
     }
 
     public void loadTeachers() {
-        List<Teacher> teachers = teacherDao.selectAll("status = 'ACTIVE'");
+        List<Teacher> teachers = super.teacherDao.selectAll("status = 'ACTIVE'");
 
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         teacherName.setCellValueFactory(new PropertyValueFactory<>("name"));

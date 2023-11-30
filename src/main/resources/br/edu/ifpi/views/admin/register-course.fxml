@@ -125,6 +125,7 @@
                     <columns>
                       <TableColumn fx:id="id" prefWidth="75.0" text="ID" />
                       <TableColumn fx:id="teacherName" prefWidth="420.0" text="Nome" />
+                        <TableColumn fx:id="id1" prefWidth="75.0" style="-fx-alignment: CENTER;" text="ID" />
                     </columns>
                      <BorderPane.margin>
                         <Insets right="20.0" />

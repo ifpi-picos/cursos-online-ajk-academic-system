@@ -6,8 +6,11 @@ import java.util.ResourceBundle;
 
 import br.edu.ifpi.config.Routes;
 import br.edu.ifpi.controllers.LoginController;
+import br.edu.ifpi.data.dao.CourseDao;
+import br.edu.ifpi.data.dao.StudentCourseDao;
 import br.edu.ifpi.entities.Teacher;
 import br.edu.ifpi.util.SceneNavigator;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,18 +18,26 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class TeacherHomeController implements Initializable {
+public class TeacherController implements Initializable {
 
     protected Connection connection;
     protected SceneNavigator sceneNavigator;
     protected Teacher teacher;
     protected Stage stage;
+    protected LoginController loginController;
+    protected CourseDao courseDao;
+    protected StudentCourseDao studentCourseDao;
 
-    public TeacherHomeController(Connection connection, SceneNavigator sceneNavigator, Teacher teacher, Stage stage) {
+    public TeacherController(Connection connection, SceneNavigator sceneNavigator, Teacher teacher, Stage stage,
+            LoginController loginController, CourseDao courseDao, StudentCourseDao studentCourseDao) {
+
         this.connection = connection;
         this.sceneNavigator = sceneNavigator;
         this.teacher = teacher;
         this.stage = stage;
+        this.loginController = loginController;
+        this.courseDao = courseDao;
+        this.studentCourseDao = studentCourseDao;
     }
 
     @FXML
@@ -34,21 +45,11 @@ public class TeacherHomeController implements Initializable {
 
     @FXML
     void home(ActionEvent event) {
-        TeacherHomeController teacherHomeController = new TeacherHomeController(
-                connection,
-                sceneNavigator,
-                teacher,
-                stage);
-        sceneNavigator.navigateTo(Routes.teacherHome, this.stage, teacherHomeController);
+        sceneNavigator.navigateTo(Routes.teacherHome, this.stage, this);
     }
 
     @FXML
     void exit(ActionEvent event) {
-        LoginController loginController = new LoginController(
-                connection,
-                stage,
-                sceneNavigator);
-
         sceneNavigator.navigateTo(Routes.login, this.stage, loginController);
     }
 
@@ -57,27 +58,20 @@ public class TeacherHomeController implements Initializable {
 
     }
 
-
     @FXML
     void coursesTaught(ActionEvent event) {
         TeacherCourseController teacherCourseController = new TeacherCourseController(
-                connection,
-                sceneNavigator,
-                teacher,
-                stage);
-
+            this.connection, this.sceneNavigator, this.teacher, this.stage, this.loginController, this.courseDao, this.studentCourseDao
+        );
         sceneNavigator.navigateTo(Routes.teacherCourse, this.stage, teacherCourseController);
     }
 
     @FXML
     void completedCourses(ActionEvent event) {
-        TeacherCourseCompleted teacherCourseCompleted = new TeacherCourseCompleted(
-                connection,
-                sceneNavigator,
-                teacher,
-                stage);
-
-        sceneNavigator.navigateTo(Routes.teacherCourseCompleted, this.stage, teacherCourseCompleted);
+        TeacherFinishedCoursesController teacherFinishedCoursesController = new TeacherFinishedCoursesController(
+            this.connection, this.sceneNavigator, this.teacher, this.stage, this.loginController, this.courseDao, this.studentCourseDao
+        );
+        sceneNavigator.navigateTo(Routes.teacherCourseCompleted, this.stage, teacherFinishedCoursesController);
     }
 
     @Override
