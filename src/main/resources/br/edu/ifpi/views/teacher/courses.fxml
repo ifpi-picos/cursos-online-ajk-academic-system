@@ -94,8 +94,9 @@
             <TableView fx:id="tableCourses" prefHeight="392.0" prefWidth="531.0" BorderPane.alignment="CENTER">
                <columns>
                   <TableColumn fx:id="id" prefWidth="75.0" text="ID" />
-                  <TableColumn fx:id="name" prefWidth="434.0" text="Nome" />
-                  <TableColumn fx:id="workload" prefWidth="119.0" text="Carga Horária" />
+                  <TableColumn fx:id="name" prefWidth="374.4000473022461" text="Nome" />
+                  <TableColumn fx:id="workload" prefWidth="256.0000305175781" text="Carga Horária" />
+                  <TableColumn fx:id="numberStudents" prefWidth="223.2000732421875" text="Quantidade de alunos" />
                </columns>
             </TableView>
          </center>
