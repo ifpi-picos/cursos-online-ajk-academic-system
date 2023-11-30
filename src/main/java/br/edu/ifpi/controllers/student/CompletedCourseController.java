@@ -23,6 +23,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class CompletedCourseController extends StudentHomeController {
@@ -36,6 +37,9 @@ public class CompletedCourseController extends StudentHomeController {
         this.studentCourseDao = new StudentCourseDao(connection);
         // TODO Auto-generated constructor stub
     }
+
+    @FXML
+    private Text username;
 
     @FXML
     private TableColumn<StudentCourse, String> course;
@@ -52,19 +56,15 @@ public class CompletedCourseController extends StudentHomeController {
     @FXML
     private TableView<StudentCourse> tableCompletedCourses;
 
-
-
-
     public void loadCompletedCourses() {
-        List<StudentCourse> studentCourses = studentCourseDao.selectAll("status != " + EnrollmentStatus.PENDING);
-        
+        List<StudentCourse> studentCourses = studentCourseDao.selectAll("status != " + "'" + EnrollmentStatus.PENDING + "'");
+
         name.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getStudent().getName()));
         course.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCourse().getName()));
         grade.setCellValueFactory(new PropertyValueFactory<>("grade"));
         status.setCellValueFactory(cellData -> new SimpleStringProperty(getStatus(cellData.getValue())));
         observableListCourse = FXCollections.observableArrayList(studentCourses);
 
-        
     }
 
     public String getStatus(StudentCourse studentCourse) {
@@ -79,14 +79,12 @@ public class CompletedCourseController extends StudentHomeController {
         }
     }
 
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        username.setText("Olá, " + student.getName());
         loadCompletedCourses();
 
         tableCompletedCourses.setItems(observableListCourse);
-
 
     }
 
