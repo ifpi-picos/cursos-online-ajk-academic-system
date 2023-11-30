@@ -125,6 +125,7 @@ public class RegisterCourseController extends StudentController {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        username.setText("Olá, " + student.getName());
         loadTableCourse();
 
         tableRegister.setItems(observableListCourse);
