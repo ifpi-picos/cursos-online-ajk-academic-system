@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import br.edu.ifpi.controllers.LoginController;
 import br.edu.ifpi.data.dao.CourseDao;
 import br.edu.ifpi.data.dao.StudentCourseDao;
+import br.edu.ifpi.data.dao.StudentDao;
 import br.edu.ifpi.entities.Course;
 import br.edu.ifpi.entities.Student;
 import br.edu.ifpi.entities.StudentCourse;
@@ -39,9 +40,10 @@ public class EnrolledCourseController extends StudentController {
             Stage stage,
             LoginController loginController,
             CourseDao courseDao,
-            StudentCourseDao studentCourseDao) {
+            StudentCourseDao studentCourseDao,
+            StudentDao studentDao) {
 
-        super(connection, sceneNavigator, student, stage, loginController, courseDao, studentCourseDao);
+        super(connection, sceneNavigator, student, stage, loginController, courseDao, studentCourseDao, studentDao);
     }
 
     @FXML
