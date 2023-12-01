@@ -12,7 +12,7 @@ import br.edu.ifpi.entities.Student;
 import br.edu.ifpi.entities.StudentCourse;
 import br.edu.ifpi.entities.enums.EnrollmentStatus;
 import br.edu.ifpi.util.SceneNavigator;
-
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -58,12 +58,16 @@ public class CompletedCourseController extends StudentController {
     private TableView<StudentCourse> tableCompletedCourses;
 
     public void loadCompletedCourses() {
-        List<StudentCourse> studentCourses = super.studentCourseDao
-                .selectAll("status != " + "'" + EnrollmentStatus.PENDING + "'");
+        final String[] conditions = {
+                "student_id = " + student.getId(),
+                "status = '" + EnrollmentStatus.APPROVED.toString() + "'"
+        };
+        
+        List<StudentCourse> studentCourses = super.studentCourseDao.selectAll(conditions);
 
         name.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getStudent().getName()));
         course.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCourse().getName()));
-        grade.setCellValueFactory(new PropertyValueFactory<>("grade"));
+        grade.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getFinalGrade()).asObject());
         status.setCellValueFactory(cellData -> new SimpleStringProperty(getStatus(cellData.getValue())));
         observableListCourse = FXCollections.observableArrayList(studentCourses);
 
