@@ -123,6 +123,42 @@
                      </BorderPane.margin>
                   </Button>
                </center>
+               <left>
+                  <AnchorPane prefHeight="79.0" prefWidth="386.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Text layoutX="6.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Média da turma:">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="5.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantidade de alunos:">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="6.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aproveitamento:">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="classAverage" layoutX="107.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="classPerformance" layoutX="110.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="numberStudents" layoutX="142.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+               </left>
             </BorderPane>
          </bottom>
          <padding>
