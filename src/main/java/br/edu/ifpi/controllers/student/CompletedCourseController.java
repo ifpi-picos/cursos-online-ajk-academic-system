@@ -12,6 +12,7 @@ import br.edu.ifpi.entities.Student;
 import br.edu.ifpi.entities.StudentCourse;
 import br.edu.ifpi.entities.enums.EnrollmentStatus;
 import br.edu.ifpi.util.SceneNavigator;
+
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -61,7 +62,7 @@ public class CompletedCourseController extends StudentController {
                 "student_id = " + student.getId(),
                 "status = '" + EnrollmentStatus.APPROVED.toString() + "'"
         };
-        
+
         List<StudentCourse> studentCourses = super.studentCourseDao.selectAll(conditions);
 
         name.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getStudent().getName()));
