@@ -1,11 +1,12 @@
 package br.edu.ifpi.config;
 
 public class Routes {
-    // img
+    // =========================== img ========================== //
+    
     public static String icon = "/br/edu/ifpi/img/logo-sistema.png";
     public static String iconAlert = "/br/edu/ifpi/img/26a0.png";
 
-    // ============= views ============= //
+    // ========================== views ========================= //
 
     // --- common --- //
     public static String login = "/br/edu/ifpi/views/login.fxml";
