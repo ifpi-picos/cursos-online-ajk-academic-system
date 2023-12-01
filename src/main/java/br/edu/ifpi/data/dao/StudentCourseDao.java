@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import br.edu.ifpi.data.adapters.StudentCourseAdapter;
+import br.edu.ifpi.entities.Course;
 import br.edu.ifpi.entities.Student;
 import br.edu.ifpi.entities.StudentCourse;
 import br.edu.ifpi.entities.enums.EnrollmentStatus;
@@ -21,6 +22,49 @@ public class StudentCourseDao implements Dao<StudentCourse> {
         this.connection = connection;
         this.studentDao = new StudentDao(connection);
         this.courseDao = new CourseDao(connection);
+    }
+
+    public Double getStudentAverageGrade(Student student) {
+        final String SQL = "SELECT AVG(final_grade) FROM Student_course WHERE student_id = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
+            preparedStatement.setInt(1, student.getId());
+            final ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getDouble(1);
+            }
+        } catch (SQLException e) {
+            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+        }
+        return null;
+    }
+
+    public Double getCourseApprovedQuantity(Course course, EnrollmentStatus enrollmentStatus, int quantity) {
+        final String SQL = "SELECT COUNT(*) FROM Student_course WHERE course_id = ? AND status = ? AND final_grade >= 7";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
+            preparedStatement.setInt(1, course.getId());
+            preparedStatement.setString(2, enrollmentStatus.toString());
+            final ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getDouble(1) / quantity;
+            }
+        } catch (SQLException e) {
+            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+        }
+        return null;
+    }
+
+    public Double getCourseAverageGrade(Course course) {
+        final String SQL = "SELECT AVG(final_grade) FROM Student_course WHERE course_id = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
+            preparedStatement.setInt(1, course.getId());
+            final ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getDouble(1);
+            }
+        } catch (SQLException e) {
+            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+        }
+        return null;
     }
 
     @Override

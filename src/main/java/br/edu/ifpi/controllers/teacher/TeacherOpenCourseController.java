@@ -57,6 +57,15 @@ public class TeacherOpenCourseController extends TeacherController {
     }
 
     @FXML
+    private Text classAverage;
+
+    @FXML
+    private Text classPerformance;
+
+    @FXML
+    private Text numberStudents;
+
+    @FXML
     private TableColumn<StudentCourse, Double> grade;
 
     @FXML
@@ -142,6 +151,7 @@ public class TeacherOpenCourseController extends TeacherController {
             tableCourse.refresh();
 
             goToNextRow(event.getTablePosition().getRow() + 1);
+            loadClassStatistics();
 
             if (row == 0) {
                 AlertMessage.show("Erro", "Erro", "Erro ao atualizar nota", AlertType.ERROR);
@@ -176,9 +186,27 @@ public class TeacherOpenCourseController extends TeacherController {
         }
     }
 
+    private void loadClassStatistics() {
+        Double courseApprovedQuantity = studentCourseDao.getCourseApprovedQuantity(
+                course,
+                EnrollmentStatus.APPROVED,
+                observableListStudentCourse.size())
+                * 100;
+
+        classAverage.setText(studentCourseDao.getCourseAverageGrade(course).toString());
+        classPerformance.setText(courseApprovedQuantity.intValue() + "%");
+        numberStudents.setText(String.valueOf(observableListStudentCourse.size()));
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        loadTableCourse();
+        tableCourse.setItems(observableListStudentCourse);
+
+        loadClassStatistics();
+
         username.setText("Olá, " + teacher.getName());
+
         if (edit) {
             finishCourse.setVisible(true);
             tableCourse.setEditable(true);
@@ -188,9 +216,5 @@ public class TeacherOpenCourseController extends TeacherController {
             tableCourse.setEditable(false);
             nameCourse.setText(this.course.getName() + " - FINALIZADO");
         }
-
-        loadTableCourse();
-        tableCourse.setItems(observableListStudentCourse);
-
     }
 }
