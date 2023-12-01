@@ -2,7 +2,7 @@ package br.edu.ifpi.config;
 
 public class Routes {
     // =========================== img ========================== //
-    
+
     public static String icon = "/br/edu/ifpi/img/logo-sistema.png";
     public static String iconAlert = "/br/edu/ifpi/img/26a0.png";
 
@@ -24,6 +24,7 @@ public class Routes {
     public static String studentHome = "/br/edu/ifpi/views/student/home-student.fxml";
     public static String enrolledCourse = "/br/edu/ifpi/views/student/enrolled-course.fxml";
     public static String completedCourse = "/br/edu/ifpi/views/student/completed-course.fxml";
+    public static String studentProfile = "/br/edu/ifpi/views/student/student-profile.fxml";
 
     // --- teacher --- //
     public static String teacherHome = "/br/edu/ifpi/views/teacher/home.fxml";
