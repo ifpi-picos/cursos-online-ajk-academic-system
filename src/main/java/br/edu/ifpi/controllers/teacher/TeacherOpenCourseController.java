@@ -12,9 +12,11 @@ import br.edu.ifpi.data.dao.StudentCourseDao;
 import br.edu.ifpi.entities.Course;
 import br.edu.ifpi.entities.StudentCourse;
 import br.edu.ifpi.entities.Teacher;
+import br.edu.ifpi.entities.enums.CourseStatus;
 import br.edu.ifpi.entities.enums.EnrollmentStatus;
 import br.edu.ifpi.util.AlertMessage;
 import br.edu.ifpi.util.SceneNavigator;
+
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -27,6 +29,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.converter.DoubleStringConverter;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 
@@ -34,6 +37,7 @@ public class TeacherOpenCourseController extends TeacherController {
 
     private ObservableList<StudentCourse> observableListStudentCourse;
     private final Course course;
+    private final Boolean edit;
 
     public TeacherOpenCourseController(
             Connection connection,
@@ -43,11 +47,13 @@ public class TeacherOpenCourseController extends TeacherController {
             LoginController loginController,
             CourseDao courseDao,
             StudentCourseDao studentCourseDao,
-            Course course) {
+            Course course,
+            Boolean edit) {
 
         super(connection, sceneNavigator, teacher, stage, loginController, courseDao, studentCourseDao);
 
         this.course = course;
+        this.edit = edit;
     }
 
     @FXML
@@ -72,11 +78,38 @@ public class TeacherOpenCourseController extends TeacherController {
     private Text username;
 
     @FXML
+    private Button finishCourse;
+
+    @FXML
     void backCourses(ActionEvent event) {
-        TeacherCourseController teacherCourseController = new TeacherCourseController(
-                this.connection, this.sceneNavigator, this.teacher, this.stage, this.loginController, this.courseDao,
-                this.studentCourseDao);
-        sceneNavigator.navigateTo(Routes.teacherCourse, this.stage, teacherCourseController);
+        if (edit) {
+            TeacherCourseController teacherCourseController = new TeacherCourseController(
+                    this.connection, this.sceneNavigator, this.teacher, this.stage, this.loginController,
+                    this.courseDao, this.studentCourseDao);
+            sceneNavigator.navigateTo(Routes.teacherCourse, this.stage, teacherCourseController);
+        } else {
+            TeacherCoursesTaughtController teacherCoursesTaughtController = new TeacherCoursesTaughtController(
+                    this.connection, this.sceneNavigator, this.teacher, this.stage, this.loginController,
+                    this.courseDao, this.studentCourseDao);
+            sceneNavigator.navigateTo(Routes.teacherCourseTaught, this.stage, teacherCoursesTaughtController);
+        }
+    }
+
+    @FXML
+    void finishCourse(ActionEvent event) {
+        course.setStatus(CourseStatus.CLOSED);
+
+        int row = courseDao.update(course);
+
+        if (row > 0) {
+            AlertMessage.show("Sucesso", "Sucesso", "Curso finalizado com sucesso", AlertType.INFORMATION);
+            TeacherCourseController teacherCourseController = new TeacherCourseController(
+                    this.connection, this.sceneNavigator, this.teacher, this.stage, this.loginController,
+                    this.courseDao, this.studentCourseDao);
+            sceneNavigator.navigateTo(Routes.teacherCourse, this.stage, teacherCourseController);
+        } else {
+            AlertMessage.show("Erro", "Erro", "Erro ao finalizar curso", AlertType.ERROR);
+        }
     }
 
     public void loadTableCourse() {
@@ -146,10 +179,18 @@ public class TeacherOpenCourseController extends TeacherController {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         username.setText("Olá, " + teacher.getName());
-        nameCourse.setText(this.course.getName());
+        if (edit) {
+            finishCourse.setVisible(true);
+            tableCourse.setEditable(true);
+            nameCourse.setText(this.course.getName());
+        } else {
+            finishCourse.setVisible(false);
+            tableCourse.setEditable(false);
+            nameCourse.setText(this.course.getName() + " - FINALIZADO");
+        }
 
         loadTableCourse();
         tableCourse.setItems(observableListStudentCourse);
-        tableCourse.setEditable(true);
+
     }
 }

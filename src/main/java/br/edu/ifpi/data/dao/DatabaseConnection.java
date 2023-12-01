@@ -6,13 +6,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DatabaseConnection {
-    private static final String URL = "jdbc:postgresql://db.snebplpqosltrdgrxoff.supabase.co:5432/postgres";
-    private static final String USER = "postgres";
-    private static final String PASSWORD = "Fx3NY9BwG+r8t&k";
-
-    // private static final String URL = "jdbc:postgresql://localhost:5432/academic_system";
+    // private static final String URL = "jdbc:postgresql://db.snebplpqosltrdgrxoff.supabase.co:5432/postgres";
     // private static final String USER = "postgres";
-    // private static final String PASSWORD = "admin";
+    // private static final String PASSWORD = "Fx3NY9BwG+r8t&k";
+
+    private static final String URL = "jdbc:postgresql://localhost:5432/academic_system";
+    private static final String USER = "postgres";
+    private static final String PASSWORD = "admin";
 
     public static Connection getConnection() {
         try {

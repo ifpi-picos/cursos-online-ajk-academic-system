@@ -90,20 +90,10 @@
    </left>
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <center>
-            <TableView fx:id="tableCourses" prefHeight="392.0" prefWidth="531.0" BorderPane.alignment="CENTER">
-               <columns>
-                  <TableColumn fx:id="id" prefWidth="75.0" text="ID" />
-                  <TableColumn fx:id="name" prefWidth="434.0" text="Nome" />
-                  <TableColumn fx:id="workload" prefWidth="305.0" text="Email" />
-                  <TableColumn prefWidth="75.0" text="Nota" />
-               </columns>
-            </TableView>
-         </center>
          <top>
             <BorderPane prefHeight="68.0" prefWidth="531.0" BorderPane.alignment="CENTER">
                <center>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Alunos formados em &lt;Curso&gt;" BorderPane.alignment="CENTER">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cursos finalizados" BorderPane.alignment="CENTER">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -116,7 +106,7 @@
                <right>
                   <AnchorPane prefHeight="67.0" prefWidth="689.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Button layoutX="479.0" layoutY="25.0" mnemonicParsing="false" onAction="#backCourses" prefHeight="30.0" prefWidth="210.0" text="Voltar" />
+                        <Button layoutX="479.0" layoutY="25.0" mnemonicParsing="false" onAction="#seeStudents" prefHeight="30.0" prefWidth="210.0" text="Ver ficha de alunos" />
                      </children>
                   </AnchorPane>
                </right>
@@ -125,6 +115,16 @@
          <padding>
             <Insets right="20.0" />
          </padding>
+         <center>
+            <TableView fx:id="tableCourses" prefHeight="392.0" prefWidth="531.0" BorderPane.alignment="CENTER">
+               <columns>
+                  <TableColumn fx:id="id" prefWidth="75.0" text="ID" />
+                  <TableColumn fx:id="name" prefWidth="374.4000473022461" text="Nome" />
+                  <TableColumn fx:id="workload" prefWidth="256.0000305175781" text="Carga Horária" />
+                  <TableColumn fx:id="numberStudents" prefWidth="223.2000732421875" text="Quantidade de alunos" />
+               </columns>
+            </TableView>
+         </center>
       </BorderPane>
    </center>
 </BorderPane>

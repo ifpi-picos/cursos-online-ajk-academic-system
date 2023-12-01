@@ -116,6 +116,13 @@
                <right>
                   <Button mnemonicParsing="false" onAction="#backCourses" prefHeight="30.0" prefWidth="210.0" text="Voltar" BorderPane.alignment="CENTER" />
                </right>
+               <center>
+                  <Button fx:id="finishCourse" mnemonicParsing="false" onAction="#finishCourse" prefHeight="30.0" prefWidth="210.0" text="Concluir curso" BorderPane.alignment="CENTER_RIGHT">
+                     <BorderPane.margin>
+                        <Insets right="10.0" />
+                     </BorderPane.margin>
+                  </Button>
+               </center>
             </BorderPane>
          </bottom>
          <padding>

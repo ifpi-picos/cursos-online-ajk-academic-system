@@ -26,11 +26,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class TeacherCourseController extends TeacherController {
+public class TeacherCoursesTaughtController extends TeacherController {
 
     private ObservableList<Course> observableListCourse;
 
-    public TeacherCourseController(
+    public TeacherCoursesTaughtController(
             Connection connection,
             SceneNavigator sceneNavigator,
             Teacher teacher,
@@ -64,16 +64,13 @@ public class TeacherCourseController extends TeacherController {
         Course course = tableCourses.getSelectionModel().getSelectedItem();
         TeacherOpenCourseController teacherOpenCourseController = new TeacherOpenCourseController(
                 this.connection, this.sceneNavigator, this.teacher, this.stage, this.loginController, this.courseDao,
-                this.studentCourseDao, course, true);
+                this.studentCourseDao, course, false);
 
         sceneNavigator.navigateTo(Routes.teacherOpenCourse, this.stage, teacherOpenCourseController);
     }
 
     public void loadTableCourse() {
-        final String[] conditions = {
-                "status = '%s'".formatted(CourseStatus.OPEN),
-                "teacher_id = %d".formatted(teacher.getId())
-        };
+        final String[] conditions = { "teacher_id = " + teacher.getId(), "status = '" + CourseStatus.CLOSED + "'" };
         List<Course> courses = super.courseDao.selectAll(conditions);
         List<StudentCourse> studentCourses = super.studentCourseDao.selectAll();
 
