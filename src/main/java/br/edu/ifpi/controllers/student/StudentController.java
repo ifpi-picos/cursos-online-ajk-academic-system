@@ -92,6 +92,10 @@ public class StudentController implements Initializable {
 
     @FXML
     void usernameButton(MouseEvent event) {
+        StudentProfileController studentProfileController = new StudentProfileController(
+                this.connection, this.sceneNavigator, this.student, this.stage, this.loginController, this.courseDao,
+                this.studentCourseDao);
+        sceneNavigator.navigateTo(Routes.studentProfile, this.stage, studentProfileController);
 
     }
 
