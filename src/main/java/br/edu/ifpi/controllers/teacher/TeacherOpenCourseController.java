@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import br.edu.ifpi.config.Routes;
 import br.edu.ifpi.controllers.LoginController;
 import br.edu.ifpi.data.dao.CourseDao;
 import br.edu.ifpi.data.dao.StudentCourseDao;
@@ -72,7 +73,10 @@ public class TeacherOpenCourseController extends TeacherController {
 
     @FXML
     void backCourses(ActionEvent event) {
-
+        TeacherCourseController teacherCourseController = new TeacherCourseController(
+                this.connection, this.sceneNavigator, this.teacher, this.stage, this.loginController, this.courseDao,
+                this.studentCourseDao);
+        sceneNavigator.navigateTo(Routes.teacherCourse, this.stage, teacherCourseController);
     }
 
     public void loadTableCourse() {
