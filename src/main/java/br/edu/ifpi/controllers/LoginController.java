@@ -148,7 +148,7 @@ public class LoginController implements Initializable {
         if (student != null) {
             try {
                 StudentController studentHomeController = new StudentController(connection, sceneNavigator, student,
-                        stage, this, courseDao, studentCourseDao);
+                        stage, this, courseDao, studentCourseDao, studentDao);
                 sceneNavigator.navigateTo(Routes.studentHome, this.stage, studentHomeController);
             } catch (Exception e) {
                 AlertMessage.show("Erro ao fazer login", "", "Ocorreu um erro ao fazer login",
