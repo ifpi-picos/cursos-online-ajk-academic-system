@@ -10,9 +10,9 @@ import br.edu.ifpi.controllers.LoginController;
 import br.edu.ifpi.data.dao.CourseDao;
 import br.edu.ifpi.data.dao.StudentDao;
 import br.edu.ifpi.data.dao.TeacherDao;
-import br.edu.ifpi.entities.Admin;
 import br.edu.ifpi.entities.Course;
 import br.edu.ifpi.entities.Teacher;
+import br.edu.ifpi.entities.User;
 import br.edu.ifpi.entities.enums.CourseStatus;
 import br.edu.ifpi.util.AlertMessage;
 import br.edu.ifpi.util.SceneNavigator;
@@ -38,7 +38,7 @@ public class AdminRegisterController extends AdminController {
     public AdminRegisterController(
             Connection connection,
             SceneNavigator sceneNavigator,
-            Admin admin,
+            User admin,
             Stage stage,
             CourseDao courseDao,
             TeacherDao teacherDao,

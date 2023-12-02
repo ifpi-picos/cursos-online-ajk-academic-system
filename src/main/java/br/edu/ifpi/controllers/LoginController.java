@@ -81,33 +81,33 @@ public class LoginController implements Initializable {
     private RadioButton admin;
 
     @FXML
-    private TextField username;
+    private TextField email;
 
     @FXML
     void login(ActionEvent event) {
-        String username = this.username.getText();
+        String email = this.email.getText();
         String password = this.password.getText();
 
         Boolean isStudent = this.student.isSelected();
         Boolean isTeacher = this.teacher.isSelected();
         Boolean isAdmin = this.admin.isSelected();
 
-        if (username.isEmpty() || password.isEmpty()) {
+        if (email.isEmpty() || password.isEmpty()) {
             AlertMessage.show("Erro ao fazer login", "", "Preencha todos os campos", AlertType.ERROR);
             return;
         }
 
         if (isStudent) {
-            loginStudent(username, password);
+            loginStudent(email, password);
         } else if (isTeacher) {
-            loginTeacher(username, password);
+            loginTeacher(email, password);
         } else if (isAdmin) {
-            loginAdmin(username, password);
+            loginAdmin(email, password);
         }
     }
 
-    private void loginAdmin(String username, String password) {
-        Admin admin = adminDao.login(username, password);
+    private void loginAdmin(String email, String password) {
+        Admin admin = adminDao.login(email, password);
         System.out.println(stage == null ? "null" : "not null");
 
         if (admin != null) {
@@ -125,8 +125,8 @@ public class LoginController implements Initializable {
         }
     }
 
-    private void loginTeacher(String username, String password) {
-        Teacher teacher = teacherDao.login(username, password);
+    private void loginTeacher(String email, String password) {
+        Teacher teacher = teacherDao.login(email, password);
 
         if (teacher != null) {
             try {
@@ -142,13 +142,13 @@ public class LoginController implements Initializable {
         }
     }
 
-    private void loginStudent(String username, String password) {
-        Student student = studentDao.login(username, password);
+    private void loginStudent(String email, String password) {
+        Student student = studentDao.login(email, password);
 
         if (student != null) {
             try {
                 StudentController studentHomeController = new StudentController(connection, sceneNavigator, student,
-                        stage, this, courseDao, studentCourseDao);
+                        stage, this, courseDao, studentCourseDao, studentDao);
                 sceneNavigator.navigateTo(Routes.studentHome, this.stage, studentHomeController);
             } catch (Exception e) {
                 AlertMessage.show("Erro ao fazer login", "", "Ocorreu um erro ao fazer login",

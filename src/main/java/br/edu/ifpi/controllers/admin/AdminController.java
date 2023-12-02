@@ -9,7 +9,7 @@ import br.edu.ifpi.controllers.LoginController;
 import br.edu.ifpi.data.dao.CourseDao;
 import br.edu.ifpi.data.dao.StudentDao;
 import br.edu.ifpi.data.dao.TeacherDao;
-import br.edu.ifpi.entities.Admin;
+import br.edu.ifpi.entities.User;
 import br.edu.ifpi.util.SceneNavigator;
 
 import javafx.event.ActionEvent;
@@ -23,7 +23,7 @@ public class AdminController implements Initializable {
 
     protected Connection connection;
     protected SceneNavigator sceneNavigator;
-    protected Admin admin;
+    protected User admin;
     protected Stage stage;
     protected LoginController loginController;
 
@@ -34,7 +34,7 @@ public class AdminController implements Initializable {
     public AdminController(
             Connection connection,
             SceneNavigator sceneNavigator,
-            Admin admin,
+            User admin,
             Stage stage,
             CourseDao courseDao,
             TeacherDao teacherDao,

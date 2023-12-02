@@ -8,6 +8,7 @@ import br.edu.ifpi.config.Routes;
 import br.edu.ifpi.controllers.LoginController;
 import br.edu.ifpi.data.dao.CourseDao;
 import br.edu.ifpi.data.dao.StudentCourseDao;
+import br.edu.ifpi.data.dao.StudentDao;
 import br.edu.ifpi.entities.User;
 import br.edu.ifpi.util.SceneNavigator;
 
@@ -28,6 +29,7 @@ public class StudentController implements Initializable {
 
     protected CourseDao courseDao;
     protected StudentCourseDao studentCourseDao;
+    protected StudentDao studentDao;
 
     public StudentController(
             Connection connection,
@@ -36,7 +38,8 @@ public class StudentController implements Initializable {
             Stage stage,
             LoginController loginController,
             CourseDao courseDao,
-            StudentCourseDao studentCourseDao) {
+            StudentCourseDao studentCourseDao,
+            StudentDao studentDao) {
 
         this.connection = connection;
         this.sceneNavigator = sceneNavigator;
@@ -46,6 +49,7 @@ public class StudentController implements Initializable {
 
         this.courseDao = courseDao;
         this.studentCourseDao = studentCourseDao;
+        this.studentDao = studentDao;
     }
 
     @FXML
@@ -60,7 +64,7 @@ public class StudentController implements Initializable {
     void completedCourses(ActionEvent event) {
         CompletedCourseController completedCourseController = new CompletedCourseController(
                 this.connection, this.sceneNavigator, this.student, this.stage, this.loginController, this.courseDao,
-                this.studentCourseDao);
+                this.studentCourseDao, this.studentDao);
         sceneNavigator.navigateTo(Routes.completedCourse, this.stage, completedCourseController);
     }
 
@@ -73,7 +77,7 @@ public class StudentController implements Initializable {
     void coursesEnrolled(ActionEvent event) {
         EnrolledCourseController enrolledCourseController = new EnrolledCourseController(
                 this.connection, this.sceneNavigator, this.student, this.stage, this.loginController, this.courseDao,
-                this.studentCourseDao);
+                this.studentCourseDao, this.studentDao);
         sceneNavigator.navigateTo(Routes.enrolledCourse, this.stage, enrolledCourseController);
     }
 
@@ -81,7 +85,7 @@ public class StudentController implements Initializable {
     void register(ActionEvent event) {
         RegisterCourseController registerCourseController = new RegisterCourseController(
                 this.connection, this.sceneNavigator, this.student, this.stage, this.loginController, this.courseDao,
-                this.studentCourseDao);
+                this.studentCourseDao, this.studentDao);
         sceneNavigator.navigateTo(Routes.studentRegisterCourse, this.stage, registerCourseController);
     }
 
@@ -92,9 +96,9 @@ public class StudentController implements Initializable {
 
     @FXML
     void usernameButton(MouseEvent event) {
-        ProfileController studentProfileController = new ProfileController(
+        StudentProfileController studentProfileController = new StudentProfileController(
                 this.connection, this.sceneNavigator, this.student, this.stage, this.loginController, this.courseDao,
-                this.studentCourseDao);
+                this.studentDao, this.studentCourseDao);
         sceneNavigator.navigateTo(Routes.studentProfile, this.stage, studentProfileController);
 
     }

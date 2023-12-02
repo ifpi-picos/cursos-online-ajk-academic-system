@@ -90,7 +90,7 @@
       </BorderPane>
    </left>
    <center>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <BorderPane fx:id="profileInformation" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <top>
             <BorderPane prefHeight="96.0" prefWidth="958.0" BorderPane.alignment="CENTER">
                <center>
@@ -110,38 +110,38 @@
                <right>
                   <ImageView fitHeight="235.0" fitWidth="341.0" BorderPane.alignment="CENTER">
                      <image>
-                        <Image url="@../../../../../../../../../../../../Downloads/imagem%20perfil%202.png" />
+                        <Image url="@../../img/imagem perfil 2.png" />
                      </image>
                   </ImageView>
                </right>
                <center>
                   <AnchorPane prefHeight="187.0" prefWidth="958.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Label layoutX="103.0" layoutY="133.0" text="Nome:">
+                        <Label layoutX="103.0" layoutY="87.0" text="Nome:">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="103.0" layoutY="192.0" text="E-mail:">
+                        <Label layoutX="103.0" layoutY="146.0" text="E-mail:">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="name" layoutX="102.0" layoutY="151.0" prefHeight="30.0" prefWidth="440.0" />
-                        <TextField fx:id="email" layoutX="101.0" layoutY="211.0" prefHeight="30.0" prefWidth="440.0" />
-                        <TextField fx:id="id" disable="true" layoutX="102.0" layoutY="98.0" prefHeight="25.0" prefWidth="123.0" />
-                        <Label layoutX="105.0" layoutY="79.0" text="ID:">
+                        <TextField fx:id="name" disable="true" editable="false" layoutX="102.0" layoutY="105.0" prefHeight="30.0" prefWidth="440.0" />
+                        <TextField fx:id="email" disable="true" editable="false" layoutX="101.0" layoutY="165.0" prefHeight="30.0" prefWidth="440.0" />
+                        <TextField fx:id="id" disable="true" editable="false" layoutX="102.0" layoutY="52.0" prefHeight="25.0" prefWidth="123.0" />
+                        <Label layoutX="105.0" layoutY="33.0" text="ID:">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Button layoutX="101.0" layoutY="334.0" mnemonicParsing="false" onAction="#informationUpdate" prefHeight="30.0" prefWidth="440.0" style="-fx-border-radius: 15; -fx-background-color: #3F528C;" text="Atualizar informações" textFill="#f2f2f2" />
-                        <Label fx:id="password" layoutX="105.0" layoutY="251.0" text="Senha: ">
+                        <Button layoutX="101.0" layoutY="288.0" mnemonicParsing="false" onAction="#informationUpdate" prefHeight="30.0" prefWidth="440.0" style="-fx-border-radius: 15; -fx-background-color: #3F528C;" text="Atualizar informações" textFill="#f2f2f2" />
+                        <TextField fx:id="password" layoutX="102.0" layoutY="224.0" prefHeight="30.0" prefWidth="440.0" />
+                        <Label layoutX="103.0" layoutY="205.0" text="Senha:">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="password" layoutX="102.0" layoutY="271.0" prefHeight="30.0" prefWidth="440.0" />
                      </children>
                   </AnchorPane>
                </center>

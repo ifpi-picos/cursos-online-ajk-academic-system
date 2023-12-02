@@ -3,10 +3,12 @@ package br.edu.ifpi.data.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.ResultSet;
 
 import br.edu.ifpi.data.adapters.StudentAdapter;
 import br.edu.ifpi.entities.Student;
+import br.edu.ifpi.entities.enums.StudentStatus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,11 +21,11 @@ public class StudentDao implements Dao<Student> {
     }
 
     public Student login(String username, String password) {
-        final String sql = "SELECT * FROM Student WHERE (email = ? OR name = ?) AND password = ? AND status = 'ACTIVE'";
+        final String sql = "SELECT * FROM Student WHERE email = ? AND password = ? AND status = '%s'"
+                .formatted(StudentStatus.ACTIVE);
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, username);
-            preparedStatement.setString(2, username);
-            preparedStatement.setString(3, password);
+            preparedStatement.setString(2, password);
             final ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 return StudentAdapter.fromResultSet(resultSet);
@@ -47,6 +49,8 @@ public class StudentDao implements Dao<Student> {
             preparedStatement.setString(3, student.getPassword());
             preparedStatement.setString(4, student.getStudentStatus().toString());
             return preparedStatement.executeUpdate();
+        } catch (SQLIntegrityConstraintViolationException e) {
+            return 0;
         } catch (SQLException e) {
             System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
         } catch (Exception e) {

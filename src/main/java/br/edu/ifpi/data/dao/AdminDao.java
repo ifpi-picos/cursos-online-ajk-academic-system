@@ -3,6 +3,7 @@ package br.edu.ifpi.data.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.ResultSet;
 
 import br.edu.ifpi.data.adapters.AdminAdapter;
@@ -19,11 +20,10 @@ public class AdminDao implements Dao<Admin> {
     }
 
     public Admin login(String username, String password) {
-        final String sql = "SELECT * FROM Admin WHERE (email = ? OR name = ?) AND password = ?";
+        final String sql = "SELECT * FROM Admin WHERE email = ? AND password = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, username);
-            preparedStatement.setString(2, username);
-            preparedStatement.setString(3, password);
+            preparedStatement.setString(2, password);
             final ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 return AdminAdapter.fromResultSet(resultSet);
@@ -45,6 +45,8 @@ public class AdminDao implements Dao<Admin> {
             preparedStatement.setString(2, admin.getEmail());
             preparedStatement.setString(3, admin.getPassword());
             return preparedStatement.executeUpdate();
+        } catch (SQLIntegrityConstraintViolationException e) {
+            return 0;
         } catch (SQLException e) {
             System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
         } catch (Exception e) {

@@ -52,7 +52,7 @@
                         <Font name="System Bold" size="20.0" />
                     </font>
                 </Text>
-                <Text layoutX="16.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuário ou e-mail:" wrappingWidth="115.9433822631836">
+                <Text layoutX="16.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E-mail:" wrappingWidth="115.9433822631836">
                <font>
                   <Font size="13.0" />
                </font></Text>
@@ -65,7 +65,7 @@
                         <Image url="@../img/lock.png" />
                     </image>
                 </ImageView>
-                <TextField fx:id="username" layoutX="16.0" layoutY="161.0" prefHeight="35.0" prefWidth="290.0" style="-fx-border-color: #3F528C; -fx-border-radius: 3;" />
+                <TextField fx:id="email" layoutX="16.0" layoutY="161.0" prefHeight="35.0" prefWidth="290.0" style="-fx-border-color: #3F528C; -fx-border-radius: 3;" />
                 <PasswordField fx:id="password" layoutX="16.0" layoutY="218.0" prefHeight="35.0" prefWidth="290.0" style="-fx-border-color: #3F528C; -fx-border-radius: 3;" />
                 <RadioButton fx:id="student" layoutX="17.0" layoutY="289.0" mnemonicParsing="false" selected="true" text="Aluno">
                     <toggleGroup>

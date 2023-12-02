@@ -39,7 +39,8 @@ public class DatabaseConnection {
                     + "id SERIAL PRIMARY KEY,"
                     + "name VARCHAR(255) NOT NULL,"
                     + "email VARCHAR(255) NOT NULL,"
-                    + "password VARCHAR(255) NOT NULL"
+                    + "password VARCHAR(255) NOT NULL,"
+                    + "CONSTRAINT unique_email_admin UNIQUE (email)"
                     + ")");
 
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS Teacher ("
@@ -47,7 +48,8 @@ public class DatabaseConnection {
                     + "name VARCHAR(255) NOT NULL,"
                     + "email VARCHAR(255) NOT NULL,"
                     + "password VARCHAR(255) NOT NULL,"
-                    + "status VARCHAR(20) NOT NULL"
+                    + "status VARCHAR(20) NOT NULL,"
+                    + "CONSTRAINT unique_email_teacher UNIQUE (email)"
                     + ")");
 
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS Student ("
@@ -55,7 +57,8 @@ public class DatabaseConnection {
                     + "name VARCHAR(255) NOT NULL,"
                     + "email VARCHAR(255) NOT NULL,"
                     + "password VARCHAR(255) NOT NULL,"
-                    + "status VARCHAR(20) NOT NULL"
+                    + "status VARCHAR(20) NOT NULL,"
+                    + "CONSTRAINT unique_email_student UNIQUE (email)"
                     + ")");
 
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS Course ("

@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.sql.Connection;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 import br.edu.ifpi.config.Routes;
 import br.edu.ifpi.data.dao.StudentDao;
@@ -81,19 +82,31 @@ public class RegisterController implements Initializable {
 
         if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
             AlertMessage.show("Erro ao cadastrar", "", "Preencha todos os campos!", AlertType.ERROR);
-        } else {
-            if (isStudent) {
-                Student user = new Student(name, email, password, StudentStatus.ACTIVE);
-                studentDao.insert(user);
+        } else if (!isValidEmail(email)) {
+            AlertMessage.show("Erro ao cadastrar", "", "Email inválido!", AlertType.ERROR);
+        } else if (isStudent) {
+            Student user = new Student(name, email, password, StudentStatus.ACTIVE);
+            int row = studentDao.insert(user);
+            if (row > 0) {
                 AlertMessage.show("Sucesso", "", "Usuário criado com sucesso!", AlertType.INFORMATION);
-                sceneNavigator.navigateTo(Routes.login, this.stage, loginController);
             } else {
-                Teacher user = new Teacher(name, email, password, TeacherStatus.ACTIVE);
-                teacherDao.insert(user);
-                AlertMessage.show("Sucesso", "", "Usuário criado com sucesso!", AlertType.INFORMATION);
-                sceneNavigator.navigateTo(Routes.login, this.stage, loginController);
+                AlertMessage.show("Erro ao cadastrar", "", "Email já cadastrado!", AlertType.ERROR);
             }
+            sceneNavigator.navigateTo(Routes.login, this.stage, loginController);
+        } else {
+            Teacher user = new Teacher(name, email, password, TeacherStatus.ACTIVE);
+            teacherDao.insert(user);
+            AlertMessage.show("Sucesso", "", "Usuário criado com sucesso!", AlertType.INFORMATION);
+            sceneNavigator.navigateTo(Routes.login, this.stage, loginController);
         }
+    }
+
+    private boolean isValidEmail(String email) {
+        String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+        Pattern pattern = Pattern.compile(EMAIL_PATTERN, Pattern.CASE_INSENSITIVE);
+
+        return pattern.matcher(email).matches();
     }
 
     @Override
