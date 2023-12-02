@@ -8,7 +8,7 @@ import br.edu.ifpi.config.Routes;
 import br.edu.ifpi.controllers.LoginController;
 import br.edu.ifpi.data.dao.CourseDao;
 import br.edu.ifpi.data.dao.StudentCourseDao;
-import br.edu.ifpi.entities.Teacher;
+import br.edu.ifpi.entities.User;
 import br.edu.ifpi.util.SceneNavigator;
 
 import javafx.event.ActionEvent;
@@ -22,7 +22,7 @@ public class TeacherController implements Initializable {
 
     protected Connection connection;
     protected SceneNavigator sceneNavigator;
-    protected Teacher teacher;
+    protected User teacher;
     protected Stage stage;
     protected LoginController loginController;
     protected CourseDao courseDao;
@@ -31,7 +31,7 @@ public class TeacherController implements Initializable {
     public TeacherController(
             Connection connection,
             SceneNavigator sceneNavigator,
-            Teacher teacher,
+            User teacher,
             Stage stage,
             LoginController loginController,
             CourseDao courseDao,

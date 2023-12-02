@@ -11,7 +11,7 @@ import br.edu.ifpi.data.dao.CourseDao;
 import br.edu.ifpi.data.dao.StudentCourseDao;
 import br.edu.ifpi.entities.Course;
 import br.edu.ifpi.entities.StudentCourse;
-import br.edu.ifpi.entities.Teacher;
+import br.edu.ifpi.entities.User;
 import br.edu.ifpi.entities.enums.CourseStatus;
 import br.edu.ifpi.entities.enums.EnrollmentStatus;
 import br.edu.ifpi.util.AlertMessage;
@@ -42,7 +42,7 @@ public class TeacherOpenCourseController extends TeacherController {
     public TeacherOpenCourseController(
             Connection connection,
             SceneNavigator sceneNavigator,
-            Teacher teacher,
+            User teacher,
             Stage stage,
             LoginController loginController,
             CourseDao courseDao,

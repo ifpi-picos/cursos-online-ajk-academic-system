@@ -8,7 +8,7 @@ import br.edu.ifpi.config.Routes;
 import br.edu.ifpi.controllers.LoginController;
 import br.edu.ifpi.data.dao.CourseDao;
 import br.edu.ifpi.data.dao.StudentCourseDao;
-import br.edu.ifpi.entities.Student;
+import br.edu.ifpi.entities.User;
 import br.edu.ifpi.util.SceneNavigator;
 
 import javafx.event.ActionEvent;
@@ -22,7 +22,7 @@ public class StudentController implements Initializable {
 
     protected Connection connection;
     protected SceneNavigator sceneNavigator;
-    protected Student student;
+    protected User student;
     protected Stage stage;
     protected LoginController loginController;
 
@@ -32,7 +32,7 @@ public class StudentController implements Initializable {
     public StudentController(
             Connection connection,
             SceneNavigator sceneNavigator,
-            Student student,
+            User student,
             Stage stage,
             LoginController loginController,
             CourseDao courseDao,
@@ -92,7 +92,7 @@ public class StudentController implements Initializable {
 
     @FXML
     void usernameButton(MouseEvent event) {
-        StudentProfileController studentProfileController = new StudentProfileController(
+        ProfileController studentProfileController = new ProfileController(
                 this.connection, this.sceneNavigator, this.student, this.stage, this.loginController, this.courseDao,
                 this.studentCourseDao);
         sceneNavigator.navigateTo(Routes.studentProfile, this.stage, studentProfileController);

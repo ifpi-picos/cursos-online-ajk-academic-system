@@ -9,8 +9,8 @@ import br.edu.ifpi.controllers.LoginController;
 import br.edu.ifpi.data.dao.CourseDao;
 import br.edu.ifpi.data.dao.StudentCourseDao;
 import br.edu.ifpi.entities.Course;
-import br.edu.ifpi.entities.Student;
 import br.edu.ifpi.entities.StudentCourse;
+import br.edu.ifpi.entities.User;
 import br.edu.ifpi.entities.enums.CourseStatus;
 import br.edu.ifpi.entities.enums.EnrollmentStatus;
 import br.edu.ifpi.util.AlertMessage;
@@ -36,7 +36,7 @@ public class RegisterCourseController extends StudentController {
     public RegisterCourseController(
             Connection connection,
             SceneNavigator sceneNavigator,
-            Student student,
+            User student,
             Stage stage,
             LoginController loginController,
             CourseDao courseDao,

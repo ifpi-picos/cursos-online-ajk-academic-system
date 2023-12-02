@@ -8,8 +8,8 @@ import java.util.ResourceBundle;
 import br.edu.ifpi.controllers.LoginController;
 import br.edu.ifpi.data.dao.CourseDao;
 import br.edu.ifpi.data.dao.StudentCourseDao;
-import br.edu.ifpi.entities.Student;
 import br.edu.ifpi.entities.StudentCourse;
+import br.edu.ifpi.entities.User;
 import br.edu.ifpi.entities.enums.EnrollmentStatus;
 import br.edu.ifpi.util.SceneNavigator;
 
@@ -27,10 +27,12 @@ public class CompletedCourseController extends StudentController {
 
     private ObservableList<StudentCourse> observableListCourse;
 
+    List<StudentCourse> studentCourses;
+
     public CompletedCourseController(
             Connection connection,
             SceneNavigator sceneNavigator,
-            Student student,
+            User student,
             Stage stage,
             LoginController loginController,
             CourseDao courseDao,
@@ -57,20 +59,18 @@ public class CompletedCourseController extends StudentController {
     @FXML
     private TableView<StudentCourse> tableCompletedCourses;
 
+    @FXML
+    private Text average;
+
+    @FXML
+    private Text performance;
+
     public void loadCompletedCourses() {
-        final String[] conditions = {
-                "student_id = " + student.getId(),
-                "status = '" + EnrollmentStatus.APPROVED.toString() + "'"
-        };
-
-        List<StudentCourse> studentCourses = super.studentCourseDao.selectAll(conditions);
-
         name.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getStudent().getName()));
         course.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCourse().getName()));
         grade.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getFinalGrade()).asObject());
         status.setCellValueFactory(cellData -> new SimpleStringProperty(getStatus(cellData.getValue())));
         observableListCourse = FXCollections.observableArrayList(studentCourses);
-
     }
 
     public String getStatus(StudentCourse studentCourse) {
@@ -85,13 +85,44 @@ public class CompletedCourseController extends StudentController {
         }
     }
 
+    private void loadPerformance() {
+        double performance = 0;
+        for (StudentCourse studentCourse : studentCourses) {
+            if (studentCourse.getEnrollmentStatus() == EnrollmentStatus.APPROVED) {
+                performance++;
+            }
+        }
+        performance /= studentCourses.size();
+        performance *= 100;
+
+        this.performance.setText(String.format("%.0f%%", performance));
+    }
+
+    private void loadAverage() {
+        double average = 0;
+        for (StudentCourse studentCourse : studentCourses) {
+            average += studentCourse.getFinalGrade();
+        }
+        average /= studentCourses.size();
+
+        this.average.setText(String.format("%.2f", average));
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        final String[] conditions = {
+                "student_id = " + student.getId(),
+                "status = '" + EnrollmentStatus.APPROVED.toString() + "'"
+        };
+
+        studentCourses = super.studentCourseDao.selectAll(conditions);
+
         username.setText("Olá, " + student.getName());
         loadCompletedCourses();
+        loadPerformance();
+        loadAverage();
 
         tableCompletedCourses.setItems(observableListCourse);
-
     }
 
 }

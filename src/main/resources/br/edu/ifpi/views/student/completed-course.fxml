@@ -54,7 +54,33 @@
             </BorderPane>
          </top>
          <bottom>
-            <BorderPane prefHeight="67.0" prefWidth="531.0" BorderPane.alignment="CENTER" />
+            <BorderPane prefHeight="67.0" prefWidth="531.0" BorderPane.alignment="CENTER">
+               <left>
+                  <AnchorPane prefHeight="79.0" prefWidth="386.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Text layoutX="6.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Média das notas:">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="6.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aproveitamento:">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="average" layoutX="109.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="performance" layoutX="109.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+               </left></BorderPane>
          </bottom>
          <padding>
             <Insets right="20.0" />
