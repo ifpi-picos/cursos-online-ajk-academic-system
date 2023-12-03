@@ -23,8 +23,144 @@
     border-radius: 100;
 }
 
+.button-theme:hover {
+    -fx-cursor: hand;
+
+    cursor: hand;
+}
+
 .header {
     -fx-background-color: #2f3941;
 
     background-color: #2f3941;
+}
+
+.menu {
+    -fx-background-color: rgba(235, 235, 235, 0.815);
+
+    background-color: rgba(235, 235, 235, 0.815);
+}
+
+.btn-menu:hover {
+    -fx-background-color: transparent;
+    -fx-border-radius: 3px;
+    -fx-text-fill: #3f528c;
+    -fx-border-color: #3F528C;
+    -fx-cursor: hand;
+
+    cursor: hand;
+    background-color: transparent;
+    border-radius: 3px;
+    border-color: #3F528C;
+}
+
+.btn-logout {
+    -fx-background-color: transparent;
+    -fx-border-color: #3F528C;
+    -fx-border-radius: 3px;
+
+    background-color: transparent;
+    border-color: #3F528C;
+    border-radius: 3px;
+}
+
+.btn-logout:hover {
+    -fx-background-color: transparent;
+    -fx-text-fill: #3f528c;
+    -fx-border-color: #3F528C;
+    -fx-cursor: hand;
+
+    cursor: hand;
+    background-color: #3F528C;
+    border-color: #3F528C;
+}
+
+.username {
+    -fx-background-color: #2f3941;
+    -fx-background-radius: 5px;
+
+    background-color: #2f3941;
+}
+
+.username:hover {
+    -fx-cursor: hand;
+
+    cursor: hand;
+}
+
+.btn-confirm {
+    -fx-background-color: #3F528C;
+    -fx-text-fill: white;
+    -fx-border-color: #3F528C;
+    -fx-border-radius: 3px;
+
+    background-color: #3F528C;
+    border-color: #3F528C;
+    border-radius: 3px;
+}
+
+.btn-confirm:hover {
+    -fx-background-color: #f2f2f2;
+    -fx-text-fill: #3F528C;
+    -fx-border-color: #3F528C;
+    -fx-border-radius: 3px;
+    -fx-cursor: hand;
+
+    cursor: hand;
+    background-color: #3F528C;
+    border-color: #3F528C;
+    border-radius: 3px;
+}
+
+.table-view {
+    -fx-control-inner-background: #f2f2f2;
+    -fx-control-inner-text: #ffffff;
+}
+
+.table-column {
+    -fx-text-fill: #000000;
+}
+
+.table-row-cell {
+    -fx-background-color: #f2f2f2;
+
+    background-color: #f2f2f2;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #d4d4d4;
+
+    background-color: #d4d4d4;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #e15dfc;
+
+    background-color: #e15dfc;
+}
+
+.table-row-cell:selected:hover {
+    -fx-cursor: hand;
+
+    cursor: hand;
+}
+
+.table-row-cell:hover {
+    -fx-cursor: hand;
+
+    cursor: hand;
+}
+
+.text-column {
+    -fx-fill: #000000;
+
+    fill: #000000;
+}
+
+.table-view .label {
+    -fx-text-fill: #333333;
+}
+
+.label {
+    -fx-text-fill: #000000;
 }

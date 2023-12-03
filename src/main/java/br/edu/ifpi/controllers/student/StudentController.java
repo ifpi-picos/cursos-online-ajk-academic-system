@@ -11,7 +11,7 @@ import br.edu.ifpi.data.dao.StudentCourseDao;
 import br.edu.ifpi.data.dao.StudentDao;
 import br.edu.ifpi.entities.User;
 import br.edu.ifpi.util.SceneNavigator;
-
+import br.edu.ifpi.util.prefs.PreferencesUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -80,6 +80,8 @@ public class StudentController implements Initializable {
         } else {
             setLightMode();
         }
+
+        PreferencesUtil.setDarkMode(isDarkMode);
     }
 
     private void setDarkMode() {
@@ -147,5 +149,13 @@ public class StudentController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         username.setText("Olá, " + student.getName());
+
+        isDarkMode = PreferencesUtil.isDarkMode();
+
+        if (isDarkMode) {
+            setDarkMode();
+        } else {
+            setLightMode();
+        }
     }
 }

@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" stylesheets="@../css/register.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
     <top>
         <BorderPane prefHeight="124.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
             <left>
@@ -68,7 +68,7 @@
                         <Font size="13.0" />
                     </font>
                 </Text>
-                <TextField fx:id="name" layoutX="16.0" layoutY="151.0" prefHeight="35.0" prefWidth="290.0" style="-fx-border-color: #3F528C; -fx-border-radius: 3;" />
+                <TextField fx:id="name" layoutX="16.0" layoutY="151.0" prefHeight="35.0" prefWidth="290.0" styleClass="formulario" />
 
                 <!-- E-mail -->
                 <Text layoutX="16.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E-mail:" wrappingWidth="115.9433822631836">
@@ -76,7 +76,7 @@
                         <Font size="13.0" />
                     </font>
                 </Text>
-                <TextField fx:id="email" layoutX="16.0" layoutY="208.0" prefHeight="35.0" prefWidth="290.0" style="-fx-border-color: #3F528C; -fx-border-radius: 3;" />
+                <TextField fx:id="email" layoutX="16.0" layoutY="208.0" prefHeight="35.0" prefWidth="290.0" styleClass="formulario" />
 
                 <!-- Senha -->
                 <Text layoutX="17.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Senha:" wrappingWidth="46.939453125">
@@ -84,7 +84,7 @@
                         <Font size="13.0" />
                     </font>
                 </Text>
-                <PasswordField fx:id="password" layoutX="16.0" layoutY="262.0" prefHeight="35.0" prefWidth="290.0" style="-fx-border-color: #3F528C; -fx-border-radius: 3;" />
+                <PasswordField fx:id="password" layoutX="16.0" layoutY="262.0" prefHeight="35.0" prefWidth="290.0" styleClass="formulario" />
 
                 <!-- Radiobuttons -->
                 <RadioButton fx:id="student" layoutX="17.0" layoutY="318.0" mnemonicParsing="false" selected="true" text="Aluno">
@@ -102,12 +102,12 @@
                 </RadioButton>
 
                 <!-- Botões -->
-                <Button layoutX="16.0" layoutY="358.0" mnemonicParsing="false" onAction="#createAccount" prefHeight="35.0" prefWidth="290.0" style="-fx-border-radius: 15; -fx-background-color: #3F528C;" text="Criar conta" textFill="#f2f2f2">
+                <Button layoutX="16.0" layoutY="358.0" mnemonicParsing="false" onAction="#createAccount" prefHeight="35.0" prefWidth="290.0" styleClass="btn" text="Criar conta" textFill="#f2f2f2">
                     <font>
                         <Font size="14.0" />
                     </font>
                 </Button>
-                <Button layoutX="16.0" layoutY="403.0" mnemonicParsing="false" onAction="#toGoBack" prefHeight="35.0" prefWidth="290.0" style="-fx-border-radius: 15; -fx-background-color: #E4E3DB; -fx-text-fill: #000000;" text="Voltar" textFill="#f2f2f2">
+                <Button layoutX="16.0" layoutY="403.0" mnemonicParsing="false" onAction="#toGoBack" prefHeight="35.0" prefWidth="290.0" styleClass="btn-back" text="Voltar" textFill="#f2f2f2">
                     <font>
                         <Font size="14.0" />
                     </font>

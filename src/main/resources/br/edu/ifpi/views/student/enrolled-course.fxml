@@ -13,23 +13,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
-   <top>
-      <AnchorPane prefHeight="85.0" prefWidth="600.0" style="-fx-background-color: #2f3941;" BorderPane.alignment="CENTER">
-         <children>
-            <Text fill="WHITE" layoutX="75.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sistema Acadêmico" wrappingWidth="243.990234375">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Text>
-            <ImageView fitHeight="49.0" fitWidth="59.0" layoutX="14.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../img/image-removebg-preview.png" />
-               </image>
-            </ImageView>
-         </children>
-      </AnchorPane>
-   </top>
+<BorderPane fx:id="parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" styleClass="primary-color" stylesheets="@../../css/lightMode.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <center>
@@ -43,9 +27,9 @@
             </TableView>
          </center>
          <top>
-            <BorderPane prefHeight="68.0" prefWidth="531.0" BorderPane.alignment="CENTER">
+            <BorderPane prefHeight="68.0" prefWidth="531.0" styleClass="primary-color" BorderPane.alignment="CENTER">
                <center>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cursos Matriculados" BorderPane.alignment="CENTER">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-column" text="Cursos Matriculados" BorderPane.alignment="CENTER">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -54,9 +38,9 @@
             </BorderPane>
          </top>
          <bottom>
-            <BorderPane prefHeight="67.0" prefWidth="531.0" BorderPane.alignment="CENTER">
+            <BorderPane prefHeight="67.0" prefWidth="531.0" styleClass="primary-color" BorderPane.alignment="CENTER">
                <right>
-                  <Button mnemonicParsing="false" onAction="#cancelRegistration" prefHeight="25.0" prefWidth="210.0" text="Cancelar matrícula" BorderPane.alignment="CENTER">
+                  <Button mnemonicParsing="false" onAction="#cancelRegistration" prefHeight="30.0" prefWidth="210.0" styleClass="btn-menu" text="Cancelar matrícula" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
                         <Insets />
                      </BorderPane.margin>
@@ -70,9 +54,9 @@
       </BorderPane>
    </center>
    <left>
-      <BorderPane prefHeight="465.0" prefWidth="240.0" BorderPane.alignment="CENTER">
+      <BorderPane prefHeight="465.0" prefWidth="240.0" styleClass="menu" BorderPane.alignment="CENTER">
          <bottom>
-            <Button fx:id="exit" mnemonicParsing="false" onAction="#exit" prefHeight="30.0" prefWidth="210.0" style="-fx-border-color: #3F528C; -fx-border-radius: 2;" text="Sair" BorderPane.alignment="CENTER">
+            <Button fx:id="exit" mnemonicParsing="false" onAction="#exit" prefHeight="30.0" prefWidth="210.0" styleClass="btn-logout" text="Sair" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="15.0" />
                </BorderPane.margin>
@@ -93,7 +77,7 @@
                <center>
                   <AnchorPane prefHeight="68.0" prefWidth="178.0" BorderPane.alignment="CENTER">
                      <children>
-                        <TextFlow layoutX="8.0" layoutY="34.0" onMouseClicked="#usernameButton" prefHeight="25.0" prefWidth="164.0" style="-fx-background-color: #2f3941; -fx-background-radius: 5;" textAlignment="CENTER">
+                        <TextFlow layoutX="8.0" layoutY="34.0" onMouseClicked="#usernameButton" prefHeight="25.0" prefWidth="164.0" styleClass="username" textAlignment="CENTER">
                            <children>
                               <Text fx:id="username" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="150.13671875">
                                  <font>
@@ -119,13 +103,48 @@
          <center>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button layoutX="7.0" layoutY="47.0" mnemonicParsing="false" onAction="#register" prefHeight="30.0" prefWidth="210.0" text="Realizar matrícula" />
-                  <Button layoutX="7.0" layoutY="83.0" mnemonicParsing="false" onAction="#coursesEnrolled" prefHeight="30.0" prefWidth="210.0" text="Cursos matriculados" />
-                  <Button layoutX="7.0" layoutY="119.0" mnemonicParsing="false" onAction="#completedCourses" prefHeight="30.0" prefWidth="210.0" text="Cursos concluídos" />
-                  <Button layoutX="9.0" layoutY="11.0" mnemonicParsing="false" onAction="#home" prefHeight="30.0" prefWidth="210.0" text="Tela inicial" />
+                  <Button layoutX="7.0" layoutY="47.0" mnemonicParsing="false" onAction="#register" prefHeight="30.0" prefWidth="210.0" styleClass="btn-menu" text="Realizar matrícula" />
+                  <Button layoutX="7.0" layoutY="83.0" mnemonicParsing="false" onAction="#coursesEnrolled" prefHeight="30.0" prefWidth="210.0" styleClass="btn-menu" text="Cursos matriculados" />
+                  <Button layoutX="7.0" layoutY="119.0" mnemonicParsing="false" onAction="#completedCourses" prefHeight="30.0" prefWidth="210.0" styleClass="btn-menu" text="Cursos concluídos" />
+                  <Button layoutX="7.0" layoutY="11.0" mnemonicParsing="false" onAction="#home" prefHeight="30.0" prefWidth="210.0" styleClass="btn-menu" text="Tela inicial" />
                </children>
             </AnchorPane>
          </center>
       </BorderPane>
    </left>
+   <top>
+      <BorderPane prefHeight="80.0" prefWidth="1200.0" styleClass="header" BorderPane.alignment="CENTER">
+         <left>
+            <AnchorPane prefHeight="80.0" prefWidth="330.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="49.0" fitWidth="59.0" layoutX="14.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/image-removebg-preview.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="WHITE" layoutX="73.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sistema Acadêmico" wrappingWidth="243.990234375">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+         </left>
+         <right>
+            <AnchorPane prefHeight="80.0" prefWidth="80.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="btnMode" alignment="CENTER" layoutX="21.0" layoutY="21.0" mnemonicParsing="false" onAction="#setMode" prefHeight="38.0" prefWidth="30.0" styleClass="button-theme">
+                     <graphic>
+                        <ImageView fx:id="imgMode" fitHeight="30.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/icons8-símbolo-da-lua-50.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </right>
+      </BorderPane>
+   </top>
 </BorderPane>

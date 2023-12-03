@@ -5,9 +5,9 @@
 }
 
 .secondary-color {
-    -fx-background-color: #f2f2f2;
+    -fx-background-color: #333333;
 
-    background-color: #f2f2f2;
+    background-color: #333333;
 }
 
 .button-theme {
@@ -23,8 +23,162 @@
     border-radius: 100;
 }
 
-.header {
-    -fx-background-color: #f8ffff;
+.button-theme:hover {
+    -fx-cursor: hand;
 
-    background-color: #f8ffff;
+    cursor: hand;
+}
+
+.header {
+    -fx-background-color: #1a2025;
+
+    background-color: #1a2025;
+}
+
+.menu {
+    -fx-background-color: rgba(32, 32, 32, 0.815);
+
+    background-color: rgba(32, 32, 32, 0.815);
+}
+
+.btn-menu {
+    -fx-background-color: #383737;
+    -fx-text-fill: white;
+    -fx-border-color: #3F528C;
+    -fx-border-radius: 3px;
+
+    background-color: #3F528C;
+    border-color: #3F528C;
+    border-radius: 3px;
+
+}
+
+.btn-menu:hover {
+    -fx-background-color: transparent;
+    -fx-border-radius: 3px;
+    -fx-text-fill: #3c68ee;
+    -fx-border-color: #3F528C;
+    -fx-cursor: hand;
+
+    cursor: hand;
+    background-color: transparent;
+    border-radius: 3px;
+    border-color: #3F528C;
+}
+
+.btn-logout {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-border-color: white;
+    -fx-border-radius: 3px;
+
+    background-color: transparent;
+    border-color: #3F528C;
+    border-radius: 3px;
+}
+
+.btn-logout:hover {
+    -fx-background-color: transparent;
+    -fx-text-fill: #6485e7;
+    -fx-border-color: white;
+    -fx-cursor: hand;
+
+    cursor: hand;
+    background-color: #3F528C;
+    border-color: #3F528C;
+}
+
+.username {
+    -fx-background-color: #1a2025;
+    -fx-background-radius: 5px;
+
+    background-color: #1a2025;
+}
+
+.username:hover {
+    -fx-cursor: hand;
+
+    cursor: hand;
+}
+
+.table-view {
+    -fx-control-inner-background: #333333;
+    -fx-control-inner-text: #ffffff;
+}
+
+.table-view .label {
+    -fx-text-fill: #ffffff;
+}
+
+.table-column {
+    -fx-text-fill: #ffffff;
+}
+
+.table-column .label {
+    -fx-text-fill: #000000;
+}
+
+.table-row-cell {
+    -fx-background-color: #666666;
+
+    background-color: #666666;
+}
+
+.table-row-cell:hover {
+    -fx-cursor: hand;
+
+    cursor: hand;
+
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #555555;
+
+    background-color: #555555;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #6d0083;
+
+    background-color: #aa00cc;
+}
+
+.table-row-cell:selected:hover {
+    -fx-cursor: hand;
+
+    cursor: hand;
+}
+
+.text-column {
+    -fx-fill: #ffffff;
+
+    fill: #ffffff;
+}
+
+.btn-confirm {
+    -fx-background-color: #3F528C;
+    -fx-text-fill: white;
+    -fx-border-color: #3F528C;
+    -fx-border-radius: 3px;
+
+    background-color: #3F528C;
+    border-color: #3F528C;
+    border-radius: 3px;
+}
+
+.btn-confirm:hover {
+    -fx-background-color: transparent;
+    -fx-text-fill: #ffffff;
+    -fx-border-color: #3F528C;
+    -fx-border-radius: 3px;
+    -fx-cursor: hand;
+
+    cursor: hand;
+    background-color: transparent;
+    border-color: #3F528C;
+    border-radius: 3px;
+}
+
+.label {
+    -fx-text-fill: #ffffff;
 }
