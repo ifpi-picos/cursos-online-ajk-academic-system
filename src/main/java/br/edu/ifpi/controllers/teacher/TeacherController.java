@@ -61,7 +61,10 @@ public class TeacherController implements Initializable {
 
     @FXML
     void usernameButton(MouseEvent event) {
-
+        TeacherProfileController teacherProfileController = new TeacherProfileController(
+                this.connection, this.sceneNavigator, this.teacher, this.stage, this.loginController, this.courseDao,
+                this.studentCourseDao);
+        sceneNavigator.navigateTo(Routes.teacherProfile, this.stage, teacherProfileController);
     }
 
     @FXML

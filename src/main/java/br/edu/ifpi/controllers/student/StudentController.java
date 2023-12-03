@@ -15,7 +15,11 @@ import br.edu.ifpi.util.SceneNavigator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -53,7 +57,44 @@ public class StudentController implements Initializable {
     }
 
     @FXML
+    private Button btnMode;
+
+    @FXML
+    private Button exit;
+
+    @FXML
+    private ImageView imgMode;
+
+    @FXML
+    private BorderPane parent;
+
+    @FXML
     private Text username;
+
+    private boolean isDarkMode = false;
+
+    public void setMode(ActionEvent event) {
+        isDarkMode = !isDarkMode;
+        if(isDarkMode) {
+            setDarkMode();
+        } else {
+            setLightMode();
+        }
+    }
+
+    private void setDarkMode() {
+        parent.getStylesheets().remove(getClass().getResource(Routes.lightMode).toExternalForm());
+        parent.getStylesheets().add(getClass().getResource(Routes.darkMode).toExternalForm());
+        Image image = new Image(getClass().getResourceAsStream(Routes.imgSun));
+        imgMode.setImage(image);
+    }
+
+    private void setLightMode() {
+        parent.getStylesheets().remove(getClass().getResource(Routes.darkMode).toExternalForm());
+        parent.getStylesheets().add(getClass().getResource(Routes.lightMode).toExternalForm());
+        Image image = new Image(getClass().getResourceAsStream(Routes.imgMoon));
+        imgMode.setImage(image);
+    }
 
     @FXML
     void home(ActionEvent event) {

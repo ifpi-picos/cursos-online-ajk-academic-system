@@ -100,12 +100,13 @@ public class AdminController implements Initializable {
 
     @FXML
     void usernameButton(MouseEvent event) {
-
+        AdminProfileController adminProfileController = new AdminProfileController(
+            this.connection, this.sceneNavigator, this.admin, this.stage, this.courseDao, this.studentDao, this.loginController, this.teacherDao); 
+        sceneNavigator.navigateTo(Routes.adminProfile, this.stage, adminProfileController);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         username.setText("Olá, " + admin.getName());
     }
-
 }
