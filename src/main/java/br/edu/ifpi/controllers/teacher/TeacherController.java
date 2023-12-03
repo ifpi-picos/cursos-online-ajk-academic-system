@@ -10,11 +10,15 @@ import br.edu.ifpi.data.dao.CourseDao;
 import br.edu.ifpi.data.dao.StudentCourseDao;
 import br.edu.ifpi.entities.User;
 import br.edu.ifpi.util.SceneNavigator;
-
+import br.edu.ifpi.util.prefs.PreferencesUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -86,6 +90,49 @@ public class TeacherController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         username.setText("Olá, " + teacher.getName());
+
+        isDarkMode = PreferencesUtil.isDarkMode();
+
+        if (isDarkMode) {
+            setDarkMode();
+        } else {
+            setLightMode();
+        }
     }
 
+    @FXML
+    private Button btnMode;
+
+    @FXML
+    private ImageView imgMode;
+
+    @FXML
+    private BorderPane parent;
+
+    private boolean isDarkMode = false;
+
+    public void setMode(ActionEvent event) {
+        isDarkMode = !isDarkMode;
+        if(isDarkMode) {
+            setDarkMode();
+        } else {
+            setLightMode();
+        }
+
+        PreferencesUtil.setDarkMode(isDarkMode);
+    }
+
+    private void setDarkMode() {
+        parent.getStylesheets().remove(getClass().getResource(Routes.lightMode).toExternalForm());
+        parent.getStylesheets().add(getClass().getResource(Routes.darkMode).toExternalForm());
+        Image image = new Image(getClass().getResourceAsStream(Routes.imgSun));
+        imgMode.setImage(image);
+    }
+
+    private void setLightMode() {
+        parent.getStylesheets().remove(getClass().getResource(Routes.darkMode).toExternalForm());
+        parent.getStylesheets().add(getClass().getResource(Routes.lightMode).toExternalForm());
+        Image image = new Image(getClass().getResourceAsStream(Routes.imgMoon));
+        imgMode.setImage(image);
+    }
 }
