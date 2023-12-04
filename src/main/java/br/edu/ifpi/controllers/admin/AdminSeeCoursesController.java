@@ -15,7 +15,7 @@ import br.edu.ifpi.entities.User;
 import br.edu.ifpi.entities.enums.CourseStatus;
 import br.edu.ifpi.util.AlertMessage;
 import br.edu.ifpi.util.SceneNavigator;
-
+import br.edu.ifpi.util.prefs.PreferencesUtil;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,6 +26,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -146,6 +149,49 @@ public class AdminSeeCoursesController extends AdminController {
 
         loadTableCourse();
         tableCourses.setItems(observableListCourse);
+
+        isDarkMode = PreferencesUtil.isDarkMode();
+
+        if (isDarkMode) {
+            setDarkMode();
+        } else {
+            setLightMode();
+        }
     }
 
+    @FXML
+    private Button btnMode;
+
+    @FXML
+    private ImageView imgMode;
+
+    @FXML
+    private BorderPane parent;
+
+    private boolean isDarkMode = false;
+
+    public void setMode(ActionEvent event) {
+        isDarkMode = !isDarkMode;
+        if(isDarkMode) {
+            setDarkMode();
+        } else {
+            setLightMode();
+        }
+
+        PreferencesUtil.setDarkMode(isDarkMode);
+    }
+
+    private void setDarkMode() {
+        parent.getStylesheets().remove(getClass().getResource(Routes.lightMode).toExternalForm());
+        parent.getStylesheets().add(getClass().getResource(Routes.darkMode).toExternalForm());
+        Image image = new Image(getClass().getResourceAsStream(Routes.imgSun));
+        imgMode.setImage(image);
+    }
+
+    private void setLightMode() {
+        parent.getStylesheets().remove(getClass().getResource(Routes.darkMode).toExternalForm());
+        parent.getStylesheets().add(getClass().getResource(Routes.lightMode).toExternalForm());
+        Image image = new Image(getClass().getResourceAsStream(Routes.imgMoon));
+        imgMode.setImage(image);
+    }
 }
