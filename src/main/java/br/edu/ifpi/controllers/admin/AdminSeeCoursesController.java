@@ -15,9 +15,8 @@ import br.edu.ifpi.entities.Course;
 import br.edu.ifpi.entities.Admin;
 import br.edu.ifpi.entities.enums.CourseStatus;
 import br.edu.ifpi.util.AlertMessage;
+import br.edu.ifpi.util.Preferences;
 import br.edu.ifpi.util.SceneNavigator;
-import br.edu.ifpi.util.prefs.PreferencesUtil;
-
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -150,7 +149,7 @@ public class AdminSeeCoursesController extends AdminController {
         loadTableCourse();
         tableCourses.setItems(observableListCourse);
 
-        isDarkMode = PreferencesUtil.isDarkMode();
+        isDarkMode = Preferences.isDarkMode();
 
         if (isDarkMode) {
             setDarkMode();

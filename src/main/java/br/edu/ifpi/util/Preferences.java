@@ -1,9 +1,9 @@
-package br.edu.ifpi.util.prefs;
+package br.edu.ifpi.util;
 
 import java.io.*;
 import java.util.Properties;
 
-public class PreferencesUtil {
+public class Preferences {
 
     private static final String configs = "config.properties";
     private static final String darkMode = "modoEscuro";

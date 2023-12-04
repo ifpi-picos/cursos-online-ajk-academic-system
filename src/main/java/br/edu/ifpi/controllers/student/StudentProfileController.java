@@ -9,9 +9,8 @@ import br.edu.ifpi.data.dao.StudentCourseDao;
 import br.edu.ifpi.data.dao.StudentDao;
 import br.edu.ifpi.entities.Student;
 import br.edu.ifpi.util.AlertMessage;
+import br.edu.ifpi.util.Preferences;
 import br.edu.ifpi.util.SceneNavigator;
-import br.edu.ifpi.util.prefs.PreferencesUtil;
-
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -80,7 +79,7 @@ public class StudentProfileController extends StudentController {
         id.setText(String.valueOf(student.getId()));
         password.setText(student.getPassword());
 
-        isDarkMode = PreferencesUtil.isDarkMode();
+        isDarkMode = Preferences.isDarkMode();
 
         if (isDarkMode) {
             setDarkMode();

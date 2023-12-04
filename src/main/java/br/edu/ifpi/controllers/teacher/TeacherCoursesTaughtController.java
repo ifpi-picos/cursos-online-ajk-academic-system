@@ -13,8 +13,8 @@ import br.edu.ifpi.entities.Course;
 import br.edu.ifpi.entities.StudentCourse;
 import br.edu.ifpi.entities.Teacher;
 import br.edu.ifpi.entities.enums.CourseStatus;
+import br.edu.ifpi.util.Preferences;
 import br.edu.ifpi.util.SceneNavigator;
-import br.edu.ifpi.util.prefs.PreferencesUtil;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -104,7 +104,7 @@ public class TeacherCoursesTaughtController extends TeacherController {
         loadTableCourse();
         tableCourses.setItems(observableListCourse);
 
-        isDarkMode = PreferencesUtil.isDarkMode();
+        isDarkMode = Preferences.isDarkMode();
 
         if (isDarkMode) {
             setDarkMode();

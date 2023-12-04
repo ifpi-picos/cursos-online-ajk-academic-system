@@ -11,9 +11,8 @@ import br.edu.ifpi.data.dao.CourseDao;
 import br.edu.ifpi.data.dao.StudentDao;
 import br.edu.ifpi.data.dao.TeacherDao;
 import br.edu.ifpi.entities.Admin;
+import br.edu.ifpi.util.Preferences;
 import br.edu.ifpi.util.SceneNavigator;
-import br.edu.ifpi.util.prefs.PreferencesUtil;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -79,7 +78,7 @@ public class AdminController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         username.setText("Olá, " + admin.getName());
 
-        isDarkMode = PreferencesUtil.isDarkMode();
+        isDarkMode = Preferences.isDarkMode();
 
         if (isDarkMode) {
             setDarkMode();
@@ -143,7 +142,7 @@ public class AdminController implements Initializable {
             setLightMode();
         }
 
-        PreferencesUtil.setDarkMode(isDarkMode);
+        Preferences.setDarkMode(isDarkMode);
     }
 
     public void setDarkMode() {

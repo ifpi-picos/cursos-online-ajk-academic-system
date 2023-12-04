@@ -15,9 +15,8 @@ import br.edu.ifpi.entities.Student;
 import br.edu.ifpi.entities.enums.CourseStatus;
 import br.edu.ifpi.entities.enums.EnrollmentStatus;
 import br.edu.ifpi.util.AlertMessage;
+import br.edu.ifpi.util.Preferences;
 import br.edu.ifpi.util.SceneNavigator;
-import br.edu.ifpi.util.prefs.PreferencesUtil;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -139,7 +138,7 @@ public class RegisterCourseController extends StudentController {
 
         tableRegister.setItems(observableListCourse);
 
-        isDarkMode = PreferencesUtil.isDarkMode();
+        isDarkMode = Preferences.isDarkMode();
 
         if (isDarkMode) {
             setDarkMode();

@@ -15,9 +15,8 @@ import br.edu.ifpi.entities.Teacher;
 import br.edu.ifpi.entities.enums.CourseStatus;
 import br.edu.ifpi.entities.enums.EnrollmentStatus;
 import br.edu.ifpi.util.AlertMessage;
+import br.edu.ifpi.util.Preferences;
 import br.edu.ifpi.util.SceneNavigator;
-import br.edu.ifpi.util.prefs.PreferencesUtil;
-
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -219,7 +218,7 @@ public class TeacherOpenCourseController extends TeacherController {
             nameCourse.setText(this.course.getName() + " - FINALIZADO");
         }
 
-        isDarkMode = PreferencesUtil.isDarkMode();
+        isDarkMode = Preferences.isDarkMode();
 
         if (isDarkMode) {
             setDarkMode();

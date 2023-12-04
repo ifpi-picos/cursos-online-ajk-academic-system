@@ -12,9 +12,8 @@ import br.edu.ifpi.data.dao.StudentDao;
 import br.edu.ifpi.entities.StudentCourse;
 import br.edu.ifpi.entities.Student;
 import br.edu.ifpi.entities.enums.EnrollmentStatus;
+import br.edu.ifpi.util.Preferences;
 import br.edu.ifpi.util.SceneNavigator;
-import br.edu.ifpi.util.prefs.PreferencesUtil;
-
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -127,7 +126,7 @@ public class CompletedCourseController extends StudentController {
 
         tableCompletedCourses.setItems(observableListCourse);
 
-        isDarkMode = PreferencesUtil.isDarkMode();
+        isDarkMode = Preferences.isDarkMode();
 
         if (isDarkMode) {
             setDarkMode();

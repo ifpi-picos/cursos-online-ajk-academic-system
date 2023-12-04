@@ -16,9 +16,8 @@ import br.edu.ifpi.entities.Teacher;
 import br.edu.ifpi.entities.Admin;
 import br.edu.ifpi.entities.enums.CourseStatus;
 import br.edu.ifpi.util.AlertMessage;
+import br.edu.ifpi.util.Preferences;
 import br.edu.ifpi.util.SceneNavigator;
-import br.edu.ifpi.util.prefs.PreferencesUtil;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -154,7 +153,7 @@ public class AdminRegisterController extends AdminController {
             tableTeacher.getSelectionModel().select(getTeacherRow(course.getTeacher()));
         }
 
-        isDarkMode = PreferencesUtil.isDarkMode();
+        isDarkMode = Preferences.isDarkMode();
 
         if (isDarkMode) {
             setDarkMode();
