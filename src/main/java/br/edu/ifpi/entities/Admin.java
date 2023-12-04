@@ -1,6 +1,7 @@
 package br.edu.ifpi.entities;
 
 public class Admin {
+    
     private int id;
     private String name;
     private String email;

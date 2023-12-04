@@ -3,6 +3,7 @@ package br.edu.ifpi.entities;
 import br.edu.ifpi.entities.enums.StudentStatus;
 
 public class Student {
+    
     private int id;
     private String name;
     private String email;
