@@ -5,7 +5,8 @@ import java.util.Properties;
 
 public class Preferences {
 
-    private static final String configs = "config.properties";
+    private static final String customDirectory = "src/main/java/br/edu/ifpi/config/";
+    private static final String configs = customDirectory + "config.properties";
     private static final String darkMode = "modoEscuro";
 
     private static Properties properties = new Properties();
@@ -14,7 +15,7 @@ public class Preferences {
         try (InputStream input = new FileInputStream(configs)) {
             properties.load(input);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("-arquivo de configurações não encontrado");
         }
     }
 
@@ -28,7 +29,7 @@ public class Preferences {
         try (OutputStream output = new FileOutputStream(configs)) {
             properties.store(output, null);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("-erro ao salvar arquivo de configurações");
         }
     }
 }
