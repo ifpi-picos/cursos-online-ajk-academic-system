@@ -64,6 +64,22 @@ public class AdminSeeStudentsController extends AdminController {
     @FXML
     private Text username;
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        username.setText("Olá, " + admin.getName());
+
+        loadTableStudent();
+        tableStudent.setItems(observableListStudent);
+
+        isDarkMode = Preferences.isDarkMode();
+
+        if (isDarkMode) {
+            setDarkMode();
+        } else {
+            setLightMode();
+        }
+    }
+
     @FXML
     void blockAccess(ActionEvent event) {
         Student student = tableStudent.getSelectionModel().getSelectedItem();
@@ -132,22 +148,6 @@ public class AdminSeeStudentsController extends AdminController {
             return "Ativo";
         } else {
             return "Inativo";
-        }
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        username.setText("Olá, " + admin.getName());
-
-        loadTableStudent();
-        tableStudent.setItems(observableListStudent);
-
-        isDarkMode = Preferences.isDarkMode();
-
-        if (isDarkMode) {
-            setDarkMode();
-        } else {
-            setLightMode();
         }
     }
 }

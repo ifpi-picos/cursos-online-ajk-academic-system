@@ -73,6 +73,19 @@ public class StudentController implements Initializable {
     @FXML
     private Text username;
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        username.setText("Olá, " + student.getName());
+
+        isDarkMode = Preferences.isDarkMode();
+
+        if (isDarkMode) {
+            setDarkMode();
+        } else {
+            setLightMode();
+        }
+    }
+
     @FXML
     void home(ActionEvent event) {
         sceneNavigator.navigateTo(Routes.studentHome, stage, this);
@@ -108,11 +121,6 @@ public class StudentController implements Initializable {
     }
 
     @FXML
-    void registerCourse(ActionEvent event) {
-
-    }
-
-    @FXML
     void usernameButton(MouseEvent event) {
         StudentProfileController studentProfileController = new StudentProfileController(
                 this.connection, this.sceneNavigator, this.student, this.stage, this.loginController, this.courseDao,
@@ -145,18 +153,5 @@ public class StudentController implements Initializable {
         parent.getStylesheets().add(getClass().getResource(Routes.lightMode).toExternalForm());
         Image image = new Image(getClass().getResourceAsStream(Routes.imgMoon));
         imgMode.setImage(image);
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        username.setText("Olá, " + student.getName());
-
-        isDarkMode = Preferences.isDarkMode();
-
-        if (isDarkMode) {
-            setDarkMode();
-        } else {
-            setLightMode();
-        }
     }
 }

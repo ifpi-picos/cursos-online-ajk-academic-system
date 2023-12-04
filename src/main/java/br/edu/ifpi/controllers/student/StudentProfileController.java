@@ -51,6 +51,23 @@ public class StudentProfileController extends StudentController {
     @FXML
     private TextField password;
 
+    @Override
+    public void initialize(java.net.URL location, ResourceBundle resources) {
+        username.setText("Olá, " + student.getName());
+        name.setText(student.getName());
+        email.setText(student.getEmail());
+        id.setText(String.valueOf(student.getId()));
+        password.setText(student.getPassword());
+
+        isDarkMode = Preferences.isDarkMode();
+
+        if (isDarkMode) {
+            setDarkMode();
+        } else {
+            setLightMode();
+        }
+    }
+
     @FXML
     void informationUpdate(ActionEvent event) {
         String password = this.password.getText();
@@ -68,23 +85,6 @@ public class StudentProfileController extends StudentController {
             AlertMessage.show("Sucesso", "", "Dados atualizados com sucesso", AlertType.INFORMATION);
         } else {
             AlertMessage.show("Erro", "", "Erro ao atualizar dados", AlertType.ERROR);
-        }
-    }
-
-    @Override
-    public void initialize(java.net.URL location, ResourceBundle resources) {
-        username.setText("Olá, " + student.getName());
-        name.setText(student.getName());
-        email.setText(student.getEmail());
-        id.setText(String.valueOf(student.getId()));
-        password.setText(student.getPassword());
-
-        isDarkMode = Preferences.isDarkMode();
-
-        if (isDarkMode) {
-            setDarkMode();
-        } else {
-            setLightMode();
         }
     }
 }

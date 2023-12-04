@@ -9,12 +9,14 @@ import br.edu.ifpi.config.Routes;
 import br.edu.ifpi.controllers.LoginController;
 import br.edu.ifpi.data.dao.CourseDao;
 import br.edu.ifpi.data.dao.StudentCourseDao;
+import br.edu.ifpi.data.dao.TeacherDao;
 import br.edu.ifpi.entities.Course;
 import br.edu.ifpi.entities.StudentCourse;
 import br.edu.ifpi.entities.Teacher;
 import br.edu.ifpi.entities.enums.CourseStatus;
 import br.edu.ifpi.util.Preferences;
 import br.edu.ifpi.util.SceneNavigator;
+
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -37,9 +39,10 @@ public class TeacherCoursesTaughtController extends TeacherController {
             Stage stage,
             LoginController loginController,
             CourseDao courseDao,
+            TeacherDao teacherDao,
             StudentCourseDao studentCourseDao) {
 
-        super(connection, sceneNavigator, teacher, stage, loginController, courseDao, studentCourseDao);
+        super(connection, sceneNavigator, teacher, stage, loginController, courseDao, teacherDao, studentCourseDao);
     }
 
     @FXML
@@ -60,11 +63,35 @@ public class TeacherCoursesTaughtController extends TeacherController {
     @FXML
     private Text username;
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        username.setText("Olá, " + teacher.getName());
+
+        loadTableCourse();
+        tableCourses.setItems(observableListCourse);
+
+        isDarkMode = Preferences.isDarkMode();
+
+        if (isDarkMode) {
+            setDarkMode();
+        } else {
+            setLightMode();
+        }
+    }
+
     public void openCourse(ActionEvent event) {
         Course course = tableCourses.getSelectionModel().getSelectedItem();
         TeacherOpenCourseController teacherOpenCourseController = new TeacherOpenCourseController(
-                this.connection, this.sceneNavigator, this.teacher, this.stage, this.loginController, this.courseDao,
-                this.studentCourseDao, course, false);
+                connection,
+                sceneNavigator,
+                teacher,
+                stage,
+                loginController,
+                courseDao,
+                studentCourseDao,
+                teacherDao,
+                course,
+                false);
 
         sceneNavigator.navigateTo(Routes.teacherOpenCourse, this.stage, teacherOpenCourseController);
     }
@@ -95,21 +122,5 @@ public class TeacherCoursesTaughtController extends TeacherController {
             }
         }
         return count;
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        username.setText("Olá, " + teacher.getName());
-
-        loadTableCourse();
-        tableCourses.setItems(observableListCourse);
-
-        isDarkMode = Preferences.isDarkMode();
-
-        if (isDarkMode) {
-            setDarkMode();
-        } else {
-            setLightMode();
-        }
     }
 }

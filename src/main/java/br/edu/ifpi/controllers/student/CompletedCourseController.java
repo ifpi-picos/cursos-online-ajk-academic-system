@@ -67,6 +67,31 @@ public class CompletedCourseController extends StudentController {
     @FXML
     private Text performance;
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        final String[] conditions = {
+                "student_id = " + student.getId(),
+                "status = '" + EnrollmentStatus.APPROVED.toString() + "'"
+        };
+
+        studentCourses = super.studentCourseDao.selectAll(conditions);
+
+        username.setText("Olá, " + student.getName());
+        loadCompletedCourses();
+        loadPerformance();
+        loadAverage();
+
+        tableCompletedCourses.setItems(observableListCourse);
+
+        isDarkMode = Preferences.isDarkMode();
+
+        if (isDarkMode) {
+            setDarkMode();
+        } else {
+            setLightMode();
+        }
+    }
+
     public void loadCompletedCourses() {
         name.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getStudent().getName()));
         course.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCourse().getName()));
@@ -108,30 +133,5 @@ public class CompletedCourseController extends StudentController {
         average /= studentCourses.size();
 
         this.average.setText(String.format("%.2f", average));
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        final String[] conditions = {
-                "student_id = " + student.getId(),
-                "status = '" + EnrollmentStatus.APPROVED.toString() + "'"
-        };
-
-        studentCourses = super.studentCourseDao.selectAll(conditions);
-
-        username.setText("Olá, " + student.getName());
-        loadCompletedCourses();
-        loadPerformance();
-        loadAverage();
-
-        tableCompletedCourses.setItems(observableListCourse);
-
-        isDarkMode = Preferences.isDarkMode();
-
-        if (isDarkMode) {
-            setDarkMode();
-        } else {
-            setLightMode();
-        }
     }
 }

@@ -9,6 +9,7 @@ import br.edu.ifpi.config.Routes;
 import br.edu.ifpi.controllers.LoginController;
 import br.edu.ifpi.data.dao.CourseDao;
 import br.edu.ifpi.data.dao.StudentCourseDao;
+import br.edu.ifpi.data.dao.TeacherDao;
 import br.edu.ifpi.entities.Course;
 import br.edu.ifpi.entities.StudentCourse;
 import br.edu.ifpi.entities.Teacher;
@@ -17,6 +18,7 @@ import br.edu.ifpi.entities.enums.EnrollmentStatus;
 import br.edu.ifpi.util.AlertMessage;
 import br.edu.ifpi.util.Preferences;
 import br.edu.ifpi.util.SceneNavigator;
+
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -33,7 +35,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 
-
 public class TeacherOpenCourseController extends TeacherController {
 
     private ObservableList<StudentCourse> observableListStudentCourse;
@@ -48,10 +49,11 @@ public class TeacherOpenCourseController extends TeacherController {
             LoginController loginController,
             CourseDao courseDao,
             StudentCourseDao studentCourseDao,
+            TeacherDao teacherDao,
             Course course,
             Boolean edit) {
 
-        super(connection, sceneNavigator, teacher, stage, loginController, courseDao, studentCourseDao);
+        super(connection, sceneNavigator, teacher, stage, loginController, courseDao, teacherDao, studentCourseDao);
 
         this.course = course;
         this.edit = edit;
@@ -90,17 +92,45 @@ public class TeacherOpenCourseController extends TeacherController {
     @FXML
     private Button finishCourse;
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        loadTableCourse();
+        tableCourse.setItems(observableListStudentCourse);
+
+        loadClassStatistics();
+
+        username.setText("Olá, " + teacher.getName());
+
+        if (edit) {
+            finishCourse.setVisible(true);
+            tableCourse.setEditable(true);
+            nameCourse.setText(this.course.getName());
+        } else {
+            finishCourse.setVisible(false);
+            tableCourse.setEditable(false);
+            nameCourse.setText(this.course.getName() + " - FINALIZADO");
+        }
+
+        isDarkMode = Preferences.isDarkMode();
+
+        if (isDarkMode) {
+            setDarkMode();
+        } else {
+            setLightMode();
+        }
+    }
+
     @FXML
     void backCourses(ActionEvent event) {
         if (edit) {
             TeacherCourseController teacherCourseController = new TeacherCourseController(
                     this.connection, this.sceneNavigator, this.teacher, this.stage, this.loginController,
-                    this.courseDao, this.studentCourseDao);
+                    this.courseDao, this.teacherDao, this.studentCourseDao);
             sceneNavigator.navigateTo(Routes.teacherCourse, this.stage, teacherCourseController);
         } else {
             TeacherCoursesTaughtController teacherCoursesTaughtController = new TeacherCoursesTaughtController(
                     this.connection, this.sceneNavigator, this.teacher, this.stage, this.loginController,
-                    this.courseDao, this.studentCourseDao);
+                    this.courseDao, this.teacherDao, this.studentCourseDao);
             sceneNavigator.navigateTo(Routes.teacherCourseTaught, this.stage, teacherCoursesTaughtController);
         }
     }
@@ -115,7 +145,7 @@ public class TeacherOpenCourseController extends TeacherController {
             AlertMessage.show("Sucesso", "", "Curso finalizado com sucesso", AlertType.INFORMATION);
             TeacherCourseController teacherCourseController = new TeacherCourseController(
                     this.connection, this.sceneNavigator, this.teacher, this.stage, this.loginController,
-                    this.courseDao, this.studentCourseDao);
+                    this.courseDao, this.teacherDao, this.studentCourseDao);
             sceneNavigator.navigateTo(Routes.teacherCourse, this.stage, teacherCourseController);
         } else {
             AlertMessage.show("Erro", "", "Erro ao finalizar curso", AlertType.ERROR);
@@ -197,33 +227,5 @@ public class TeacherOpenCourseController extends TeacherController {
         classAverage.setText(studentCourseDao.getCourseAverageGrade(course).toString());
         classPerformance.setText(courseApprovedQuantity.intValue() + "%");
         numberStudents.setText(String.valueOf(observableListStudentCourse.size()));
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        loadTableCourse();
-        tableCourse.setItems(observableListStudentCourse);
-
-        loadClassStatistics();
-
-        username.setText("Olá, " + teacher.getName());
-
-        if (edit) {
-            finishCourse.setVisible(true);
-            tableCourse.setEditable(true);
-            nameCourse.setText(this.course.getName());
-        } else {
-            finishCourse.setVisible(false);
-            tableCourse.setEditable(false);
-            nameCourse.setText(this.course.getName() + " - FINALIZADO");
-        }
-
-        isDarkMode = Preferences.isDarkMode();
-
-        if (isDarkMode) {
-            setDarkMode();
-        } else {
-            setLightMode();
-        }
     }
 }

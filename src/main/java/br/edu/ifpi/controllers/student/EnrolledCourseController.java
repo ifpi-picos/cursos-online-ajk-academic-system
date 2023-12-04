@@ -17,6 +17,7 @@ import br.edu.ifpi.entities.enums.EnrollmentStatus;
 import br.edu.ifpi.util.AlertMessage;
 import br.edu.ifpi.util.Preferences;
 import br.edu.ifpi.util.SceneNavigator;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -63,6 +64,22 @@ public class EnrolledCourseController extends StudentController {
     @FXML
     private TableColumn<Course, Integer> workload;
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        username.setText("Olá, " + student.getName());
+        loadEnrolledCourses();
+
+        tableEnrolledCourses.setItems(observableListCourse);
+
+        isDarkMode = Preferences.isDarkMode();
+
+        if (isDarkMode) {
+            setDarkMode();
+        } else {
+            setLightMode();
+        }
+    }
+
     @FXML
     void cancelRegistration(ActionEvent event) {
         Course course = tableEnrolledCourses.getSelectionModel().getSelectedItem();
@@ -96,21 +113,5 @@ public class EnrolledCourseController extends StudentController {
         teacher.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTeacher().getName()));
         workload.setCellValueFactory(new PropertyValueFactory<>("workload"));
         observableListCourse = FXCollections.observableArrayList(courses);
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        username.setText("Olá, " + student.getName());
-        loadEnrolledCourses();
-
-        tableEnrolledCourses.setItems(observableListCourse);
-
-        isDarkMode = Preferences.isDarkMode();
-
-        if (isDarkMode) {
-            setDarkMode();
-        } else {
-            setLightMode();
-        }
     }
 }

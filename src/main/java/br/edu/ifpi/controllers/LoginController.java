@@ -108,7 +108,6 @@ public class LoginController implements Initializable {
 
     private void loginAdmin(String email, String password) {
         Admin admin = adminDao.login(email, password);
-        System.out.println(stage == null ? "null" : "not null");
 
         if (admin != null) {
             try {
@@ -131,7 +130,7 @@ public class LoginController implements Initializable {
         if (teacher != null) {
             try {
                 TeacherController teacherHomeController = new TeacherController(
-                        connection, sceneNavigator, teacher, stage, this, courseDao, studentCourseDao);
+                        connection, sceneNavigator, teacher, stage, this, courseDao, teacherDao, studentCourseDao);
                 sceneNavigator.navigateTo(Routes.teacherHome, this.stage, teacherHomeController);
             } catch (Exception e) {
                 AlertMessage.show("Erro ao fazer login", "", "Ocorreu um erro ao fazer login",

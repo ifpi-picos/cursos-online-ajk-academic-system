@@ -71,9 +71,20 @@ public class RegisterCourseController extends StudentController {
     @FXML
     private TableColumn<Course, Integer> workload;
 
-    @FXML
-    void completedCourses(ActionEvent event) {
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        username.setText("Olá, " + student.getName());
+        loadTableCourse();
 
+        tableRegister.setItems(observableListCourse);
+
+        isDarkMode = Preferences.isDarkMode();
+
+        if (isDarkMode) {
+            setDarkMode();
+        } else {
+            setLightMode();
+        }
     }
 
     @FXML
@@ -129,21 +140,5 @@ public class RegisterCourseController extends StudentController {
         teacher.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTeacher().getName()));
         workload.setCellValueFactory(new PropertyValueFactory<>("workload"));
         observableListCourse = FXCollections.observableArrayList(courses);
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        username.setText("Olá, " + student.getName());
-        loadTableCourse();
-
-        tableRegister.setItems(observableListCourse);
-
-        isDarkMode = Preferences.isDarkMode();
-
-        if (isDarkMode) {
-            setDarkMode();
-        } else {
-            setLightMode();
-        }
     }
 }

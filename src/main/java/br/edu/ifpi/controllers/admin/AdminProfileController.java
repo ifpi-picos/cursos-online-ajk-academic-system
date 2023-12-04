@@ -29,7 +29,7 @@ public class AdminProfileController extends AdminController {
             Admin admin,
             Stage stage,
             CourseDao courseDao,
-            StudentDao studentDao, 
+            StudentDao studentDao,
             AdminDao adminDao,
             LoginController loginController,
             TeacherDao teacherDao) {
@@ -53,6 +53,23 @@ public class AdminProfileController extends AdminController {
     @FXML
     private TextField password;
 
+    @Override
+    public void initialize(java.net.URL location, ResourceBundle resources) {
+        username.setText("Olá, " + admin.getName());
+        name.setText(admin.getName());
+        email.setText(admin.getEmail());
+        id.setText(String.valueOf(admin.getId()));
+        password.setText(admin.getPassword());
+
+        isDarkMode = Preferences.isDarkMode();
+
+        if (isDarkMode) {
+            setDarkMode();
+        } else {
+            setLightMode();
+        }
+    }
+
     @FXML
     void informationUpdate(ActionEvent event) {
         String password = this.password.getText();
@@ -73,20 +90,4 @@ public class AdminProfileController extends AdminController {
         }
     }
 
-    @Override
-    public void initialize(java.net.URL location, ResourceBundle resources) {
-        username.setText("Olá, " + admin.getName());
-        name.setText(admin.getName());
-        email.setText(admin.getEmail());
-        id.setText(String.valueOf(admin.getId()));
-        password.setText(admin.getPassword());
-
-        isDarkMode = Preferences.isDarkMode();
-
-        if (isDarkMode) {
-            setDarkMode();
-        } else {
-            setLightMode();
-        }
-    }
 }

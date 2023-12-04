@@ -8,6 +8,7 @@ import br.edu.ifpi.config.Routes;
 import br.edu.ifpi.controllers.LoginController;
 import br.edu.ifpi.data.dao.CourseDao;
 import br.edu.ifpi.data.dao.StudentCourseDao;
+import br.edu.ifpi.data.dao.TeacherDao;
 import br.edu.ifpi.entities.Teacher;
 import br.edu.ifpi.util.Preferences;
 import br.edu.ifpi.util.SceneNavigator;
@@ -32,6 +33,7 @@ public class TeacherController implements Initializable {
 
     protected CourseDao courseDao;
     protected StudentCourseDao studentCourseDao;
+    protected TeacherDao teacherDao;
 
     protected boolean isDarkMode = false;
 
@@ -42,6 +44,7 @@ public class TeacherController implements Initializable {
             Stage stage,
             LoginController loginController,
             CourseDao courseDao,
+            TeacherDao teacherDao,
             StudentCourseDao studentCourseDao) {
 
         this.connection = connection;
@@ -50,6 +53,7 @@ public class TeacherController implements Initializable {
         this.stage = stage;
         this.loginController = loginController;
         this.courseDao = courseDao;
+        this.teacherDao = teacherDao;
         this.studentCourseDao = studentCourseDao;
     }
 
@@ -65,6 +69,19 @@ public class TeacherController implements Initializable {
     @FXML
     private BorderPane parent;
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        username.setText("Olá, " + teacher.getName());
+
+        isDarkMode = Preferences.isDarkMode();
+
+        if (isDarkMode) {
+            setDarkMode();
+        } else {
+            setLightMode();
+        }
+    }
+
     @FXML
     void home(ActionEvent event) {
         sceneNavigator.navigateTo(Routes.teacherHome, this.stage, this);
@@ -78,24 +95,21 @@ public class TeacherController implements Initializable {
     @FXML
     void usernameButton(MouseEvent event) {
         TeacherProfileController teacherProfileController = new TeacherProfileController(
-                this.connection, this.sceneNavigator, this.teacher, this.stage, this.loginController, this.courseDao,
-                this.studentCourseDao);
+                connection, sceneNavigator, teacher, stage, loginController, courseDao, teacherDao, studentCourseDao);
         sceneNavigator.navigateTo(Routes.teacherProfile, this.stage, teacherProfileController);
     }
 
     @FXML
     void coursesTaught(ActionEvent event) {
         TeacherCourseController teacherCourseController = new TeacherCourseController(
-                this.connection, this.sceneNavigator, this.teacher, this.stage, this.loginController, this.courseDao,
-                this.studentCourseDao);
+                connection, sceneNavigator, teacher, stage, loginController, courseDao, teacherDao, studentCourseDao);
         sceneNavigator.navigateTo(Routes.teacherCourse, this.stage, teacherCourseController);
     }
 
     @FXML
     void completedCourses(ActionEvent event) {
         TeacherCoursesTaughtController teacherCoursesTaughtController = new TeacherCoursesTaughtController(
-                this.connection, this.sceneNavigator, this.teacher, this.stage, this.loginController, this.courseDao,
-                this.studentCourseDao);
+                connection, sceneNavigator, teacher, stage, loginController, courseDao, teacherDao, studentCourseDao);
         sceneNavigator.navigateTo(Routes.teacherCourseTaught, this.stage, teacherCoursesTaughtController);
     }
 
@@ -123,18 +137,5 @@ public class TeacherController implements Initializable {
         parent.getStylesheets().add(getClass().getResource(Routes.lightMode).toExternalForm());
         Image image = new Image(getClass().getResourceAsStream(Routes.imgMoon));
         imgMode.setImage(image);
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        username.setText("Olá, " + teacher.getName());
-
-        isDarkMode = Preferences.isDarkMode();
-
-        if (isDarkMode) {
-            setDarkMode();
-        } else {
-            setLightMode();
-        }
     }
 }

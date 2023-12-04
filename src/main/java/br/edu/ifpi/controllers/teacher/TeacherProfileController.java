@@ -11,6 +11,7 @@ import br.edu.ifpi.entities.Teacher;
 import br.edu.ifpi.util.AlertMessage;
 import br.edu.ifpi.util.Preferences;
 import br.edu.ifpi.util.SceneNavigator;
+
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,8 +30,9 @@ public class TeacherProfileController extends TeacherController {
             Stage stage,
             LoginController loginController,
             CourseDao courseDao,
+            TeacherDao teacherDao,
             StudentCourseDao studentCourseDao) {
-        super(connection, sceneNavigator, teacher, stage, loginController, courseDao, studentCourseDao);
+        super(connection, sceneNavigator, teacher, stage, loginController, courseDao, teacherDao, studentCourseDao);
 
         this.teacher = teacher;
     }
@@ -49,8 +51,24 @@ public class TeacherProfileController extends TeacherController {
 
     @FXML
     private TextField password;
-    TeacherDao teacherDao = new TeacherDao(connection); // Initialize the teacherDao variable with the connection
-    
+
+    @Override
+    public void initialize(java.net.URL location, ResourceBundle resources) {
+        username.setText("Olá, " + teacher.getName());
+        name.setText(teacher.getName());
+        email.setText(teacher.getEmail());
+        id.setText(String.valueOf(teacher.getId()));
+        password.setText(teacher.getPassword());
+
+        isDarkMode = Preferences.isDarkMode();
+
+        if (isDarkMode) {
+            setDarkMode();
+        } else {
+            setLightMode();
+        }
+    }
+
     @FXML
     void informationUpdate(ActionEvent event) {
         String password = this.password.getText();
@@ -68,23 +86,6 @@ public class TeacherProfileController extends TeacherController {
             AlertMessage.show("Sucesso", "", "Dados atualizados com sucesso", AlertType.INFORMATION);
         } else {
             AlertMessage.show("Erro", "", "Erro ao atualizar dados", AlertType.ERROR);
-        }
-    }
-
-    @Override
-    public void initialize(java.net.URL location, ResourceBundle resources) {
-        username.setText("Olá, " + teacher.getName());
-        name.setText(teacher.getName());
-        email.setText(teacher.getEmail());
-        id.setText(String.valueOf(teacher.getId()));
-        password.setText(teacher.getPassword());
-
-        isDarkMode = Preferences.isDarkMode();
-
-        if (isDarkMode) {
-            setDarkMode();
-        } else {
-            setLightMode();
         }
     }
 }

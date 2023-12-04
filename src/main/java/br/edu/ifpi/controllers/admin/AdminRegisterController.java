@@ -73,6 +73,29 @@ public class AdminRegisterController extends AdminController {
     @FXML
     private TextField workload;
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        username.setText("Olá, " + admin.getName());
+
+        loadTeachers();
+        tableTeacher.setItems(observableListTeacher);
+
+        if (course != null) {
+            title.setText("Editar curso");
+            courseName.setText(course.getName());
+            workload.setText(String.valueOf(course.getWorkload()));
+            tableTeacher.getSelectionModel().select(getTeacherRow(course.getTeacher()));
+        }
+
+        isDarkMode = Preferences.isDarkMode();
+
+        if (isDarkMode) {
+            setDarkMode();
+        } else {
+            setLightMode();
+        }
+    }
+
     @FXML
     void confirm(ActionEvent event) {
         String name = courseName.getText();
@@ -139,26 +162,4 @@ public class AdminRegisterController extends AdminController {
         return -1;
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        username.setText("Olá, " + admin.getName());
-
-        loadTeachers();
-        tableTeacher.setItems(observableListTeacher);
-
-        if (course != null) {
-            title.setText("Editar curso");
-            courseName.setText(course.getName());
-            workload.setText(String.valueOf(course.getWorkload()));
-            tableTeacher.getSelectionModel().select(getTeacherRow(course.getTeacher()));
-        }
-
-        isDarkMode = Preferences.isDarkMode();
-
-        if (isDarkMode) {
-            setDarkMode();
-        } else {
-            setLightMode();
-        }
-    }
 }

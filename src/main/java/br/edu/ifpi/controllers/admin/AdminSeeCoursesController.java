@@ -73,6 +73,22 @@ public class AdminSeeCoursesController extends AdminController {
     @FXML
     private TableColumn<Course, Integer> workload;
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        username.setText("Olá, " + admin.getName());
+
+        loadTableCourse();
+        tableCourses.setItems(observableListCourse);
+
+        isDarkMode = Preferences.isDarkMode();
+
+        if (isDarkMode) {
+            setDarkMode();
+        } else {
+            setLightMode();
+        }
+    }
+
     @FXML
     void activate(ActionEvent event) {
         Course course = tableCourses.getSelectionModel().getSelectedItem();
@@ -139,22 +155,6 @@ public class AdminSeeCoursesController extends AdminController {
             return "Ativo";
         } else {
             return "Inativo";
-        }
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        username.setText("Olá, " + admin.getName());
-
-        loadTableCourse();
-        tableCourses.setItems(observableListCourse);
-
-        isDarkMode = Preferences.isDarkMode();
-
-        if (isDarkMode) {
-            setDarkMode();
-        } else {
-            setLightMode();
         }
     }
 }
