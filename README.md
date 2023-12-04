@@ -19,7 +19,7 @@ Execute o seguinte comando no terminal
 mvn clean install javafx:run
 ```
 
-***O comando acima deverá ser executado toda vez que uma dependência for adicionada ou existir erros na importação de dependências***
+***O comando acima deverá ser executado toda vez que uma dependência for adicionada ou existir erros na importação de dependências!***
 
 Caso esses problemas persistirem, experimente reiniciar sua `IDE` e tentar novamente. Após os procedimentos acima, seu aplicativo poderá ser iniciado normalmente através do [**`Run`**] fornecido pela sua `IDE`. 
 
