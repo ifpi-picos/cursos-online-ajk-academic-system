@@ -1,0 +1,64 @@
+.radio-button {
+    -fx-background-color: transparent;
+    -fx-mark-highlight-color: purple;
+
+    background-color: transparent;
+}
+
+.radio-button:hover {
+    -fx-cursor: hand;
+
+    cursor: hand;
+}
+
+.formulario {
+    -fx-background-color: rgba(218, 216, 216, 0.329);
+    -fx-border-color: #3F528C;
+    -fx-border-radius: 3px;
+
+    background-color: #f2f2f2;
+    border-color: #3F528C;
+    border-radius: 3px;
+}
+
+.btn {
+    -fx-background-color: #3F528C;
+    -fx-text-fill: white;
+    -fx-border-color: #3F528C;
+    -fx-border-radius: 3px;
+
+    background-color: #3F528C;
+    border-color: #3F528C;
+    border-radius: 3px;
+}
+
+.btn:hover {
+    -fx-background-color: #f2f2f2;
+    -fx-text-fill: #3F528C;
+    -fx-border-color: #3F528C;
+    -fx-border-radius: 3px;
+    -fx-cursor: hand;
+
+    cursor: hand;
+    background-color: #3F528C;
+    border-color: #3F528C;
+    border-radius: 3px;
+}
+
+.btn-back {
+    -fx-background-color: #E4E3DB;
+    -fx-text-fill: black;
+    -fx-border-color: none;
+    -fx-border-radius: 3px;
+
+    background-color: #3F528C;
+    border-color: #3F528C;
+    border-radius: 3px;
+}
+
+.btn-back:hover {
+    -fx-text-fill: #3F528C;
+    -fx-cursor: hand;
+
+    cursor: hand;
+}

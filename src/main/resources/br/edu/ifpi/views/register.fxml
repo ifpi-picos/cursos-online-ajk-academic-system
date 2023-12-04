@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" stylesheets="@../css/register.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+    <top>
+        <BorderPane prefHeight="124.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
+            <left>
+                <BorderPane prefHeight="124.0" prefWidth="331.0" BorderPane.alignment="CENTER">
+                    <left>
+                        <ImageView fitHeight="88.0" fitWidth="123.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                            <image>
+                                <Image url="@../img/logo-sistema.png" />
+                            </image>
+                        </ImageView>
+                    </left>
+                    <center>
+                        <Label prefHeight="30.0" prefWidth="191.0" text="Sistema Acadêmico " textFill="#3e498c" BorderPane.alignment="CENTER">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Label>
+                    </center>
+                    <BorderPane.margin>
+                        <Insets left="150.0" />
+                    </BorderPane.margin>
+                </BorderPane>
+            </left>
+        </BorderPane>
+    </top>
+    <left>
+        <AnchorPane prefHeight="576.0" prefWidth="321.0" BorderPane.alignment="CENTER">
+            <children>
+               <Text layoutX="54.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastro">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+                </Text>
+                <Text layoutX="16.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E-mail:" wrappingWidth="115.9433822631836">
+               <font>
+                  <Font size="13.0" />
+               </font></Text>
+                <Text layoutX="17.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Senha:" wrappingWidth="46.939453125">
+               <font>
+                  <Font size="13.0" />
+               </font></Text>
+                <ImageView fitHeight="25.0" fitWidth="36.0" layoutX="17.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../img/lock.png" />
+                    </image>
+                </ImageView>
+
+                <!-- Nome -->
+                <Text layoutX="16.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome:" wrappingWidth="115.9433822631836">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Text>
+                <TextField fx:id="name" layoutX="16.0" layoutY="151.0" prefHeight="35.0" prefWidth="290.0" styleClass="formulario" />
+
+                <!-- E-mail -->
+                <Text layoutX="16.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E-mail:" wrappingWidth="115.9433822631836">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Text>
+                <TextField fx:id="email" layoutX="16.0" layoutY="208.0" prefHeight="35.0" prefWidth="290.0" styleClass="formulario" />
+
+                <!-- Senha -->
+                <Text layoutX="17.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Senha:" wrappingWidth="46.939453125">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Text>
+                <PasswordField fx:id="password" layoutX="16.0" layoutY="262.0" prefHeight="35.0" prefWidth="290.0" styleClass="formulario" />
+
+                <!-- Radiobuttons -->
+                <RadioButton fx:id="student" layoutX="17.0" layoutY="318.0" mnemonicParsing="false" selected="true" text="Aluno">
+                    <toggleGroup>
+                        <ToggleGroup fx:id="grupo" />
+                    </toggleGroup>
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </RadioButton>
+                <RadioButton fx:id="teacher" layoutX="100.0" layoutY="318.0" mnemonicParsing="false" text="Professor" toggleGroup="$grupo">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </RadioButton>
+
+                <!-- Botões -->
+                <Button layoutX="16.0" layoutY="358.0" mnemonicParsing="false" onAction="#createAccount" prefHeight="35.0" prefWidth="290.0" styleClass="btn" text="Criar conta" textFill="#f2f2f2">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Button>
+                <Button layoutX="16.0" layoutY="403.0" mnemonicParsing="false" onAction="#toGoBack" prefHeight="35.0" prefWidth="290.0" styleClass="btn-back" text="Voltar" textFill="#f2f2f2">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Button>
+            </children>
+            <BorderPane.margin>
+                <Insets left="150.0" />
+            </BorderPane.margin>
+        </AnchorPane>
+    </left>
+    <center>
+        <ImageView fitHeight="509.0" fitWidth="613.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+            <image>
+                <Image url="@../img/undraw.png" />
+            </image>
+        </ImageView>
+    </center>
+    <bottom>
+        <BorderPane prefHeight="88.0" prefWidth="1200.0" BorderPane.alignment="CENTER" />
+    </bottom>
+</BorderPane>
