@@ -164,3 +164,13 @@
 .label {
     -fx-text-fill: #000000;
 }
+
+.form {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #3F528C;
+    -fx-border-radius: 3px;
+
+    border-color: #3F528C;
+    border-radius: 3px;
+    background-color: #7c7c7c80;
+}

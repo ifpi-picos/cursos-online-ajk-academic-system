@@ -82,11 +82,11 @@ public class AdminSeeCoursesController extends AdminController {
         int row = super.courseDao.update(course);
 
         if (row > 0) {
-            AlertMessage.show("Sucesso", "Sucesso!", "Curso ativado com sucesso!", AlertType.INFORMATION);
+            AlertMessage.show("Sucesso", "", "Curso ativado com sucesso!", AlertType.INFORMATION);
             loadTableCourse();
             tableCourses.setItems(observableListCourse);
         } else {
-            AlertMessage.show("Erro", "Erro!", "Erro ao ativar curso!", AlertType.ERROR);
+            AlertMessage.show("Erro", "", "Erro ao ativar curso!", AlertType.ERROR);
         }
     }
 
@@ -98,11 +98,11 @@ public class AdminSeeCoursesController extends AdminController {
         int row = super.courseDao.update(course);
 
         if (row > 0) {
-            AlertMessage.show("Sucesso", "Sucesso!", "Curso desativado com sucesso!", AlertType.INFORMATION);
+            AlertMessage.show("Sucesso", "", "Curso desativado com sucesso!", AlertType.INFORMATION);
             loadTableCourse();
             tableCourses.setItems(observableListCourse);
         } else {
-            AlertMessage.show("Erro", "Erro!", "Erro ao desativar curso!", AlertType.ERROR);
+            AlertMessage.show("Erro", "", "Erro ao desativar curso!", AlertType.ERROR);
         }
     }
 
@@ -116,7 +116,7 @@ public class AdminSeeCoursesController extends AdminController {
                     super.studentDao, super.loginController);
             sceneNavigator.navigateTo(Routes.adminRegisterCourse, this.stage, adminRegisterController);
         } else {
-            AlertMessage.show("Erro", "Erro!", "Selecione um curso!", AlertType.ERROR);
+            AlertMessage.show("Erro", "", "Selecione um curso!", AlertType.ERROR);
         }
     }
 

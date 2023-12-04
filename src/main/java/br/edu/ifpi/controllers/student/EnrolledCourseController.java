@@ -76,12 +76,12 @@ public class EnrolledCourseController extends StudentController {
 
         int row = super.studentCourseDao.update(studentCourse);
         if (row > 0) {
-            AlertMessage.show("Sucesso", "Sucesso", "Matrícula cancelada com sucesso", AlertType.INFORMATION);
+            AlertMessage.show("Sucesso", "", "Matrícula cancelada com sucesso", AlertType.INFORMATION);
 
             loadEnrolledCourses();
             tableEnrolledCourses.setItems(observableListCourse);
         } else {
-            AlertMessage.show("Erro", "Erro", "Erro ao cancelar matrícula", AlertType.ERROR);
+            AlertMessage.show("Erro", "", "Erro ao cancelar matrícula", AlertType.ERROR);
         }
     }
 

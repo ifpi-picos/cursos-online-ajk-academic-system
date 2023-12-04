@@ -72,7 +72,7 @@ public class AdminSeeTeachersController extends AdminController {
         Teacher teacher = tableTeacher.getSelectionModel().getSelectedItem();
 
         if (teacher == null) {
-            AlertMessage.show("Erro", "Selecione um professor", "Selecione um professor para bloquear o acesso",
+            AlertMessage.show("Erro", "", "Selecione um professor para bloquear o acesso",
                     AlertType.WARNING);
             return;
         } else {
@@ -80,13 +80,13 @@ public class AdminSeeTeachersController extends AdminController {
             int row = super.teacherDao.update(teacher);
 
             if (row > 0) {
-                AlertMessage.show("Sucesso", "Professor bloqueado",
+                AlertMessage.show("Sucesso", "",
                         "O professor " + teacher.getName() + " foi bloqueado com sucesso", AlertType.INFORMATION);
 
                 loadTableTeacher();
                 tableTeacher.setItems(observableListTeacher);
             } else {
-                AlertMessage.show("Erro", "Erro ao bloquear professor",
+                AlertMessage.show("Erro", "",
                         "Ocorreu um erro ao bloquear o professor " + teacher.getName(), AlertType.ERROR);
             }
         }
@@ -97,7 +97,7 @@ public class AdminSeeTeachersController extends AdminController {
         Teacher teacher = tableTeacher.getSelectionModel().getSelectedItem();
 
         if (teacher == null) {
-            AlertMessage.show("Erro", "Selecione um professor", "Selecione um professor para liberar o acesso",
+            AlertMessage.show("Erro", "", "Selecione um professor para liberar o acesso",
                     AlertType.WARNING);
             return;
         } else {
@@ -105,13 +105,13 @@ public class AdminSeeTeachersController extends AdminController {
             int row = super.teacherDao.update(teacher);
 
             if (row > 0) {
-                AlertMessage.show("Sucesso", "Professor liberado",
+                AlertMessage.show("Sucesso", "",
                         "O professor " + teacher.getName() + " foi liberado com sucesso", AlertType.INFORMATION);
 
                 loadTableTeacher();
                 tableTeacher.setItems(observableListTeacher);
             } else {
-                AlertMessage.show("Erro", "Erro ao liberar professor",
+                AlertMessage.show("Erro", "",
                         "Ocorreu um erro ao liberar o professor " + teacher.getName(), AlertType.ERROR);
             }
         }

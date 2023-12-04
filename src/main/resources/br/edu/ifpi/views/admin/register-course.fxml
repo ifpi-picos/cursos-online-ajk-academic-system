@@ -80,10 +80,10 @@
          <center>
             <AnchorPane prefHeight="334.0" prefWidth="531.0" BorderPane.alignment="CENTER">
                <children>
-                  <TextField fx:id="courseName" layoutX="28.0" layoutY="34.0" prefHeight="30.0" prefWidth="370.0" style="-fx-background-color: #f2f2f2; -fx-border-color: #3F528C; -fx-border-radius: 3;" />
                   <Text layoutX="30.0" layoutY="27.0" styleClass="text-column" strokeType="OUTSIDE" strokeWidth="0.0" text="Título do Curso: *" />
                   <Text layoutX="30.0" layoutY="91.0" styleClass="text-column" strokeType="OUTSIDE" strokeWidth="0.0" text="Carga horária: *" />
-                  <TextField fx:id="workload" layoutX="28.0" layoutY="99.0" prefHeight="30.0" prefWidth="370.0" style="-fx-background-color: #f2f2f2; -fx-border-color: #3F528C; -fx-border-radius: 3;" />
+                  <TextField fx:id="courseName" styleClass="form" layoutX="28.0" layoutY="34.0" prefHeight="30.0" prefWidth="370.0" />
+                  <TextField fx:id="workload" styleClass="form" layoutX="28.0" layoutY="99.0" prefHeight="30.0" prefWidth="370.0" />
                   <Button layoutX="28.0" layoutY="171.0" mnemonicParsing="false" onAction="#confirm" prefHeight="30.0" prefWidth="370.0" styleClass="btn-confirm" text="Confirmar" textFill="#f2f2f2" />
                </children>
             </AnchorPane>
@@ -109,7 +109,6 @@
                     <columns>
                       <TableColumn fx:id="id" prefWidth="75.0" text="ID" />
                       <TableColumn fx:id="teacherName" prefWidth="420.0" text="Nome" />
-                        <TableColumn fx:id="id1" prefWidth="75.0" style="-fx-alignment: CENTER;" text="ID" />
                     </columns>
                      <BorderPane.margin>
                         <Insets right="20.0" />

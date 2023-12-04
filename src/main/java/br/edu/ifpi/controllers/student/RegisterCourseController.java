@@ -103,16 +103,16 @@ public class RegisterCourseController extends StudentController {
             }
 
             if (row > 0) {
-                AlertMessage.show("Sucesso", "Sucesso", "Matrícula realizada com sucesso", AlertType.INFORMATION);
+                AlertMessage.show("Sucesso", "", "Matrícula realizada com sucesso", AlertType.INFORMATION);
             } else {
-                AlertMessage.show("Erro", "Erro", "Erro ao realizar matrícula", AlertType.ERROR);
+                AlertMessage.show("Erro", "", "Erro ao realizar matrícula", AlertType.ERROR);
             }
 
             // atualiza a tabela de cursos disponíveis
             loadTableCourse();
             tableRegister.setItems(observableListCourse);
         } else {
-            AlertMessage.show("Erro", "Erro", "Selecione um curso para se matricular", AlertType.ERROR);
+            AlertMessage.show("Erro", "", "Selecione um curso para se matricular", AlertType.ERROR);
         }
 
     }

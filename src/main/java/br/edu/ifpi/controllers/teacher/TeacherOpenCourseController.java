@@ -114,13 +114,13 @@ public class TeacherOpenCourseController extends TeacherController {
         int row = courseDao.update(course);
 
         if (row > 0) {
-            AlertMessage.show("Sucesso", "Sucesso", "Curso finalizado com sucesso", AlertType.INFORMATION);
+            AlertMessage.show("Sucesso", "", "Curso finalizado com sucesso", AlertType.INFORMATION);
             TeacherCourseController teacherCourseController = new TeacherCourseController(
                     this.connection, this.sceneNavigator, this.teacher, this.stage, this.loginController,
                     this.courseDao, this.studentCourseDao);
             sceneNavigator.navigateTo(Routes.teacherCourse, this.stage, teacherCourseController);
         } else {
-            AlertMessage.show("Erro", "Erro", "Erro ao finalizar curso", AlertType.ERROR);
+            AlertMessage.show("Erro", "", "Erro ao finalizar curso", AlertType.ERROR);
         }
     }
 
@@ -137,7 +137,7 @@ public class TeacherOpenCourseController extends TeacherController {
             Double newGrade = event.getNewValue();
 
             if (newGrade < 0 || newGrade > 10) {
-                AlertMessage.show("Erro", "Erro", "Nota deve ser entre 0 e 10", AlertType.ERROR);
+                AlertMessage.show("Erro", "", "Nota deve ser entre 0 e 10", AlertType.ERROR);
                 tableCourse.refresh();
                 return;
             }
@@ -157,7 +157,7 @@ public class TeacherOpenCourseController extends TeacherController {
             loadClassStatistics();
 
             if (row == 0) {
-                AlertMessage.show("Erro", "Erro", "Erro ao atualizar nota", AlertType.ERROR);
+                AlertMessage.show("Erro", "", "Erro ao atualizar nota", AlertType.ERROR);
             }
         });
 

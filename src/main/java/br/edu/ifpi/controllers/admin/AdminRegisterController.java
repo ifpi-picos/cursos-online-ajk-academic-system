@@ -80,10 +80,10 @@ public class AdminRegisterController extends AdminController {
         Teacher teacher = tableTeacher.getSelectionModel().getSelectedItem();
 
         if (name.isEmpty() || workload <= 0) {
-            AlertMessage.show("Erro", "Erro!", "Preencha todos os campos!", AlertType.ERROR);
+            AlertMessage.show("Erro", "", "Preencha todos os campos!", AlertType.ERROR);
             return;
         } else if (teacher == null) {
-            AlertMessage.show("Erro", "Erro!", "Selecione um professor!", AlertType.ERROR);
+            AlertMessage.show("Erro", "", "Selecione um professor!", AlertType.ERROR);
             return;
         }
 
@@ -95,13 +95,13 @@ public class AdminRegisterController extends AdminController {
             int row = super.courseDao.update(this.course);
 
             if (row > 0) {
-                AlertMessage.show("Sucesso", "Sucesso!", "Curso atualizado com sucesso!", AlertType.INFORMATION);
+                AlertMessage.show("Sucesso", "", "Curso atualizado com sucesso!", AlertType.INFORMATION);
                 AdminSeeCoursesController adminSeeCoursesController = new AdminSeeCoursesController(super.connection,
                         super.sceneNavigator, super.admin, super.stage, super.courseDao, super.teacherDao,
                         super.studentDao, super.loginController);
                 sceneNavigator.navigateTo(Routes.adminSeeCourses, stage, adminSeeCoursesController);
             } else {
-                AlertMessage.show("Erro", "Erro!", "Erro ao atualizar curso!", AlertType.ERROR);
+                AlertMessage.show("Erro", "", "Erro ao atualizar curso!", AlertType.ERROR);
             }
             return;
         }
@@ -110,13 +110,13 @@ public class AdminRegisterController extends AdminController {
         int row = super.courseDao.insert(course);
 
         if (row > 0) {
-            AlertMessage.show("Sucesso", "Sucesso!", "Curso cadastrado com sucesso!", AlertType.INFORMATION);
+            AlertMessage.show("Sucesso", "", "Curso cadastrado com sucesso!", AlertType.INFORMATION);
 
             this.courseName.setText("");
             this.workload.setText("");
             this.tableTeacher.getSelectionModel().clearSelection();
         } else {
-            AlertMessage.show("Erro", "Erro!", "Erro ao cadastrar curso!", AlertType.ERROR);
+            AlertMessage.show("Erro", "", "Erro ao cadastrar curso!", AlertType.ERROR);
         }
     }
 

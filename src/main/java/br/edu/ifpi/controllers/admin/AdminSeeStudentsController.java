@@ -76,17 +76,17 @@ public class AdminSeeStudentsController extends AdminController {
             int row = super.studentDao.update(student);
 
             if (row > 0) {
-                AlertMessage.show("Sucesso", "Acesso bloqueado", "O acesso do aluno foi bloqueado com sucesso",
+                AlertMessage.show("Sucesso", "", "O acesso do aluno foi bloqueado com sucesso",
                         AlertType.INFORMATION);
 
                 loadTableStudent();
                 tableStudent.setItems(observableListStudent);
             } else {
-                AlertMessage.show("Erro", "Erro ao bloquear acesso", "Ocorreu um erro ao bloquear o acesso do aluno",
+                AlertMessage.show("Erro", "", "Ocorreu um erro ao bloquear o acesso do aluno",
                         AlertType.ERROR);
             }
         } else {
-            AlertMessage.show("Erro", "Selecione um aluno", "Selecione um aluno para bloquear o acesso",
+            AlertMessage.show("Erro", "", "Selecione um aluno para bloquear o acesso",
                     AlertType.WARNING);
         }
 
@@ -101,17 +101,17 @@ public class AdminSeeStudentsController extends AdminController {
             int row = super.studentDao.update(student);
 
             if (row > 0) {
-                AlertMessage.show("Sucesso", "Acesso liberado", "O acesso do aluno foi liberado com sucesso",
+                AlertMessage.show("Sucesso", "", "O acesso do aluno foi liberado com sucesso",
                         AlertType.INFORMATION);
 
                 loadTableStudent();
                 tableStudent.setItems(observableListStudent);
             } else {
-                AlertMessage.show("Erro", "Erro ao liberar acesso", "Ocorreu um erro ao liberar o acesso do aluno",
+                AlertMessage.show("Erro", "", "Ocorreu um erro ao liberar o acesso do aluno",
                         AlertType.ERROR);
             }
         } else {
-            AlertMessage.show("Erro", "Selecione um aluno", "Selecione um aluno para liberar o acesso",
+            AlertMessage.show("Erro", "", "Selecione um aluno para liberar o acesso",
                     AlertType.WARNING);
         }
     }
