@@ -6,7 +6,7 @@ Aplicação de um Sistema Acadêmico feito com Java e JavaFX para a disciplina d
 
 ## Começando
 
-Essas instruções fornecerão uma cópia do projeto em execução na sua máquina local para fins de teste. Esse projeto visa demonstrar a aplicabilidade de POO no relacionamento entre entidades do sistema. Outros padrões de projeto como o `MVC` e `DAO` também foram explorados neste sistema.
+Essas instruções fornecerão uma cópia do projeto em execução na sua máquina local para fins de teste. Esse projeto visa demonstrar a aplicabilidade de POO no relacionamento entre entidades do sistema. Outros padrões de projeto como o `MVC` e `DAO` também foram explorados.
 
 **Versão do Java**: `17`
 
