@@ -7,26 +7,23 @@ import java.net.URL;
 
 import br.edu.ifpi.config.Routes;
 import br.edu.ifpi.controllers.LoginController;
+import br.edu.ifpi.data.dao.AdminDao;
 import br.edu.ifpi.data.dao.CourseDao;
 import br.edu.ifpi.data.dao.StudentDao;
 import br.edu.ifpi.data.dao.TeacherDao;
 import br.edu.ifpi.entities.Course;
 import br.edu.ifpi.entities.Teacher;
-import br.edu.ifpi.entities.User;
+import br.edu.ifpi.entities.Admin;
 import br.edu.ifpi.entities.enums.CourseStatus;
 import br.edu.ifpi.util.AlertMessage;
 import br.edu.ifpi.util.SceneNavigator;
 import br.edu.ifpi.util.prefs.PreferencesUtil;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.control.TableColumn;
@@ -42,14 +39,18 @@ public class AdminRegisterController extends AdminController {
     public AdminRegisterController(
             Connection connection,
             SceneNavigator sceneNavigator,
-            User admin,
+            Admin admin,
             Stage stage,
             CourseDao courseDao,
             TeacherDao teacherDao,
             StudentDao studentDao,
-            LoginController loginController) {
+            AdminDao adminDao,
+            LoginController loginController,
+            Course course) {
 
-        super(connection, sceneNavigator, admin, stage, courseDao, teacherDao, studentDao, loginController);
+        super(connection, sceneNavigator, admin, stage, courseDao, teacherDao, studentDao, adminDao, loginController);
+
+        this.course = course;
     }
 
     @FXML
@@ -98,7 +99,7 @@ public class AdminRegisterController extends AdminController {
                 AlertMessage.show("Sucesso", "", "Curso atualizado com sucesso!", AlertType.INFORMATION);
                 AdminSeeCoursesController adminSeeCoursesController = new AdminSeeCoursesController(super.connection,
                         super.sceneNavigator, super.admin, super.stage, super.courseDao, super.teacherDao,
-                        super.studentDao, super.loginController);
+                        super.studentDao, super.adminDao, super.loginController);
                 sceneNavigator.navigateTo(Routes.adminSeeCourses, stage, adminSeeCoursesController);
             } else {
                 AlertMessage.show("Erro", "", "Erro ao atualizar curso!", AlertType.ERROR);
@@ -118,11 +119,6 @@ public class AdminRegisterController extends AdminController {
         } else {
             AlertMessage.show("Erro", "", "Erro ao cadastrar curso!", AlertType.ERROR);
         }
-    }
-
-    @FXML
-    void usernameButton(MouseEvent event) {
-
     }
 
     public void loadTeachers() {
@@ -165,41 +161,5 @@ public class AdminRegisterController extends AdminController {
         } else {
             setLightMode();
         }
-    }
-
-    @FXML
-    private Button btnMode;
-
-    @FXML
-    private ImageView imgMode;
-
-    @FXML
-    private BorderPane parent;
-
-    private boolean isDarkMode = false;
-
-    public void setMode(ActionEvent event) {
-        isDarkMode = !isDarkMode;
-        if(isDarkMode) {
-            setDarkMode();
-        } else {
-            setLightMode();
-        }
-
-        PreferencesUtil.setDarkMode(isDarkMode);
-    }
-
-    private void setDarkMode() {
-        parent.getStylesheets().remove(getClass().getResource(Routes.lightMode).toExternalForm());
-        parent.getStylesheets().add(getClass().getResource(Routes.darkMode).toExternalForm());
-        Image image = new Image(getClass().getResourceAsStream(Routes.imgSun));
-        imgMode.setImage(image);
-    }
-
-    private void setLightMode() {
-        parent.getStylesheets().remove(getClass().getResource(Routes.darkMode).toExternalForm());
-        parent.getStylesheets().add(getClass().getResource(Routes.lightMode).toExternalForm());
-        Image image = new Image(getClass().getResourceAsStream(Routes.imgMoon));
-        imgMode.setImage(image);
     }
 }

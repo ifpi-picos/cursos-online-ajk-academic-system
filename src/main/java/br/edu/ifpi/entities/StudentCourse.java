@@ -4,19 +4,19 @@ import br.edu.ifpi.entities.enums.EnrollmentStatus;
 
 public class StudentCourse {
 
-    private User student;
+    private Student student;
     private Course course;
     private Double finalGrade;
     private EnrollmentStatus enrollmentStatus;
 
-    public StudentCourse(User student, Course course, Double finalGrade, EnrollmentStatus enrollmentStatus) {
+    public StudentCourse(Student student, Course course, Double finalGrade, EnrollmentStatus enrollmentStatus) {
         this.student = student;
         this.course = course;
         this.finalGrade = finalGrade;
         this.enrollmentStatus = enrollmentStatus;
     }
 
-    public User getStudent() {
+    public Student getStudent() {
         return student;
     }
 

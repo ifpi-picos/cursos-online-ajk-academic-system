@@ -7,15 +7,17 @@ import java.util.ResourceBundle;
 
 import br.edu.ifpi.config.Routes;
 import br.edu.ifpi.controllers.LoginController;
+import br.edu.ifpi.data.dao.AdminDao;
 import br.edu.ifpi.data.dao.CourseDao;
 import br.edu.ifpi.data.dao.StudentDao;
 import br.edu.ifpi.data.dao.TeacherDao;
 import br.edu.ifpi.entities.Student;
-import br.edu.ifpi.entities.User;
+import br.edu.ifpi.entities.Admin;
 import br.edu.ifpi.entities.enums.StudentStatus;
 import br.edu.ifpi.util.AlertMessage;
 import br.edu.ifpi.util.SceneNavigator;
 import br.edu.ifpi.util.prefs.PreferencesUtil;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -39,14 +41,15 @@ public class AdminSeeStudentsController extends AdminController {
     public AdminSeeStudentsController(
             Connection connection,
             SceneNavigator sceneNavigator,
-            User admin,
+            Admin admin,
             Stage stage,
             CourseDao courseDao,
             TeacherDao teacherDao,
             StudentDao studentDao,
+            AdminDao adminDao,
             LoginController loginController) {
 
-        super(connection, sceneNavigator, admin, stage, courseDao, teacherDao, studentDao, loginController);
+        super(connection, sceneNavigator, admin, stage, courseDao, teacherDao, studentDao, adminDao, loginController);
     }
 
     @FXML
@@ -152,41 +155,5 @@ public class AdminSeeStudentsController extends AdminController {
         } else {
             setLightMode();
         }
-    }
-
-    @FXML
-    private Button btnMode;
-
-    @FXML
-    private ImageView imgMode;
-
-    @FXML
-    private BorderPane parent;
-
-    private boolean isDarkMode = false;
-
-    public void setMode(ActionEvent event) {
-        isDarkMode = !isDarkMode;
-        if(isDarkMode) {
-            setDarkMode();
-        } else {
-            setLightMode();
-        }
-
-        PreferencesUtil.setDarkMode(isDarkMode);
-    }
-
-    private void setDarkMode() {
-        parent.getStylesheets().remove(getClass().getResource(Routes.lightMode).toExternalForm());
-        parent.getStylesheets().add(getClass().getResource(Routes.darkMode).toExternalForm());
-        Image image = new Image(getClass().getResourceAsStream(Routes.imgSun));
-        imgMode.setImage(image);
-    }
-
-    private void setLightMode() {
-        parent.getStylesheets().remove(getClass().getResource(Routes.darkMode).toExternalForm());
-        parent.getStylesheets().add(getClass().getResource(Routes.lightMode).toExternalForm());
-        Image image = new Image(getClass().getResourceAsStream(Routes.imgMoon));
-        imgMode.setImage(image);
     }
 }

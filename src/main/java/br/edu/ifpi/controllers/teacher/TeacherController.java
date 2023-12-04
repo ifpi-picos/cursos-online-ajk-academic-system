@@ -8,7 +8,7 @@ import br.edu.ifpi.config.Routes;
 import br.edu.ifpi.controllers.LoginController;
 import br.edu.ifpi.data.dao.CourseDao;
 import br.edu.ifpi.data.dao.StudentCourseDao;
-import br.edu.ifpi.entities.User;
+import br.edu.ifpi.entities.Teacher;
 import br.edu.ifpi.util.SceneNavigator;
 import br.edu.ifpi.util.prefs.PreferencesUtil;
 import javafx.event.ActionEvent;
@@ -26,16 +26,19 @@ public class TeacherController implements Initializable {
 
     protected Connection connection;
     protected SceneNavigator sceneNavigator;
-    protected User teacher;
+    protected Teacher teacher;
     protected Stage stage;
     protected LoginController loginController;
+
     protected CourseDao courseDao;
     protected StudentCourseDao studentCourseDao;
+
+    protected boolean isDarkMode = false;
 
     public TeacherController(
             Connection connection,
             SceneNavigator sceneNavigator,
-            User teacher,
+            Teacher teacher,
             Stage stage,
             LoginController loginController,
             CourseDao courseDao,
@@ -52,6 +55,15 @@ public class TeacherController implements Initializable {
 
     @FXML
     private Text username;
+
+    @FXML
+    private Button btnMode;
+
+    @FXML
+    private ImageView imgMode;
+
+    @FXML
+    private BorderPane parent;
 
     @FXML
     void home(ActionEvent event) {
@@ -87,6 +99,32 @@ public class TeacherController implements Initializable {
         sceneNavigator.navigateTo(Routes.teacherCourseTaught, this.stage, teacherCoursesTaughtController);
     }
 
+    @FXML
+    void setMode(ActionEvent event) {
+        isDarkMode = !isDarkMode;
+        if (isDarkMode) {
+            setDarkMode();
+        } else {
+            setLightMode();
+        }
+
+        PreferencesUtil.setDarkMode(isDarkMode);
+    }
+
+    protected void setDarkMode() {
+        parent.getStylesheets().remove(getClass().getResource(Routes.lightMode).toExternalForm());
+        parent.getStylesheets().add(getClass().getResource(Routes.darkMode).toExternalForm());
+        Image image = new Image(getClass().getResourceAsStream(Routes.imgSun));
+        imgMode.setImage(image);
+    }
+
+    protected void setLightMode() {
+        parent.getStylesheets().remove(getClass().getResource(Routes.darkMode).toExternalForm());
+        parent.getStylesheets().add(getClass().getResource(Routes.lightMode).toExternalForm());
+        Image image = new Image(getClass().getResourceAsStream(Routes.imgMoon));
+        imgMode.setImage(image);
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         username.setText("Olá, " + teacher.getName());
@@ -98,41 +136,5 @@ public class TeacherController implements Initializable {
         } else {
             setLightMode();
         }
-    }
-
-    @FXML
-    private Button btnMode;
-
-    @FXML
-    private ImageView imgMode;
-
-    @FXML
-    private BorderPane parent;
-
-    private boolean isDarkMode = false;
-
-    public void setMode(ActionEvent event) {
-        isDarkMode = !isDarkMode;
-        if(isDarkMode) {
-            setDarkMode();
-        } else {
-            setLightMode();
-        }
-
-        PreferencesUtil.setDarkMode(isDarkMode);
-    }
-
-    private void setDarkMode() {
-        parent.getStylesheets().remove(getClass().getResource(Routes.lightMode).toExternalForm());
-        parent.getStylesheets().add(getClass().getResource(Routes.darkMode).toExternalForm());
-        Image image = new Image(getClass().getResourceAsStream(Routes.imgSun));
-        imgMode.setImage(image);
-    }
-
-    private void setLightMode() {
-        parent.getStylesheets().remove(getClass().getResource(Routes.darkMode).toExternalForm());
-        parent.getStylesheets().add(getClass().getResource(Routes.lightMode).toExternalForm());
-        Image image = new Image(getClass().getResourceAsStream(Routes.imgMoon));
-        imgMode.setImage(image);
     }
 }

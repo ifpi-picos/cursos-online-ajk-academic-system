@@ -113,7 +113,7 @@ public class LoginController implements Initializable {
         if (admin != null) {
             try {
                 AdminController adminHomeController = new AdminController(
-                        connection, sceneNavigator, admin, stage, courseDao, teacherDao, studentDao, this);
+                        connection, sceneNavigator, admin, stage, courseDao, teacherDao, studentDao, adminDao, this);
                 sceneNavigator.navigateTo(Routes.adminHome, this.stage, adminHomeController);
             } catch (Exception e) {
                 AlertMessage.show("Erro ao fazer login", "", "Ocorreu um erro ao fazer login",
