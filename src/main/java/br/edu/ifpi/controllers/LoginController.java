@@ -14,7 +14,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.util.ResourceBundle;
 
-import br.edu.ifpi.config.Routes;
+import br.edu.ifpi.configs.Routes;
 import br.edu.ifpi.controllers.admin.AdminController;
 import br.edu.ifpi.controllers.student.StudentController;
 import br.edu.ifpi.controllers.teacher.TeacherController;

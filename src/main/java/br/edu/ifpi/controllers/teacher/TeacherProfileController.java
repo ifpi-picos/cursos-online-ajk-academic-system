@@ -1,18 +1,10 @@
 package br.edu.ifpi.controllers.teacher;
 
-import java.sql.Connection;
 import java.util.ResourceBundle;
 
-import br.edu.ifpi.controllers.LoginController;
-import br.edu.ifpi.data.dao.CourseDao;
-import br.edu.ifpi.data.dao.StudentCourseDao;
-import br.edu.ifpi.data.dao.TeacherDao;
-import br.edu.ifpi.entities.Teacher;
 import br.edu.ifpi.util.AlertMessage;
 import br.edu.ifpi.util.Preferences;
-import br.edu.ifpi.util.SceneNavigator;
 
-import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -20,21 +12,16 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.text.Text;
 
 public class TeacherProfileController extends TeacherController {
-
-    private Teacher teacher;
-
-    public TeacherProfileController(
-            Connection connection,
-            SceneNavigator sceneNavigator,
-            Teacher teacher,
-            Stage stage,
-            LoginController loginController,
-            CourseDao courseDao,
-            TeacherDao teacherDao,
-            StudentCourseDao studentCourseDao) {
-        super(connection, sceneNavigator, teacher, stage, loginController, courseDao, teacherDao, studentCourseDao);
-
-        this.teacher = teacher;
+    public TeacherProfileController(TeacherController teacherController) {
+        super(
+                teacherController.connection,
+                teacherController.sceneNavigator,
+                teacherController.teacher,
+                teacherController.stage,
+                teacherController.loginController,
+                teacherController.courseDao,
+                teacherController.teacherDao,
+                teacherController.studentCourseDao);
     }
 
     @FXML

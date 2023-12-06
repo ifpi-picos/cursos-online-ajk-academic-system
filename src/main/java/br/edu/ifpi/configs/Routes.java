@@ -1,4 +1,4 @@
-package br.edu.ifpi.config;
+package br.edu.ifpi.configs;
 
 public class Routes {
     // =========================== img ========================== //

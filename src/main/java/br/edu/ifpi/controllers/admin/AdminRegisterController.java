@@ -1,30 +1,22 @@
 package br.edu.ifpi.controllers.admin;
 
-import java.sql.Connection;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.net.URL;
 
-import br.edu.ifpi.config.Routes;
-import br.edu.ifpi.controllers.LoginController;
-import br.edu.ifpi.data.dao.AdminDao;
-import br.edu.ifpi.data.dao.CourseDao;
-import br.edu.ifpi.data.dao.StudentDao;
-import br.edu.ifpi.data.dao.TeacherDao;
+import br.edu.ifpi.configs.Routes;
 import br.edu.ifpi.entities.Course;
 import br.edu.ifpi.entities.Teacher;
-import br.edu.ifpi.entities.Admin;
 import br.edu.ifpi.entities.enums.CourseStatus;
 import br.edu.ifpi.util.AlertMessage;
 import br.edu.ifpi.util.Preferences;
-import br.edu.ifpi.util.SceneNavigator;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.collections.FXCollections;
@@ -33,22 +25,21 @@ import javafx.collections.ObservableList;
 public class AdminRegisterController extends AdminController {
 
     private ObservableList<Teacher> observableListTeacher;
+    private AdminController adminController;
     private Course course;
 
-    public AdminRegisterController(
-            Connection connection,
-            SceneNavigator sceneNavigator,
-            Admin admin,
-            Stage stage,
-            CourseDao courseDao,
-            TeacherDao teacherDao,
-            StudentDao studentDao,
-            AdminDao adminDao,
-            LoginController loginController,
-            Course course) {
-
-        super(connection, sceneNavigator, admin, stage, courseDao, teacherDao, studentDao, adminDao, loginController);
-
+    public AdminRegisterController(AdminController adminController, Course course) {
+        super(
+                adminController.connection,
+                adminController.sceneNavigator,
+                adminController.admin,
+                adminController.stage,
+                adminController.courseDao,
+                adminController.teacherDao,
+                adminController.studentDao,
+                adminController.adminDao,
+                adminController.loginController);
+        this.adminController = adminController;
         this.course = course;
     }
 
@@ -119,9 +110,7 @@ public class AdminRegisterController extends AdminController {
 
             if (row > 0) {
                 AlertMessage.show("Sucesso", "", "Curso atualizado com sucesso!", AlertType.INFORMATION);
-                AdminSeeCoursesController adminSeeCoursesController = new AdminSeeCoursesController(super.connection,
-                        super.sceneNavigator, super.admin, super.stage, super.courseDao, super.teacherDao,
-                        super.studentDao, super.adminDao, super.loginController);
+                AdminSeeCoursesController adminSeeCoursesController = new AdminSeeCoursesController(adminController);
                 sceneNavigator.navigateTo(Routes.adminSeeCourses, stage, adminSeeCoursesController);
             } else {
                 AlertMessage.show("Erro", "", "Erro ao atualizar curso!", AlertType.ERROR);

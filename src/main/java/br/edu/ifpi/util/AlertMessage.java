@@ -1,6 +1,6 @@
 package br.edu.ifpi.util;
 
-import br.edu.ifpi.config.Routes;
+import br.edu.ifpi.configs.Routes;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;

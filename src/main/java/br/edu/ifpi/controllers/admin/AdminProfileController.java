@@ -1,18 +1,10 @@
 package br.edu.ifpi.controllers.admin;
 
-import java.sql.Connection;
 import java.util.ResourceBundle;
 
-import br.edu.ifpi.controllers.LoginController;
-import br.edu.ifpi.data.dao.CourseDao;
-import br.edu.ifpi.data.dao.StudentDao;
-import br.edu.ifpi.data.dao.TeacherDao;
-import br.edu.ifpi.data.dao.AdminDao;
-import br.edu.ifpi.entities.Admin;
 import br.edu.ifpi.util.AlertMessage;
 import br.edu.ifpi.util.Preferences;
-import br.edu.ifpi.util.SceneNavigator;
-import javafx.stage.Stage;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -21,21 +13,17 @@ import javafx.scene.text.Text;
 
 public class AdminProfileController extends AdminController {
 
-    private Admin admin;
-
-    public AdminProfileController(
-            Connection connection,
-            SceneNavigator sceneNavigator,
-            Admin admin,
-            Stage stage,
-            CourseDao courseDao,
-            StudentDao studentDao,
-            AdminDao adminDao,
-            LoginController loginController,
-            TeacherDao teacherDao) {
-        super(connection, sceneNavigator, admin, stage, courseDao, teacherDao, studentDao, adminDao, loginController);
-
-        this.admin = admin;
+    public AdminProfileController(AdminController adminController) {
+        super(
+                adminController.connection,
+                adminController.sceneNavigator,
+                adminController.admin,
+                adminController.stage,
+                adminController.courseDao,
+                adminController.teacherDao,
+                adminController.studentDao,
+                adminController.adminDao,
+                adminController.loginController);
     }
 
     @FXML

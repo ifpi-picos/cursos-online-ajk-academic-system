@@ -4,7 +4,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.util.ResourceBundle;
 
-import br.edu.ifpi.config.Routes;
+import br.edu.ifpi.configs.Routes;
 import br.edu.ifpi.controllers.LoginController;
 import br.edu.ifpi.data.dao.CourseDao;
 import br.edu.ifpi.data.dao.StudentCourseDao;
@@ -12,6 +12,7 @@ import br.edu.ifpi.data.dao.StudentDao;
 import br.edu.ifpi.entities.Student;
 import br.edu.ifpi.util.Preferences;
 import br.edu.ifpi.util.SceneNavigator;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -93,9 +94,7 @@ public class StudentController implements Initializable {
 
     @FXML
     void completedCourses(ActionEvent event) {
-        CompletedCourseController completedCourseController = new CompletedCourseController(
-                this.connection, this.sceneNavigator, this.student, this.stage, this.loginController, this.courseDao,
-                this.studentCourseDao, this.studentDao);
+        CompletedCourseController completedCourseController = new CompletedCourseController(this);
         sceneNavigator.navigateTo(Routes.completedCourse, this.stage, completedCourseController);
     }
 
@@ -106,25 +105,19 @@ public class StudentController implements Initializable {
 
     @FXML
     void coursesEnrolled(ActionEvent event) {
-        EnrolledCourseController enrolledCourseController = new EnrolledCourseController(
-                this.connection, this.sceneNavigator, this.student, this.stage, this.loginController, this.courseDao,
-                this.studentCourseDao, this.studentDao);
+        EnrolledCourseController enrolledCourseController = new EnrolledCourseController(this);
         sceneNavigator.navigateTo(Routes.enrolledCourse, this.stage, enrolledCourseController);
     }
 
     @FXML
     void register(ActionEvent event) {
-        RegisterCourseController registerCourseController = new RegisterCourseController(
-                this.connection, this.sceneNavigator, this.student, this.stage, this.loginController, this.courseDao,
-                this.studentCourseDao, this.studentDao);
+        RegisterCourseController registerCourseController = new RegisterCourseController(this);
         sceneNavigator.navigateTo(Routes.studentRegisterCourse, this.stage, registerCourseController);
     }
 
     @FXML
     void usernameButton(MouseEvent event) {
-        StudentProfileController studentProfileController = new StudentProfileController(
-                this.connection, this.sceneNavigator, this.student, this.stage, this.loginController, this.courseDao,
-                this.studentDao, this.studentCourseDao);
+        StudentProfileController studentProfileController = new StudentProfileController(this);
         sceneNavigator.navigateTo(Routes.studentProfile, this.stage, studentProfileController);
 
     }

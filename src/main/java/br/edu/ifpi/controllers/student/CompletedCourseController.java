@@ -1,19 +1,13 @@
 package br.edu.ifpi.controllers.student;
 
 import java.net.URL;
-import java.sql.Connection;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import br.edu.ifpi.controllers.LoginController;
-import br.edu.ifpi.data.dao.CourseDao;
-import br.edu.ifpi.data.dao.StudentCourseDao;
-import br.edu.ifpi.data.dao.StudentDao;
 import br.edu.ifpi.entities.StudentCourse;
-import br.edu.ifpi.entities.Student;
 import br.edu.ifpi.entities.enums.EnrollmentStatus;
 import br.edu.ifpi.util.Preferences;
-import br.edu.ifpi.util.SceneNavigator;
+
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -22,7 +16,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 public class CompletedCourseController extends StudentController {
 
@@ -30,17 +23,16 @@ public class CompletedCourseController extends StudentController {
 
     List<StudentCourse> studentCourses;
 
-    public CompletedCourseController(
-            Connection connection,
-            SceneNavigator sceneNavigator,
-            Student student,
-            Stage stage,
-            LoginController loginController,
-            CourseDao courseDao,
-            StudentCourseDao studentCourseDao,
-            StudentDao studentDao) {
-
-        super(connection, sceneNavigator, student, stage, loginController, courseDao, studentCourseDao, studentDao);
+    public CompletedCourseController(StudentController studentController) {
+        super(
+                studentController.connection,
+                studentController.sceneNavigator,
+                studentController.student,
+                studentController.stage,
+                studentController.loginController,
+                studentController.courseDao,
+                studentController.studentCourseDao,
+                studentController.studentDao);
     }
 
     @FXML

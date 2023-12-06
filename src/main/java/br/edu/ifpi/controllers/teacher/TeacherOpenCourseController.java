@@ -1,23 +1,16 @@
 package br.edu.ifpi.controllers.teacher;
 
 import java.net.URL;
-import java.sql.Connection;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import br.edu.ifpi.config.Routes;
-import br.edu.ifpi.controllers.LoginController;
-import br.edu.ifpi.data.dao.CourseDao;
-import br.edu.ifpi.data.dao.StudentCourseDao;
-import br.edu.ifpi.data.dao.TeacherDao;
+import br.edu.ifpi.configs.Routes;
 import br.edu.ifpi.entities.Course;
 import br.edu.ifpi.entities.StudentCourse;
-import br.edu.ifpi.entities.Teacher;
 import br.edu.ifpi.entities.enums.CourseStatus;
 import br.edu.ifpi.entities.enums.EnrollmentStatus;
 import br.edu.ifpi.util.AlertMessage;
 import br.edu.ifpi.util.Preferences;
-import br.edu.ifpi.util.SceneNavigator;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -28,7 +21,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import javafx.util.converter.DoubleStringConverter;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -38,23 +30,21 @@ import javafx.scene.control.cell.TextFieldTableCell;
 public class TeacherOpenCourseController extends TeacherController {
 
     private ObservableList<StudentCourse> observableListStudentCourse;
+    private TeacherController teacherController;
     private final Course course;
     private final Boolean edit;
 
-    public TeacherOpenCourseController(
-            Connection connection,
-            SceneNavigator sceneNavigator,
-            Teacher teacher,
-            Stage stage,
-            LoginController loginController,
-            CourseDao courseDao,
-            StudentCourseDao studentCourseDao,
-            TeacherDao teacherDao,
-            Course course,
-            Boolean edit) {
-
-        super(connection, sceneNavigator, teacher, stage, loginController, courseDao, teacherDao, studentCourseDao);
-
+    public TeacherOpenCourseController(TeacherController teacherController, Course course, Boolean edit) {
+        super(
+                teacherController.connection,
+                teacherController.sceneNavigator,
+                teacherController.teacher,
+                teacherController.stage,
+                teacherController.loginController,
+                teacherController.courseDao,
+                teacherController.teacherDao,
+                teacherController.studentCourseDao);
+        this.teacherController = teacherController;
         this.course = course;
         this.edit = edit;
     }
@@ -123,14 +113,11 @@ public class TeacherOpenCourseController extends TeacherController {
     @FXML
     void backCourses(ActionEvent event) {
         if (edit) {
-            TeacherCourseController teacherCourseController = new TeacherCourseController(
-                    this.connection, this.sceneNavigator, this.teacher, this.stage, this.loginController,
-                    this.courseDao, this.teacherDao, this.studentCourseDao);
+            TeacherCourseController teacherCourseController = new TeacherCourseController(teacherController);
             sceneNavigator.navigateTo(Routes.teacherCourse, this.stage, teacherCourseController);
         } else {
             TeacherCoursesTaughtController teacherCoursesTaughtController = new TeacherCoursesTaughtController(
-                    this.connection, this.sceneNavigator, this.teacher, this.stage, this.loginController,
-                    this.courseDao, this.teacherDao, this.studentCourseDao);
+                    teacherController);
             sceneNavigator.navigateTo(Routes.teacherCourseTaught, this.stage, teacherCoursesTaughtController);
         }
     }
@@ -143,9 +130,7 @@ public class TeacherOpenCourseController extends TeacherController {
 
         if (row > 0) {
             AlertMessage.show("Sucesso", "", "Curso finalizado com sucesso", AlertType.INFORMATION);
-            TeacherCourseController teacherCourseController = new TeacherCourseController(
-                    this.connection, this.sceneNavigator, this.teacher, this.stage, this.loginController,
-                    this.courseDao, this.teacherDao, this.studentCourseDao);
+            TeacherCourseController teacherCourseController = new TeacherCourseController(teacherController);
             sceneNavigator.navigateTo(Routes.teacherCourse, this.stage, teacherCourseController);
         } else {
             AlertMessage.show("Erro", "", "Erro ao finalizar curso", AlertType.ERROR);

@@ -1,22 +1,15 @@
 package br.edu.ifpi.controllers.admin;
 
-import java.sql.Connection;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.net.URL;
 
-import br.edu.ifpi.config.Routes;
-import br.edu.ifpi.controllers.LoginController;
-import br.edu.ifpi.data.dao.AdminDao;
-import br.edu.ifpi.data.dao.CourseDao;
-import br.edu.ifpi.data.dao.StudentDao;
-import br.edu.ifpi.data.dao.TeacherDao;
+import br.edu.ifpi.configs.Routes;
 import br.edu.ifpi.entities.Course;
-import br.edu.ifpi.entities.Admin;
 import br.edu.ifpi.entities.enums.CourseStatus;
 import br.edu.ifpi.util.AlertMessage;
 import br.edu.ifpi.util.Preferences;
-import br.edu.ifpi.util.SceneNavigator;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,22 +21,25 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 public class AdminSeeCoursesController extends AdminController {
 
     private ObservableList<Course> observableListCourse;
+    private AdminController adminController;
 
-    public AdminSeeCoursesController(Connection connection,
-            SceneNavigator sceneNavigator,
-            Admin admin,
-            Stage stage,
-            CourseDao courseDao,
-            TeacherDao teacherDao,
-            StudentDao studentDao,
-            AdminDao adminDao,
-            LoginController loginController) {
-        super(connection, sceneNavigator, admin, stage, courseDao, teacherDao, studentDao, adminDao, loginController);
+    public AdminSeeCoursesController(AdminController adminController) {
+        super(
+            adminController.connection,
+            adminController.sceneNavigator,
+            adminController.admin,
+            adminController.stage,
+            adminController.courseDao,
+            adminController.teacherDao,
+            adminController.studentDao,
+            adminController.adminDao,
+            adminController.loginController
+        );
+        this.adminController = adminController;
     }
 
     @FXML
@@ -126,9 +122,7 @@ public class AdminSeeCoursesController extends AdminController {
         Course course = tableCourses.getSelectionModel().getSelectedItem();
 
         if (course != null) {
-            AdminRegisterController adminRegisterController = new AdminRegisterController(super.connection,
-                    super.sceneNavigator, super.admin, super.stage, super.courseDao, super.teacherDao,
-                    super.studentDao, super.adminDao, super.loginController, course);
+            AdminRegisterController adminRegisterController = new AdminRegisterController(adminController, course);
             sceneNavigator.navigateTo(Routes.adminRegisterCourse, this.stage, adminRegisterController);
         } else {
             AlertMessage.show("Erro", "", "Selecione um curso!", AlertType.ERROR);
@@ -153,8 +147,10 @@ public class AdminSeeCoursesController extends AdminController {
     public String getStatus(Course course) {
         if (course.getStatus() == CourseStatus.OPEN) {
             return "Ativo";
-        } else {
+        } else if (course.getStatus() == CourseStatus.INACTIVE) {
             return "Inativo";
+        } else {
+            return "Finalizado";
         }
     }
 }

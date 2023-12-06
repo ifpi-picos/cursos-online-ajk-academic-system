@@ -4,7 +4,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.util.ResourceBundle;
 
-import br.edu.ifpi.config.Routes;
+import br.edu.ifpi.configs.Routes;
 import br.edu.ifpi.controllers.LoginController;
 import br.edu.ifpi.data.dao.AdminDao;
 import br.edu.ifpi.data.dao.CourseDao;
@@ -13,6 +13,7 @@ import br.edu.ifpi.data.dao.TeacherDao;
 import br.edu.ifpi.entities.Admin;
 import br.edu.ifpi.util.Preferences;
 import br.edu.ifpi.util.SceneNavigator;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -99,37 +100,31 @@ public class AdminController implements Initializable {
 
     @FXML
     void registerCourse(ActionEvent event) {
-        AdminRegisterController adminRegisterController = new AdminRegisterController(connection, sceneNavigator,
-                admin, stage, courseDao, teacherDao, studentDao, adminDao, loginController, null);
+        AdminRegisterController adminRegisterController = new AdminRegisterController(this, null);
         sceneNavigator.navigateTo(Routes.adminRegisterCourse, this.stage, adminRegisterController);
     }
 
     @FXML
     void seeCourses(ActionEvent event) {
-        AdminSeeCoursesController adminSeeCoursesController = new AdminSeeCoursesController(connection, sceneNavigator,
-                admin, stage, courseDao, teacherDao, studentDao, adminDao, loginController);
+        AdminSeeCoursesController adminSeeCoursesController = new AdminSeeCoursesController(this);
         sceneNavigator.navigateTo(Routes.adminSeeCourses, this.stage, adminSeeCoursesController);
     }
 
     @FXML
     void seeStudents(ActionEvent event) {
-        AdminSeeStudentsController adminSeeStudentsController = new AdminSeeStudentsController(connection,
-                sceneNavigator, admin, stage, courseDao, teacherDao, studentDao, adminDao, loginController);
+        AdminSeeStudentsController adminSeeStudentsController = new AdminSeeStudentsController(this);
         sceneNavigator.navigateTo(Routes.adminSeeStudents, this.stage, adminSeeStudentsController);
     }
 
     @FXML
     void seeTeatchers(ActionEvent event) {
-        AdminSeeTeachersController adminSeeTeachersController = new AdminSeeTeachersController(connection,
-                sceneNavigator, admin, stage, courseDao, teacherDao, studentDao, adminDao, loginController);
+        AdminSeeTeachersController adminSeeTeachersController = new AdminSeeTeachersController(this);
         sceneNavigator.navigateTo(Routes.adminSeeTeachers, this.stage, adminSeeTeachersController);
     }
 
     @FXML
     void usernameButton(MouseEvent event) {
-        AdminProfileController adminProfileController = new AdminProfileController(
-                this.connection, this.sceneNavigator, this.admin, this.stage, this.courseDao, this.studentDao,
-                this.adminDao, this.loginController, this.teacherDao);
+        AdminProfileController adminProfileController = new AdminProfileController(this);
         sceneNavigator.navigateTo(Routes.adminProfile, this.stage, adminProfileController);
     }
 

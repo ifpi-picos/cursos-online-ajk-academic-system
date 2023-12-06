@@ -8,7 +8,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import java.sql.Connection;
 
-import br.edu.ifpi.config.Routes;
+import br.edu.ifpi.configs.Routes;
 import br.edu.ifpi.controllers.LoginController;
 import br.edu.ifpi.data.dao.AdminDao;
 import br.edu.ifpi.data.dao.CourseDao;

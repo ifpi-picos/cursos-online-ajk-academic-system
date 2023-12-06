@@ -4,7 +4,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.util.ResourceBundle;
 
-import br.edu.ifpi.config.Routes;
+import br.edu.ifpi.configs.Routes;
 import br.edu.ifpi.controllers.LoginController;
 import br.edu.ifpi.data.dao.CourseDao;
 import br.edu.ifpi.data.dao.StudentCourseDao;
@@ -94,22 +94,19 @@ public class TeacherController implements Initializable {
 
     @FXML
     void usernameButton(MouseEvent event) {
-        TeacherProfileController teacherProfileController = new TeacherProfileController(
-                connection, sceneNavigator, teacher, stage, loginController, courseDao, teacherDao, studentCourseDao);
+        TeacherProfileController teacherProfileController = new TeacherProfileController(this);
         sceneNavigator.navigateTo(Routes.teacherProfile, this.stage, teacherProfileController);
     }
 
     @FXML
     void coursesTaught(ActionEvent event) {
-        TeacherCourseController teacherCourseController = new TeacherCourseController(
-                connection, sceneNavigator, teacher, stage, loginController, courseDao, teacherDao, studentCourseDao);
+        TeacherCourseController teacherCourseController = new TeacherCourseController(this);
         sceneNavigator.navigateTo(Routes.teacherCourse, this.stage, teacherCourseController);
     }
 
     @FXML
     void completedCourses(ActionEvent event) {
-        TeacherCoursesTaughtController teacherCoursesTaughtController = new TeacherCoursesTaughtController(
-                connection, sceneNavigator, teacher, stage, loginController, courseDao, teacherDao, studentCourseDao);
+        TeacherCoursesTaughtController teacherCoursesTaughtController = new TeacherCoursesTaughtController(this);
         sceneNavigator.navigateTo(Routes.teacherCourseTaught, this.stage, teacherCoursesTaughtController);
     }
 
