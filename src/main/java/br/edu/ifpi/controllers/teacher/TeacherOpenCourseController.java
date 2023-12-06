@@ -209,7 +209,8 @@ public class TeacherOpenCourseController extends TeacherController {
                 observableListStudentCourse.size())
                 * 100;
 
-        classAverage.setText(studentCourseDao.getCourseAverageGrade(course).toString());
+        Double classAverageGrade = studentCourseDao.getCourseAverageGrade(course);
+        classAverage.setText(String.format("%.2f", classAverageGrade));
         classPerformance.setText(courseApprovedQuantity.intValue() + "%");
         numberStudents.setText(String.valueOf(observableListStudentCourse.size()));
     }
